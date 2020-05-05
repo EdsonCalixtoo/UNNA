@@ -162,15 +162,71 @@ class _FeedScreenState extends State<FeedScreen> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.black,
-        leading: IconButton(
-          onPressed: () {
-            
-          },
-          icon: Icon(Icons.menu),
-        ),
         centerTitle: true,
         elevation: 20.0,
         title: Text("UNNA"),
+      ),
+      drawer: Drawer(
+        child: ListView(
+          children: <Widget>[
+            DrawerHeader(
+                decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                        colors: <Color>[Colors.amberAccent, Colors.black])),
+                child: Text('this is header')),
+            ListTile(
+              title: Text('Esportes1'),
+            ),
+            ListTile(
+              title: Text('Esportes2'),
+            ),
+            ListTile(
+              title: Text('Esportes3'),
+            ),
+            ListTile(
+              title: Text('Esportes4'),
+            ),
+            ListTile(
+              title: Text('Esportes5'),
+            ),
+            ListTile(
+              title: Text('Esportes6'),
+            ),
+            ListTile(
+              title: Text('Esportes7'),
+            ),
+            ListTile(
+              title: Text('Esportes8'),
+            ),
+            ListTile(
+              title: Text('Esportes9'),
+            ),
+            ListTile(
+              title: Text('Esportes10'),
+            ),
+            ListTile(
+              title: Text('Esportes11'),
+            ),
+            ListTile(
+              title: Text('Esportes12'),
+            ),
+            ListTile(
+              title: Text('Esportes13'),
+            ),
+            ListTile(
+              title: Text('Esportes14'),
+            ),
+            ListTile(
+              title: Text('Esportes15'),
+            ),
+            ListTile(
+              title: Text('Esportes16'),
+            ),
+            ListTile(
+              title: Text('Esportes17'),
+            ),
+          ],
+        ),
       ),
       backgroundColor: Colors.orangeAccent,
       body: ListView(

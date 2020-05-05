@@ -8,7 +8,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'UNNA', //erros nos nomes corrigidos
+      title: 'UNNA',
       debugShowCheckedModeBanner: false,
       home: Login()
     );
