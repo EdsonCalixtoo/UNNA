@@ -8,7 +8,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Instagram Feed UI Redesign',
+      title: 'UNNA', //erros nos nomes corrigidos
       debugShowCheckedModeBanner: false,
       home: Login()
     );
