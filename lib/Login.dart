@@ -23,10 +23,10 @@ class _LoginState extends State<Login> {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: <Widget>[
                 Padding(
-                  padding: EdgeInsets.only(bottom: 60),
+                  padding: EdgeInsets.only(bottom: 22),
                   child: Image.asset(
                     "assets/images/logo.png",
-                    width: 200,
+                    width: 150,
                     height: 150,
                   ),
                 ),
@@ -36,7 +36,6 @@ class _LoginState extends State<Login> {
                     autofocus: true,
                     keyboardType: TextInputType.emailAddress,
                     style: TextStyle(
-                      fontWeight: FontWeight.bold,
                       fontSize: 20),
                     decoration: InputDecoration(
                         contentPadding: EdgeInsets.fromLTRB(32, 16, 32, 16),
@@ -44,6 +43,7 @@ class _LoginState extends State<Login> {
                         filled: true,
                         fillColor: Colors.white,
                         border: OutlineInputBorder(
+                            
                             borderRadius: BorderRadius.circular(32))),
                   ),
                 ),
@@ -51,7 +51,6 @@ class _LoginState extends State<Login> {
                   obscureText: true,
                   keyboardType: TextInputType.text,
                   style: TextStyle(
-                    fontWeight: FontWeight.bold,
                     fontSize: 20),
                   decoration: InputDecoration(
                       contentPadding: EdgeInsets.fromLTRB(32, 16, 32, 16),
@@ -68,7 +67,7 @@ class _LoginState extends State<Login> {
                         "Entrar",
                         style: TextStyle(color: Colors.white, fontSize: 20),
                       ),
-                      color: Colors.blue[600],
+                      color: Colors.lightBlueAccent,
                       padding: EdgeInsets.fromLTRB(32, 16, 32, 16),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(32)
@@ -88,7 +87,7 @@ class _LoginState extends State<Login> {
                         "Cadastre-se!",
                         style: TextStyle(
                             fontWeight: FontWeight.bold,
-                            color: Colors.red
+                            color: Colors.black
                         )
                     ),
                     onTap: (){
