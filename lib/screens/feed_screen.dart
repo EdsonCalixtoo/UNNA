@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:unna/models/post_model.dart';
+import 'package:unna/screens/filter_screen.dart';
+import 'package:unna/screens/inserir_anuncio.dart';
 import 'package:unna/screens/view_post_screen.dart';
 
 class FeedScreen extends StatefulWidget {
@@ -56,6 +58,11 @@ class _FeedScreenState extends State<FeedScreen> {
                       ),
                     ),
                     subtitle: Text(posts[index].timeAgo),
+                    trailing: IconButton(
+                      icon: Icon(Icons.more_horiz),
+                      color: Colors.black,
+                      onPressed: () => print('More'),
+                    ),
                   ),
                   InkWell(
                     onDoubleTap: () => print('Like post'),
@@ -161,77 +168,30 @@ class _FeedScreenState extends State<FeedScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.black,
-        centerTitle: true,
-        elevation: 20.0,
-        title: Text("UNNA"),
+        elevation: 13,
+        title: Text('UNNA'),
+        leading: GestureDetector(
+            onTap: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => FilterScreen()));
+            },
+            
+            child: Icon(
+              Icons.category,
+              size: 27.0,
+              color: Colors.white,
+            )),
       ),
-      drawer: Drawer(
-        child: ListView(
-          children: <Widget>[
-            DrawerHeader(
-                decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                        colors: <Color>[Colors.amberAccent, Colors.black])),
-                child: Text('this is header')),
-            ListTile(
-              title: Text('Esportes1'),
-            ),
-            ListTile(
-              title: Text('Esportes2'),
-            ),
-            ListTile(
-              title: Text('Esportes3'),
-            ),
-            ListTile(
-              title: Text('Esportes4'),
-            ),
-            ListTile(
-              title: Text('Esportes5'),
-            ),
-            ListTile(
-              title: Text('Esportes6'),
-            ),
-            ListTile(
-              title: Text('Esportes7'),
-            ),
-            ListTile(
-              title: Text('Esportes8'),
-            ),
-            ListTile(
-              title: Text('Esportes9'),
-            ),
-            ListTile(
-              title: Text('Esportes10'),
-            ),
-            ListTile(
-              title: Text('Esportes11'),
-            ),
-            ListTile(
-              title: Text('Esportes12'),
-            ),
-            ListTile(
-              title: Text('Esportes13'),
-            ),
-            ListTile(
-              title: Text('Esportes14'),
-            ),
-            ListTile(
-              title: Text('Esportes15'),
-            ),
-            ListTile(
-              title: Text('Esportes16'),
-            ),
-            ListTile(
-              title: Text('Esportes17'),
-            ),
-          ],
-        ),
-      ),
-      backgroundColor: Colors.orangeAccent,
+      backgroundColor: Color(0xFFEDF0F6),
       body: ListView(
         physics: AlwaysScrollableScrollPhysics(),
         children: <Widget>[
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 20.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            ),
+          ),
           Container(
             width: double.infinity,
             height: 100.0,
@@ -273,11 +233,11 @@ class _FeedScreenState extends State<FeedScreen> {
           _buildPost(0),
           _buildPost(1),
         ],
-      ),
-      bottomNavigationBar: ClipRRect(
+      ),   
+      bottomNavigationBar: ClipRRect(      
         borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(20.0),
-          topRight: Radius.circular(20.0),
+          topLeft: Radius.circular(30.0),
+          topRight: Radius.circular(30.0),
         ),
         child: BottomNavigationBar(
           type: BottomNavigationBarType.fixed,
@@ -300,14 +260,21 @@ class _FeedScreenState extends State<FeedScreen> {
             ),
             BottomNavigationBarItem(
               icon: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 5.0, vertical: 10.0),
+                padding: EdgeInsets.symmetric(horizontal: 5.0, vertical: 10.0,),
                 child: FlatButton(
                   padding: EdgeInsets.symmetric(vertical: 10.0),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(30.0),
                   ),
-                  color: Color(0xFF23B66F),
-                  onPressed: () => print('Upload photo'),
+                  color: Colors.blue,
+                  onPressed: () {
+                    Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => CreateScreen()
+                          )
+                      );
+                  },
                   child: Icon(
                     Icons.add,
                     size: 35.0,
