@@ -15,6 +15,7 @@ dependencies:
   cupertino_icons: ^0.1.2
   image_picker: ^0.6.6+1
   flutter_launcher_icons: ^0.7.5
+  flutter_svg: ^0.17.4
 
 
 
@@ -34,3 +35,15 @@ flutter:
 
   assets:
    - assets/images/
+   - assets/icons/
+
+
+
+  fonts:
+    - family: Poppins
+      fonts:
+        - asset: assets/fonts/Poppins-Regular.ttf
+        - asset: assets/fonts/Poppins-Medium.ttf
+          weight: 600
+        - asset: assets/fonts/Poppins-Bold.ttf
+          weight: 700

@@ -22,7 +22,7 @@ class _CadastroState extends State<Cadastro> {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: <Widget>[
                 Padding(
-                  padding: EdgeInsets.only(bottom: 32),
+                  padding: EdgeInsets.only(bottom: 40),
                   child: Image.asset(
                     "assets/images/logo2.png",
                     width: 200,
@@ -30,7 +30,7 @@ class _CadastroState extends State<Cadastro> {
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsets.only(bottom: 8),
+                  padding: EdgeInsets.only(bottom: 10),
                   child: TextField(
                     autofocus: true,
                     keyboardType: TextInputType.text,

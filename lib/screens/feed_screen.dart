@@ -175,12 +175,25 @@ class _FeedScreenState extends State<FeedScreen> {
               Navigator.push(context,
                   MaterialPageRoute(builder: (context) => FilterScreen()));
             },
-            
             child: Icon(
               Icons.category,
               size: 27.0,
               color: Colors.white,
-            )),
+            ),
+            ),
+            actions: <Widget>[
+              Padding(
+                padding: EdgeInsets.only(right: 20.0),
+                child: GestureDetector(
+                  onTap: () {
+                  },
+                  child: Icon(
+                    Icons.local_hospital,
+                    size: 26.0,
+                  ),
+                ),
+              )
+            ],
       ),
       backgroundColor: Color(0xFFEDF0F6),
       body: ListView(

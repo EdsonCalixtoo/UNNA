@@ -6,6 +6,10 @@ class ImagesField extends StatelessWidget {
   Widget build(BuildContext context) {
     return FormField<List>(
       initialValue: [],
+      validator: (images) {
+        if (images.isEmpty) return 'Campo Obrigatório';
+        return null;
+      },
       builder: (state) {
         return Column(
           children: <Widget>[
@@ -19,10 +23,11 @@ class ImagesField extends StatelessWidget {
                     if (index == state.value.length)
                       return GestureDetector(
                         onTap: () {
-                          showBottomSheet(
+                          showModalBottomSheet(
                               context: context,
                               builder: (context) => ImageSourceSheet((image) {
-                                    state.didChange(state.value..add(image));
+                                    if (image != null)
+                                      state.didChange(state.value..add(image));
                                     Navigator.of(context).pop();
                                   }));
                         },
@@ -52,9 +57,43 @@ class ImagesField extends StatelessWidget {
                           ),
                         ),
                       );
-                    return Container();
+                    return GestureDetector(
+                      onTap: () {
+                        showDialog(
+                          context: context,
+                          builder: (context) => Dialog(
+                            child: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              children: <Widget>[
+                                Image.file(state.value[index]),
+                                FlatButton(
+                                  child: const Text('Exluir'),
+                                  textColor: Colors.pinkAccent,
+                                  onPressed: () {
+                                    state.didChange(
+                                        state.value..removeAt(index));
+                                    Navigator.of(context).pop();
+                                  },
+                                )
+                              ],
+                            ),
+                          ),
+                        );
+                      },
+                      child: Padding(
+                        padding: const EdgeInsets.only(
+                          left: 16,
+                          top: 16,
+                          bottom: 16,
+                        ),
+                        child: CircleAvatar(
+                          radius: 52,
+                          backgroundImage: FileImage(state.value[index]),
+                        ),
+                      ),
+                    );
                   }),
-            )
+            ),
           ],
         );
       },

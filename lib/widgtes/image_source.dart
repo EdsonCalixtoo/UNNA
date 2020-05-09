@@ -14,7 +14,6 @@ class ImageSourceSheet extends StatelessWidget {
       onClosing: () {},
       builder: (context) {
         return Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
             FlatButton(
