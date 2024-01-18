@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 import '../controllers/navController.dart';
 import '../controllers/userController.dart';
 import '../utils/colors.dart';
@@ -37,8 +36,7 @@ class CustomNavBar extends StatelessWidget {
     );
   }
 
-  Widget iconElement(int index, int indexSelected, IconData icon,
-      Function execute, NavController nav) {
+  Widget iconElement(int index, int indexSelected, IconData icon, Function execute, NavController nav) {
     return GestureDetector(
       onTap: () {
         if (nav.selectedIndex == index) return;
@@ -46,56 +44,45 @@ class CustomNavBar extends StatelessWidget {
         nav.selectedIndex = index;
         execute();
       },
-      child: Icon(icon,
-          color: index != indexSelected ? Colors.black38 : Colors.black,
-          size: 30),
+      child: Icon(icon, color: index != indexSelected ? Colors.black38 : corBlack, size: 30),
     );
   }
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: new BoxDecoration(
-        boxShadow: <BoxShadow>[
-          BoxShadow(
-            color: Colors.black54,
-            blurRadius: 35.0,
-            offset: Offset(1, 15.75),
-          )
-        ],
-        color: Colors.white,
-        borderRadius: new BorderRadius.only(
-            topLeft: Radius.circular(40.0), topRight: Radius.circular(40.0)),
-      ),
-      height: 80,
-      width: double.infinity,
-      child: Obx(() => Center(
-              child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              iconElement(
-                  0, navController.selectedIndex, Icons.widgets_outlined, () {
-                pageController.jumpToPage(0);
-              }, navController),
-              iconElement(1, navController.selectedIndex, Icons.filter_alt,
-                  () => pageController.jumpToPage(1), navController),
-              centralButton(navController, () {
-                pageController.jumpToPage(2);
-                // return Get.to(PostAddEditScreen());
-              }),
-              // iconElement(
-              //     2, navController.selectedIndex, Icons.favorite_outline, () {
-              //   Get.find<PostController>()
-              //       .updateFilter('meus_likes', userController.user.id!);
-              //   Get.offAll(Home());
-              // }, navController),
-              iconElement(3, navController.selectedIndex, Icons.person_outline,
-                  () {
-                pageController.jumpToPage(3);
-                // return Get.offAll(UserProfileScreen());
-              }, navController),
+        color: corFundoClara,
+        child: Container(
+          decoration: new BoxDecoration(
+            boxShadow: <BoxShadow>[
+              BoxShadow(
+                color: Colors.black54,
+                blurRadius: 35.0,
+                offset: Offset(1, 15.75),
+              )
             ],
-          ))),
-    );
+            color: Colors.white,
+            borderRadius: new BorderRadius.only(topLeft: Radius.circular(40.0), topRight: Radius.circular(40.0)),
+          ),
+          height: 80,
+          width: double.infinity,
+          child: Obx(() => Center(
+                  child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  iconElement(0, navController.selectedIndex, Icons.widgets_outlined, () {
+                    pageController.jumpToPage(0);
+                  }, navController),
+                  iconElement(1, navController.selectedIndex, Icons.filter_alt, () => pageController.jumpToPage(1),
+                      navController),
+                  centralButton(navController, () {
+                    pageController.jumpToPage(2);
+                  }),
+                  iconElement(3, navController.selectedIndex, Icons.person_outline, () {
+                    pageController.jumpToPage(3);
+                  }, navController),
+                ],
+              ))),
+        ));
   }
 }

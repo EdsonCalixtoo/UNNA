@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
+import 'package:unna/utils/colors.dart';
 import '../controllers/postController.dart';
 import '../screens/user_profile_external.dart';
 
@@ -22,14 +23,12 @@ class CommentCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.all(10),
-      // color: Colors.yellow,
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           GestureDetector(
             onTap: () {
-              Get.find<PostController>()
-                  .updateFilter('posts_profile_user', comment.userHandle);
+              Get.find<PostController>().updateFilter('posts_profile_user', comment.userHandle);
               Get.off(ProfileExternalScreen(), arguments: {
                 'userImage': comment.userImage,
                 'userHandle': comment.userHandle,
@@ -40,13 +39,12 @@ class CommentCard extends StatelessWidget {
               decoration: BoxDecoration(
                 boxShadow: <BoxShadow>[
                   BoxShadow(
-                    color: Colors.black.withAlpha(50),
+                    color: corBlack.withAlpha(50),
                     blurRadius: 17.0,
                     offset: Offset(0, 12),
                     spreadRadius: 1,
                   )
                 ],
-                // boxShadow: kElevationToShadow[7],
               ),
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(50),
@@ -77,16 +75,14 @@ class CommentCard extends StatelessWidget {
                         children: [
                           Text(
                             comment.userHandle.split('@')[0],
-                            style: TextStyle(color: Colors.black, fontSize: 15),
+                            style: TextStyle(color: corBlack, fontSize: 15),
                           ),
                           SizedBox(width: 10),
                           Text(
                             comment.dateCreatedAt != null
-                                ? DateFormat('dd.MM hh:mm')
-                                    .format(comment.dateCreatedAt!.toDate())
-                                    .toString()
+                                ? DateFormat('dd.MM hh:mm').format(comment.dateCreatedAt!.toDate()).toString()
                                 : '',
-                            style: TextStyle(color: Colors.black, fontSize: 12),
+                            style: TextStyle(color: corBlack, fontSize: 12),
                           )
                         ],
                       ),
@@ -109,8 +105,6 @@ class CommentCard extends StatelessWidget {
           ),
         ],
       ),
-
-      // Text(comment.body),
     );
   }
 }

@@ -6,7 +6,7 @@ import 'package:unna/services/database.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../common/botao_simples.dart';
-import '../controllers/categoryController.dart';
+import '../controllers/category_controller.dart';
 import '../utils/colors.dart';
 
 // ignore: must_be_immutable
@@ -43,10 +43,8 @@ class _CategoryAddEditScreenState extends State<CategoryAddEditScreen> {
         extendBodyBehindAppBar: true,
         extendBody: true,
         appBar: AppBar(
-          iconTheme: IconThemeData(color: Colors.black),
-          title: Text(CategoryAddEditScreen.title,
-              style:
-                  TextStyle(color: Colors.black, fontWeight: FontWeight.w300)),
+          iconTheme: IconThemeData(color: corBlack),
+          title: Text(CategoryAddEditScreen.title, style: TextStyle(color: corBlack, fontWeight: FontWeight.w300)),
           backgroundColor: corFundoClara,
           elevation: 0,
           actions: [
@@ -65,8 +63,7 @@ class _CategoryAddEditScreenState extends State<CategoryAddEditScreen> {
                         padding: EdgeInsets.all(10),
                         decoration: new BoxDecoration(
                           color: Colors.white,
-                          borderRadius:
-                              new BorderRadius.all(Radius.circular(25.0)),
+                          borderRadius: new BorderRadius.all(Radius.circular(25.0)),
                         ),
                         child: Form(
                           key: formKey,
@@ -82,36 +79,24 @@ class _CategoryAddEditScreenState extends State<CategoryAddEditScreen> {
                                   return null;
                                 },
                                 decoration: InputDecoration(
-                                    prefixIcon:
-                                        Icon(Icons.loyalty, color: corPrimaria),
+                                    prefixIcon: Icon(Icons.loyalty, color: corPrimaria),
                                     enabledBorder: OutlineInputBorder(
-                                      borderRadius: BorderRadius.all(
-                                          Radius.circular(90.0)),
-                                      borderSide: BorderSide(
-                                          width: 2,
-                                          color: Theme.of(context)
-                                              .colorScheme
-                                              .primary),
+                                      borderRadius: BorderRadius.all(Radius.circular(90.0)),
+                                      borderSide: BorderSide(width: 2, color: Theme.of(context).colorScheme.primary),
                                     ),
                                     focusedBorder: OutlineInputBorder(
-                                        borderRadius: BorderRadius.all(
-                                            Radius.circular(90.0)),
-                                        borderSide: BorderSide(
-                                            width: 2,
-                                            color: Theme.of(context)
-                                                .colorScheme
-                                                .primary)),
+                                        borderRadius: BorderRadius.all(Radius.circular(90.0)),
+                                        borderSide: BorderSide(width: 2, color: Theme.of(context).colorScheme.primary)),
                                     filled: true,
                                     fillColor: Colors.transparent,
                                     hintText: 'Nome',
-                                    hintStyle:
-                                        TextStyle(color: corPrimariaEscura)),
+                                    hintStyle: TextStyle(color: corPrimariaEscura)),
                                 onChanged: (value) {
                                   categoryName = value;
                                 },
                                 autocorrect: false,
                                 keyboardType: TextInputType.emailAddress,
-                                style: TextStyle(color: Colors.black),
+                                style: TextStyle(color: corBlack),
                               ),
                               SizedBox(height: 16),
                               Row(
@@ -126,37 +111,25 @@ class _CategoryAddEditScreenState extends State<CategoryAddEditScreen> {
                                           return null;
                                         },
                                         decoration: InputDecoration(
-                                            prefixIcon: Icon(Icons.explore,
-                                                color: corPrimaria),
+                                            prefixIcon: Icon(Icons.explore, color: corPrimaria),
                                             enabledBorder: OutlineInputBorder(
-                                              borderRadius: BorderRadius.all(
-                                                  Radius.circular(90.0)),
-                                              borderSide: BorderSide(
-                                                  width: 2,
-                                                  color: Theme.of(context)
-                                                      .colorScheme
-                                                      .primary),
+                                              borderRadius: BorderRadius.all(Radius.circular(90.0)),
+                                              borderSide:
+                                                  BorderSide(width: 2, color: Theme.of(context).colorScheme.primary),
                                             ),
                                             focusedBorder: OutlineInputBorder(
-                                                borderRadius: BorderRadius.all(
-                                                    Radius.circular(90.0)),
-                                                borderSide: BorderSide(
-                                                    width: 2,
-                                                    color: Theme.of(context)
-                                                        .colorScheme
-                                                        .primary)),
-                                            // hintStyle: GoogleFonts.lato(fontStyle: FontStyle.normal),
+                                                borderRadius: BorderRadius.all(Radius.circular(90.0)),
+                                                borderSide:
+                                                    BorderSide(width: 2, color: Theme.of(context).colorScheme.primary)),
                                             filled: true,
                                             fillColor: Colors.transparent,
-                                            hintText:
-                                                'Icon Codepoint ex: 61103)',
-                                            hintStyle: TextStyle(
-                                                color: corPrimariaEscura)),
+                                            hintText: 'Icon Codepoint ex: 61103)',
+                                            hintStyle: TextStyle(color: corPrimariaEscura)),
                                         onChanged: (value) {
                                           codepoit = value;
                                         },
                                         autocorrect: false,
-                                        style: TextStyle(color: Colors.black),
+                                        style: TextStyle(color: corBlack),
                                       )),
                                   SizedBox(width: 10),
                                   Expanded(
@@ -166,8 +139,7 @@ class _CategoryAddEditScreenState extends State<CategoryAddEditScreen> {
                                         launchUrl(Uri.parse(
                                             'https://api.flutter.dev/flutter/material/Icons-class.html#constants'));
                                       },
-                                      iconeBotao: Icon(Icons.image_search,
-                                          size: 20, color: Colors.white),
+                                      iconeBotao: Icon(Icons.image_search, size: 20, color: Colors.white),
                                       textoBotao: "",
                                     ),
                                   ),
@@ -175,8 +147,7 @@ class _CategoryAddEditScreenState extends State<CategoryAddEditScreen> {
                               ),
                               SizedBox(height: 36),
                               ElevatedButton(
-                                style: ElevatedButton.styleFrom(
-                                    backgroundColor: corPrimaria),
+                                style: ElevatedButton.styleFrom(backgroundColor: corPrimaria),
                                 onPressed: () {
                                   if (formKey.currentState!.validate()) {
                                     Get.close(0);
@@ -215,10 +186,8 @@ class _CategoryAddEditScreenState extends State<CategoryAddEditScreen> {
                     isLoading.value = true;
                     for (var element in categoryList) {
                       if (element.id == "") {
-                        String id =
-                            await Database().getReference("unna-categories");
-                        await Database()
-                            .addCategory(element.copyWith(id: id).toMap());
+                        String id = await Database().getReference("unna-categories");
+                        await Database().addCategory(element.copyWith(id: id).toMap());
                       } else {
                         await Database().editCategory(element.toMap());
                       }
@@ -268,17 +237,13 @@ class _CategoryAddEditScreenState extends State<CategoryAddEditScreen> {
                       Get.dialog(AlertDialog(
                         actions: [
                           ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                                backgroundColor: corPrimaria),
+                            style: ElevatedButton.styleFrom(backgroundColor: corPrimaria),
                             onPressed: () {
                               if (subCategoryName.isEmpty) {
                                 return;
                               }
-                              List<CategoryModel> categorys =
-                                  categoryList.value;
-                              categorys[index]
-                                  .subCategories
-                                  .add(subCategoryName);
+                              List<CategoryModel> categorys = categoryList.value;
+                              categorys[index].subCategories.add(subCategoryName);
                               categoryList.value = categorys;
                               Get.close(0);
                             },
@@ -288,24 +253,14 @@ class _CategoryAddEditScreenState extends State<CategoryAddEditScreen> {
                         content: TextFormField(
                           initialValue: subCategoryName,
                           decoration: InputDecoration(
-                              prefixIcon:
-                                  Icon(Icons.loyalty, color: corPrimaria),
+                              prefixIcon: Icon(Icons.loyalty, color: corPrimaria),
                               enabledBorder: OutlineInputBorder(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(90.0)),
-                                borderSide: BorderSide(
-                                    width: 2,
-                                    color:
-                                        Theme.of(context).colorScheme.primary),
+                                borderRadius: BorderRadius.all(Radius.circular(90.0)),
+                                borderSide: BorderSide(width: 2, color: Theme.of(context).colorScheme.primary),
                               ),
                               focusedBorder: OutlineInputBorder(
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(90.0)),
-                                  borderSide: BorderSide(
-                                      width: 2,
-                                      color: Theme.of(context)
-                                          .colorScheme
-                                          .primary)),
+                                  borderRadius: BorderRadius.all(Radius.circular(90.0)),
+                                  borderSide: BorderSide(width: 2, color: Theme.of(context).colorScheme.primary)),
                               filled: true,
                               fillColor: Colors.transparent,
                               hintText: 'Nome',
@@ -315,7 +270,7 @@ class _CategoryAddEditScreenState extends State<CategoryAddEditScreen> {
                           },
                           autocorrect: false,
                           keyboardType: TextInputType.emailAddress,
-                          style: TextStyle(color: Colors.black),
+                          style: TextStyle(color: corBlack),
                         ),
                       ));
                     },
@@ -326,8 +281,7 @@ class _CategoryAddEditScreenState extends State<CategoryAddEditScreen> {
                     children: [
                       IconButton(
                           onPressed: () {
-                            GlobalKey<FormState> formKey =
-                                GlobalKey<FormState>();
+                            GlobalKey<FormState> formKey = GlobalKey<FormState>();
                             String categoryName = categoryList[index].name;
                             String codepoit = categoryList[index].icon;
                             Get.dialog(AlertDialog(
@@ -340,14 +294,12 @@ class _CategoryAddEditScreenState extends State<CategoryAddEditScreen> {
                                     padding: EdgeInsets.all(10),
                                     decoration: new BoxDecoration(
                                       color: Colors.white,
-                                      borderRadius: new BorderRadius.all(
-                                          Radius.circular(25.0)),
+                                      borderRadius: new BorderRadius.all(Radius.circular(25.0)),
                                     ),
                                     child: Form(
                                       key: formKey,
                                       child: Column(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
+                                        mainAxisAlignment: MainAxisAlignment.center,
                                         mainAxisSize: MainAxisSize.max,
                                         children: <Widget>[
                                           TextFormField(
@@ -359,45 +311,26 @@ class _CategoryAddEditScreenState extends State<CategoryAddEditScreen> {
                                               return null;
                                             },
                                             decoration: InputDecoration(
-                                                prefixIcon: Icon(Icons.loyalty,
-                                                    color: corPrimaria),
-                                                enabledBorder:
-                                                    OutlineInputBorder(
-                                                  borderRadius:
-                                                      BorderRadius.all(
-                                                          Radius.circular(
-                                                              90.0)),
+                                                prefixIcon: Icon(Icons.loyalty, color: corPrimaria),
+                                                enabledBorder: OutlineInputBorder(
+                                                  borderRadius: BorderRadius.all(Radius.circular(90.0)),
                                                   borderSide: BorderSide(
-                                                      width: 2,
-                                                      color: Theme.of(context)
-                                                          .colorScheme
-                                                          .primary),
+                                                      width: 2, color: Theme.of(context).colorScheme.primary),
                                                 ),
-                                                focusedBorder:
-                                                    OutlineInputBorder(
-                                                        borderRadius:
-                                                            BorderRadius.all(
-                                                                Radius.circular(
-                                                                    90.0)),
-                                                        borderSide: BorderSide(
-                                                            width: 2,
-                                                            color: Theme.of(
-                                                                    context)
-                                                                .colorScheme
-                                                                .primary)),
+                                                focusedBorder: OutlineInputBorder(
+                                                    borderRadius: BorderRadius.all(Radius.circular(90.0)),
+                                                    borderSide: BorderSide(
+                                                        width: 2, color: Theme.of(context).colorScheme.primary)),
                                                 filled: true,
                                                 fillColor: Colors.transparent,
                                                 hintText: 'Nome',
-                                                hintStyle: TextStyle(
-                                                    color: corPrimariaEscura)),
+                                                hintStyle: TextStyle(color: corPrimariaEscura)),
                                             onChanged: (value) {
                                               categoryName = value;
                                             },
                                             autocorrect: false,
-                                            keyboardType:
-                                                TextInputType.emailAddress,
-                                            style:
-                                                TextStyle(color: Colors.black),
+                                            keyboardType: TextInputType.emailAddress,
+                                            style: TextStyle(color: corBlack),
                                           ),
                                           SizedBox(height: 16),
                                           Row(
@@ -413,49 +346,26 @@ class _CategoryAddEditScreenState extends State<CategoryAddEditScreen> {
                                                       return null;
                                                     },
                                                     decoration: InputDecoration(
-                                                        prefixIcon: Icon(
-                                                            Icons.explore,
-                                                            color: corPrimaria),
-                                                        enabledBorder:
-                                                            OutlineInputBorder(
-                                                          borderRadius:
-                                                              BorderRadius.all(
-                                                                  Radius
-                                                                      .circular(
-                                                                          90.0)),
+                                                        prefixIcon: Icon(Icons.explore, color: corPrimaria),
+                                                        enabledBorder: OutlineInputBorder(
+                                                          borderRadius: BorderRadius.all(Radius.circular(90.0)),
                                                           borderSide: BorderSide(
-                                                              width: 2,
-                                                              color: Theme.of(
-                                                                      context)
-                                                                  .colorScheme
-                                                                  .primary),
+                                                              width: 2, color: Theme.of(context).colorScheme.primary),
                                                         ),
                                                         focusedBorder: OutlineInputBorder(
-                                                            borderRadius:
-                                                                BorderRadius.all(
-                                                                    Radius.circular(
-                                                                        90.0)),
+                                                            borderRadius: BorderRadius.all(Radius.circular(90.0)),
                                                             borderSide: BorderSide(
                                                                 width: 2,
-                                                                color: Theme.of(
-                                                                        context)
-                                                                    .colorScheme
-                                                                    .primary)),
-                                                        // hintStyle: GoogleFonts.lato(fontStyle: FontStyle.normal),
+                                                                color: Theme.of(context).colorScheme.primary)),
                                                         filled: true,
-                                                        fillColor:
-                                                            Colors.transparent,
-                                                        hintText:
-                                                            'Icon Codepoint ex: 61103)',
-                                                        hintStyle: TextStyle(
-                                                            color:
-                                                                corPrimariaEscura)),
+                                                        fillColor: Colors.transparent,
+                                                        hintText: 'Icon Codepoint ex: 61103)',
+                                                        hintStyle: TextStyle(color: corPrimariaEscura)),
                                                     onChanged: (value) {
                                                       codepoit = value;
                                                     },
                                                     autocorrect: false,
-                                                    style: TextStyle(
-                                                        color: Colors.black),
+                                                    style: TextStyle(color: corBlack),
                                                   )),
                                               SizedBox(width: 10),
                                               Expanded(
@@ -465,10 +375,7 @@ class _CategoryAddEditScreenState extends State<CategoryAddEditScreen> {
                                                     launchUrl(Uri.parse(
                                                         'https://api.flutter.dev/flutter/material/Icons-class.html#constants'));
                                                   },
-                                                  iconeBotao: Icon(
-                                                      Icons.image_search,
-                                                      size: 20,
-                                                      color: Colors.white),
+                                                  iconeBotao: Icon(Icons.image_search, size: 20, color: Colors.white),
                                                   textoBotao: "",
                                                 ),
                                               ),
@@ -476,16 +383,12 @@ class _CategoryAddEditScreenState extends State<CategoryAddEditScreen> {
                                           ),
                                           SizedBox(height: 36),
                                           ElevatedButton(
-                                            style: ElevatedButton.styleFrom(
-                                                backgroundColor: corPrimaria),
+                                            style: ElevatedButton.styleFrom(backgroundColor: corPrimaria),
                                             onPressed: () {
-                                              if (formKey.currentState!
-                                                  .validate()) {
+                                              if (formKey.currentState!.validate()) {
                                                 Get.close(0);
-                                                categoryList[index].name =
-                                                    categoryName;
-                                                categoryList[index].icon =
-                                                    codepoit;
+                                                categoryList[index].name = categoryName;
+                                                categoryList[index].icon = codepoit;
                                                 setState(() {});
                                               }
                                             },
@@ -512,8 +415,7 @@ class _CategoryAddEditScreenState extends State<CategoryAddEditScreen> {
                     ],
                   ),
                   children: List.generate(
-                    _categoryController
-                        .categoryList[index].subCategories.length,
+                    _categoryController.categoryList[index].subCategories.length,
                     (i) => ListTile(
                       leading: IconButton(
                         onPressed: () {
@@ -526,21 +428,17 @@ class _CategoryAddEditScreenState extends State<CategoryAddEditScreen> {
                       ),
                       trailing: IconButton(
                         onPressed: () {
-                          String subCategoryName =
-                              categoryList[index].subCategories[i];
+                          String subCategoryName = categoryList[index].subCategories[i];
                           Get.dialog(AlertDialog(
                             actions: [
                               ElevatedButton(
-                                style: ElevatedButton.styleFrom(
-                                    backgroundColor: corPrimaria),
+                                style: ElevatedButton.styleFrom(backgroundColor: corPrimaria),
                                 onPressed: () {
                                   if (subCategoryName.isEmpty) {
                                     return;
                                   }
-                                  List<CategoryModel> categorys =
-                                      categoryList.value;
-                                  categorys[index].subCategories[i] =
-                                      subCategoryName;
+                                  List<CategoryModel> categorys = categoryList.value;
+                                  categorys[index].subCategories[i] = subCategoryName;
                                   categoryList.value = categorys;
                                   Get.close(0);
                                 },
@@ -550,43 +448,30 @@ class _CategoryAddEditScreenState extends State<CategoryAddEditScreen> {
                             content: TextFormField(
                               initialValue: subCategoryName,
                               decoration: InputDecoration(
-                                  prefixIcon:
-                                      Icon(Icons.loyalty, color: corPrimaria),
+                                  prefixIcon: Icon(Icons.loyalty, color: corPrimaria),
                                   enabledBorder: OutlineInputBorder(
-                                    borderRadius:
-                                        BorderRadius.all(Radius.circular(90.0)),
-                                    borderSide: BorderSide(
-                                        width: 2,
-                                        color: Theme.of(context)
-                                            .colorScheme
-                                            .primary),
+                                    borderRadius: BorderRadius.all(Radius.circular(90.0)),
+                                    borderSide: BorderSide(width: 2, color: Theme.of(context).colorScheme.primary),
                                   ),
                                   focusedBorder: OutlineInputBorder(
-                                      borderRadius: BorderRadius.all(
-                                          Radius.circular(90.0)),
-                                      borderSide: BorderSide(
-                                          width: 2,
-                                          color: Theme.of(context)
-                                              .colorScheme
-                                              .primary)),
+                                      borderRadius: BorderRadius.all(Radius.circular(90.0)),
+                                      borderSide: BorderSide(width: 2, color: Theme.of(context).colorScheme.primary)),
                                   filled: true,
                                   fillColor: Colors.transparent,
                                   hintText: 'Nome',
-                                  hintStyle:
-                                      TextStyle(color: corPrimariaEscura)),
+                                  hintStyle: TextStyle(color: corPrimariaEscura)),
                               onChanged: (value) {
                                 subCategoryName = value;
                               },
                               autocorrect: false,
                               keyboardType: TextInputType.emailAddress,
-                              style: TextStyle(color: Colors.black),
+                              style: TextStyle(color: corBlack),
                             ),
                           ));
                         },
                         icon: Icon(Icons.edit),
                       ),
-                      title: Text(_categoryController
-                          .categoryList[index].subCategories[i]),
+                      title: Text(_categoryController.categoryList[index].subCategories[i]),
                     ),
                   ),
                 ),
@@ -598,7 +483,6 @@ class _CategoryAddEditScreenState extends State<CategoryAddEditScreen> {
     });
   }
 
-  // ###############################################################################################################
   Widget areaBotoesInferiores(context) {
     return Container(
       color: Colors.transparent,
@@ -621,7 +505,6 @@ class _CategoryAddEditScreenState extends State<CategoryAddEditScreen> {
               Expanded(
                 flex: 35,
                 child: GetX<CategoryController>(
-                    // init: UserController(),
                     initState: (_) {},
                     builder: (categoryControler) {
                       return !categoryControler.isLoading()
@@ -629,21 +512,17 @@ class _CategoryAddEditScreenState extends State<CategoryAddEditScreen> {
                               executarAcao: () async {
                                 print("\n\n* SALVAR \n");
 
-                                if ((orderController.text.trim() != '') &&
-                                    (iconTextController.text.trim() != '')) {
+                                if ((orderController.text.trim() != '') && (iconTextController.text.trim() != '')) {
                                   if (_categoryController.isEditing.value) {
-                                    print('EDIT SALVE: idEditing=' +
-                                        CategoryAddEditScreen.idEditing);
+                                    print('EDIT SALVE: idEditing=' + CategoryAddEditScreen.idEditing);
                                     await categoryControler.edit(
                                         CategoryAddEditScreen.idEditing,
                                         nameController.text.trim(),
                                         iconTextController.text.trim(),
                                         int.parse(orderController.text.trim()));
                                   } else {
-                                    await categoryControler.add(
-                                        nameController.text.trim(),
-                                        iconTextController.text.trim(),
-                                        int.parse(orderController.text.trim()));
+                                    await categoryControler.add(nameController.text.trim(),
+                                        iconTextController.text.trim(), int.parse(orderController.text.trim()));
                                   }
 
                                   categoryControler.get();
@@ -658,17 +537,14 @@ class _CategoryAddEditScreenState extends State<CategoryAddEditScreen> {
                                   ).show();
                                 }
                               },
-                              iconeBotao: Icon(Icons.save,
-                                  size: 20, color: Colors.white),
+                              iconeBotao: Icon(Icons.save, size: 20, color: Colors.white),
                               textoBotao: "Salvar",
                             )
                           : Container(
                               height: 20,
                               width: 20,
                               child: Center(
-                                child: CircularProgressIndicator(
-                                    valueColor: AlwaysStoppedAnimation(
-                                        corPrimariaClara)),
+                                child: CircularProgressIndicator(valueColor: AlwaysStoppedAnimation(corPrimariaClara)),
                               ));
                     }),
               ),

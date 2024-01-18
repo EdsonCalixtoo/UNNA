@@ -9,7 +9,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:scroll_date_picker/scroll_date_picker.dart';
 
 import '../common/botao_simples.dart';
-import '../controllers/categoryController.dart';
+import '../controllers/category_controller.dart';
 import '../controllers/postController.dart';
 import '../controllers/userController.dart';
 import '../models/post.dart';
@@ -53,17 +53,14 @@ class PostAddEditScreen extends StatelessWidget {
       if (model.category != "geral") {
         for (var i = 0; i < _categoryController.categoryList.length; i++) {
           if (model.category == _categoryController.categoryList[i].name) {
-            subCategorias.value =
-                _categoryController.categoryList[i].subCategories;
-            for (var element
-                in _categoryController.categoryList[i].subCategories) {
+            subCategorias.value = _categoryController.categoryList[i].subCategories;
+            for (var element in _categoryController.categoryList[i].subCategories) {
               if (element == model.subCategorie) {
                 subcategorySelected.value = model.subCategorie!;
               }
             }
             if (subcategorySelected.value == "") {
-              subcategorySelected.value =
-                  _categoryController.categoryList[i].subCategories.first;
+              subcategorySelected.value = _categoryController.categoryList[i].subCategories.first;
             }
           }
         }
@@ -83,8 +80,7 @@ class PostAddEditScreen extends StatelessWidget {
       extendBody: true,
       body: SafeArea(
         child: LayoutBuilder(builder: (context, constraints) {
-          return KeyboardVisibilityBuilder(
-              builder: (context, isKeyboardVisible) {
+          return KeyboardVisibilityBuilder(builder: (context, isKeyboardVisible) {
             return SingleChildScrollView(
               child: Form(
                 key: formkey,
@@ -109,9 +105,7 @@ class PostAddEditScreen extends StatelessWidget {
                         Text(
                           title,
                           style: TextStyle(
-                              color: Colors.black,
-                              fontSize: constraints.maxWidth * 0.06,
-                              fontWeight: FontWeight.bold),
+                              color: corBlack, fontSize: constraints.maxWidth * 0.06, fontWeight: FontWeight.bold),
                         ),
                         SizedBox(
                           height: 15,
@@ -135,9 +129,7 @@ class PostAddEditScreen extends StatelessWidget {
                                       margin: EdgeInsets.all(5),
                                       decoration: BoxDecoration(
                                         borderRadius: BorderRadius.circular(25),
-                                        color: isGalery.value
-                                            ? Colors.grey
-                                            : Colors.grey.shade300,
+                                        color: isGalery.value ? Colors.grey : Colors.grey.shade300,
                                       ),
                                       child: Center(
                                           child: Text(
@@ -158,9 +150,7 @@ class PostAddEditScreen extends StatelessWidget {
                                       margin: EdgeInsets.all(5),
                                       decoration: BoxDecoration(
                                         borderRadius: BorderRadius.circular(25),
-                                        color: isGalery.value
-                                            ? Colors.grey.shade300
-                                            : Colors.grey,
+                                        color: isGalery.value ? Colors.grey.shade300 : Colors.grey,
                                       ),
                                       child: Center(
                                           child: Text(
@@ -183,15 +173,13 @@ class PostAddEditScreen extends StatelessWidget {
                                   imageTempUrl.value = File("");
                                   if (isGalery.value) {
                                     final ImagePicker picker = ImagePicker();
-                                    XFile? image = await picker.pickImage(
-                                        source: ImageSource.gallery);
+                                    XFile? image = await picker.pickImage(source: ImageSource.gallery);
                                     if (image != null) {
                                       imageSelected(File(image.path));
                                     }
                                   } else {
                                     final ImagePicker picker = ImagePicker();
-                                    XFile? image = await picker.pickImage(
-                                        source: ImageSource.camera);
+                                    XFile? image = await picker.pickImage(source: ImageSource.camera);
 
                                     if (image == null) return;
 
@@ -202,12 +190,9 @@ class PostAddEditScreen extends StatelessWidget {
                                   height: constraints.maxHeight / 2.3,
                                   width: constraints.maxWidth * 0.85,
                                   decoration: new BoxDecoration(
-                                      color: Colors.white,
-                                      borderRadius: new BorderRadius.all(
-                                          Radius.circular(10.0))),
+                                      color: Colors.white, borderRadius: new BorderRadius.all(Radius.circular(10.0))),
                                   child: ClipRRect(
-                                    borderRadius: new BorderRadius.all(
-                                        Radius.circular(10.0)),
+                                    borderRadius: new BorderRadius.all(Radius.circular(10.0)),
                                     child: Image.file(
                                       imageTempUrl.value,
                                       fit: BoxFit.cover,
@@ -219,18 +204,14 @@ class PostAddEditScreen extends StatelessWidget {
                                 ? GestureDetector(
                                     onTap: () async {
                                       if (isGalery.value) {
-                                        final ImagePicker picker =
-                                            ImagePicker();
-                                        XFile? image = await picker.pickImage(
-                                            source: ImageSource.gallery);
+                                        final ImagePicker picker = ImagePicker();
+                                        XFile? image = await picker.pickImage(source: ImageSource.gallery);
                                         if (image != null) {
                                           imageSelected(File(image.path));
                                         }
                                       } else {
-                                        final ImagePicker picker =
-                                            ImagePicker();
-                                        XFile? image = await picker.pickImage(
-                                            source: ImageSource.camera);
+                                        final ImagePicker picker = ImagePicker();
+                                        XFile? image = await picker.pickImage(source: ImageSource.camera);
 
                                         if (image == null) return;
 
@@ -260,18 +241,14 @@ class PostAddEditScreen extends StatelessWidget {
                                 : GestureDetector(
                                     onTap: () async {
                                       if (isGalery.value) {
-                                        final ImagePicker picker =
-                                            ImagePicker();
-                                        XFile? image = await picker.pickImage(
-                                            source: ImageSource.gallery);
+                                        final ImagePicker picker = ImagePicker();
+                                        XFile? image = await picker.pickImage(source: ImageSource.gallery);
                                         if (image != null) {
                                           imageSelected(File(image.path));
                                         }
                                       } else {
-                                        final ImagePicker picker =
-                                            ImagePicker();
-                                        XFile? image = await picker.pickImage(
-                                            source: ImageSource.camera);
+                                        final ImagePicker picker = ImagePicker();
+                                        XFile? image = await picker.pickImage(source: ImageSource.camera);
 
                                         if (image == null) return;
 
@@ -288,10 +265,8 @@ class PostAddEditScreen extends StatelessWidget {
                                         ),
                                       ),
                                       child: Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.center,
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
+                                          crossAxisAlignment: CrossAxisAlignment.center,
+                                          mainAxisAlignment: MainAxisAlignment.center,
                                           children: [
                                             Icon(
                                               Icons.photo_size_select_actual,
@@ -301,9 +276,7 @@ class PostAddEditScreen extends StatelessWidget {
                                             Text(
                                               "Defina Imagem",
                                               style: TextStyle(
-                                                  fontSize:
-                                                      constraints.maxWidth *
-                                                          0.05,
+                                                  fontSize: constraints.maxWidth * 0.05,
                                                   fontWeight: FontWeight.w400,
                                                   color: Colors.white),
                                             ),
@@ -319,27 +292,20 @@ class PostAddEditScreen extends StatelessWidget {
                             cursorColor: corPrimaria,
                             decoration: InputDecoration(
                                 enabledBorder: OutlineInputBorder(
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(15.0)),
-                                  borderSide:
-                                      BorderSide(width: 2, color: corPrimaria),
+                                  borderRadius: BorderRadius.all(Radius.circular(15.0)),
+                                  borderSide: BorderSide(width: 2, color: corPrimaria),
                                 ),
                                 focusedBorder: OutlineInputBorder(
-                                    borderRadius:
-                                        BorderRadius.all(Radius.circular(15.0)),
-                                    borderSide: BorderSide(
-                                        width: 2, color: corPrimaria)),
+                                    borderRadius: BorderRadius.all(Radius.circular(15.0)),
+                                    borderSide: BorderSide(width: 2, color: corPrimaria)),
                                 focusedErrorBorder: OutlineInputBorder(
-                                    borderRadius:
-                                        BorderRadius.all(Radius.circular(90.0)),
-                                    borderSide: BorderSide(
-                                        width: 2, color: corPrimaria)),
+                                    borderRadius: BorderRadius.all(Radius.circular(90.0)),
+                                    borderSide: BorderSide(width: 2, color: corPrimaria)),
                                 filled: true,
                                 fillColor: Colors.transparent,
                                 label: Text('Texto...'),
                                 alignLabelWithHint: true,
-                                labelStyle:
-                                    TextStyle(color: corPrimariaEscura)),
+                                labelStyle: TextStyle(color: corPrimariaEscura)),
                             controller: bodyController,
                             autocorrect: false,
                             validator: (value) {
@@ -365,16 +331,14 @@ class PostAddEditScreen extends StatelessWidget {
                               margin: EdgeInsets.symmetric(horizontal: 10),
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(15),
-                                border:
-                                    Border.all(color: corPrimaria, width: 2),
+                                border: Border.all(color: corPrimaria, width: 2),
                               ),
                               height: 250,
                               child: ClipRRect(
                                 borderRadius: BorderRadius.circular(18),
                                 child: Obx(() => ScrollDatePicker(
                                       selectedDate: selectedDate.value,
-                                      maximumDate: DateTime.now()
-                                          .add(Duration(days: 360)),
+                                      maximumDate: DateTime.now().add(Duration(days: 360)),
                                       locale: Locale('pt'),
                                       options: DatePickerOptions(),
                                       viewType: [
@@ -400,10 +364,8 @@ class PostAddEditScreen extends StatelessWidget {
                               ),
                             ),
                             Obx(() => (selectedDate.value
-                                        .difference(DateTime(
-                                            DateTime.now().year,
-                                            DateTime.now().month,
-                                            DateTime.now().day))
+                                        .difference(
+                                            DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day))
                                         .inDays !=
                                     0)
                                 ? Positioned(
@@ -428,9 +390,7 @@ class PostAddEditScreen extends StatelessWidget {
                         SizedBox(
                           width: constraints.maxWidth * 0.85,
                           child: Obx(() => DropdownButtonFormField<String>(
-                                style: TextStyle(
-                                    color: corPrimaria,
-                                    fontSize: constraints.maxWidth * 0.05),
+                                style: TextStyle(color: corPrimaria, fontSize: constraints.maxWidth * 0.05),
                                 decoration: InputDecoration(
                                     label: Text(
                                       "Selecione a Categoria",
@@ -441,34 +401,25 @@ class PostAddEditScreen extends StatelessWidget {
                                     ),
                                     iconColor: corPrimaria,
                                     enabledBorder: OutlineInputBorder(
-                                      borderRadius: BorderRadius.all(
-                                          Radius.circular(15.0)),
-                                      borderSide: BorderSide(
-                                          width: 2, color: corPrimaria),
+                                      borderRadius: BorderRadius.all(Radius.circular(15.0)),
+                                      borderSide: BorderSide(width: 2, color: corPrimaria),
                                     ),
                                     focusedBorder: OutlineInputBorder(
-                                        borderRadius: BorderRadius.all(
-                                            Radius.circular(15.0)),
-                                        borderSide: BorderSide(
-                                            width: 2, color: corPrimaria)),
+                                        borderRadius: BorderRadius.all(Radius.circular(15.0)),
+                                        borderSide: BorderSide(width: 2, color: corPrimaria)),
                                     focusedErrorBorder: OutlineInputBorder(
-                                        borderRadius: BorderRadius.all(
-                                            Radius.circular(15.0)),
-                                        borderSide: BorderSide(
-                                            width: 2, color: corPrimaria))),
+                                        borderRadius: BorderRadius.all(Radius.circular(15.0)),
+                                        borderSide: BorderSide(width: 2, color: corPrimaria))),
                                 value: categorySelected.value,
                                 onChanged: (value) {
                                   categorySelected.value = value ?? "geral";
                                   subCategorias.value = [];
                                   subcategorySelected.value = "";
                                   if (value != "geral") {
-                                    for (var element
-                                        in _categoryController.categoryList) {
+                                    for (var element in _categoryController.categoryList) {
                                       if (element.name == value) {
-                                        subcategorySelected.value =
-                                            element.subCategories.first;
-                                        subCategorias.value =
-                                            element.subCategories;
+                                        subcategorySelected.value = element.subCategories.first;
+                                        subCategorias.value = element.subCategories;
                                       }
                                     }
                                   }
@@ -481,10 +432,8 @@ class PostAddEditScreen extends StatelessWidget {
                                   ...List.generate(
                                       _categoryController.categoryList.length,
                                       (i) => DropdownMenuItem<String>(
-                                            value: _categoryController
-                                                .categoryList[i].name,
-                                            child: Text(_categoryController
-                                                .categoryList[i].name),
+                                            value: _categoryController.categoryList[i].name,
+                                            child: Text(_categoryController.categoryList[i].name),
                                           ))
                                 ],
                               )),
@@ -493,47 +442,30 @@ class PostAddEditScreen extends StatelessWidget {
                         Obx(() => subCategorias.value.isNotEmpty
                             ? SizedBox(
                                 width: constraints.maxWidth * 0.85,
-                                child: Obx(() =>
-                                    DropdownButtonFormField<String>(
-                                      style: TextStyle(
-                                          color: corPrimaria,
-                                          fontSize:
-                                              constraints.maxWidth * 0.05),
+                                child: Obx(() => DropdownButtonFormField<String>(
+                                      style: TextStyle(color: corPrimaria, fontSize: constraints.maxWidth * 0.05),
                                       decoration: InputDecoration(
                                           label: Text(
                                             "Selecione a Sub-Categoria",
                                             style: TextStyle(
                                               color: corPrimaria,
-                                              fontSize:
-                                                  constraints.maxWidth * 0.04,
+                                              fontSize: constraints.maxWidth * 0.04,
                                             ),
                                           ),
                                           iconColor: corPrimaria,
                                           enabledBorder: OutlineInputBorder(
-                                            borderRadius: BorderRadius.all(
-                                                Radius.circular(15.0)),
-                                            borderSide: BorderSide(
-                                                width: 2, color: corPrimaria),
+                                            borderRadius: BorderRadius.all(Radius.circular(15.0)),
+                                            borderSide: BorderSide(width: 2, color: corPrimaria),
                                           ),
                                           focusedBorder: OutlineInputBorder(
-                                              borderRadius: BorderRadius.all(
-                                                  Radius.circular(15.0)),
-                                              borderSide: BorderSide(
-                                                  width: 2,
-                                                  color: corPrimaria)),
-                                          focusedErrorBorder:
-                                              OutlineInputBorder(
-                                                  borderRadius:
-                                                      BorderRadius.all(
-                                                          Radius.circular(
-                                                              15.0)),
-                                                  borderSide: BorderSide(
-                                                      width: 2,
-                                                      color: corPrimaria))),
+                                              borderRadius: BorderRadius.all(Radius.circular(15.0)),
+                                              borderSide: BorderSide(width: 2, color: corPrimaria)),
+                                          focusedErrorBorder: OutlineInputBorder(
+                                              borderRadius: BorderRadius.all(Radius.circular(15.0)),
+                                              borderSide: BorderSide(width: 2, color: corPrimaria))),
                                       value: subcategorySelected.value,
                                       onChanged: (value) {
-                                        subcategorySelected.value =
-                                            value ?? "geral";
+                                        subcategorySelected.value = value ?? "geral";
                                       },
                                       items: [
                                         ...List.generate(
@@ -564,8 +496,7 @@ class PostAddEditScreen extends StatelessWidget {
                                       executarAcao: () {
                                         Get.back();
                                       },
-                                      iconeBotao: Icon(Icons.cancel,
-                                          size: 20, color: Colors.white),
+                                      iconeBotao: Icon(Icons.cancel, size: 20, color: Colors.white),
                                       textoBotao: "Cancelar",
                                     ),
                                   ),
@@ -580,120 +511,66 @@ class PostAddEditScreen extends StatelessWidget {
                                         ? BotaoSimples(
                                             executarAcao: () async {
                                               isLoading.value = true;
-                                              if (_postController
-                                                      .isEditing.value ==
-                                                  false) {
-                                                if (imageTempUrl.value.path ==
-                                                    "") {
-                                                  Get.snackbar('Erro!',
-                                                          'Adicione uma imagem!',
-                                                          snackPosition:
-                                                              SnackPosition.TOP,
-                                                          duration: Duration(
-                                                              seconds: 5),
-                                                          colorText:
-                                                              Colors.white,
-                                                          backgroundColor:
-                                                              corPrimaria)
+                                              if (_postController.isEditing.value == false) {
+                                                if (imageTempUrl.value.path == "") {
+                                                  Get.snackbar('Erro!', 'Adicione uma imagem!',
+                                                          snackPosition: SnackPosition.TOP,
+                                                          duration: Duration(seconds: 5),
+                                                          colorText: Colors.white,
+                                                          backgroundColor: corPrimaria)
                                                       .show();
                                                   isLoading.value = false;
                                                   return;
                                                 }
                                               } else {
-                                                if (imageTempUrl.value.path !=
-                                                    "") {
-                                                  Database().deleteMedia(
-                                                      path: model.postImage!);
-                                                  _postController
-                                                          .imageTempUrl.value =
-                                                      await Database()
-                                                          .uploadPictureGetUrl(
-                                                              imageTempUrl
-                                                                  .value);
+                                                if (imageTempUrl.value.path != "") {
+                                                  Database().deleteMedia(path: model.postImage!);
+                                                  _postController.imageTempUrl.value =
+                                                      await Database().uploadPictureGetUrl(imageTempUrl.value);
                                                 }
                                               }
-                                              if (formkey.currentState!
-                                                  .validate()) {
+                                              if (formkey.currentState!.validate()) {
                                                 try {
-                                                  if (_postController
-                                                      .isEditing.value) {
+                                                  if (_postController.isEditing.value) {
                                                     await _postController.edit(
                                                         id: idEditing,
-                                                        body: bodyController.text
-                                                            .trim(),
-                                                        category: categorySelected
-                                                            .value
-                                                            .trim(),
-                                                        userHandle:
-                                                            _userController
-                                                                .user.email!,
-                                                        userName: _userController
-                                                            .user.name!,
-                                                        userImage: _userController
-                                                            .user.userImage!,
-                                                        postImage:
-                                                            _postController
-                                                                .imageTempUrl
-                                                                .value,
-                                                        actionData:
-                                                            selectedDate.value,
-                                                        subCategorie:
-                                                            subcategorySelected
-                                                                .value);
+                                                        body: bodyController.text.trim(),
+                                                        category: categorySelected.value.trim(),
+                                                        userHandle: _userController.user.email!,
+                                                        userName: _userController.user.name!,
+                                                        userImage: _userController.user.userImage!,
+                                                        postImage: _postController.imageTempUrl.value,
+                                                        actionData: selectedDate.value,
+                                                        subCategorie: subcategorySelected.value);
                                                     Get.snackbar(
                                                       'Sucesso!',
                                                       'Atualização concluida!',
-                                                      snackPosition:
-                                                          SnackPosition.TOP,
-                                                      duration:
-                                                          Duration(seconds: 5),
+                                                      snackPosition: SnackPosition.TOP,
+                                                      duration: Duration(seconds: 5),
                                                       colorText: Colors.white,
                                                     ).show();
                                                     Get.close(0);
                                                   } else {
-                                                    if (imageTempUrl
-                                                            .value.path !=
-                                                        "") {
-                                                      _postController
-                                                              .imageTempUrl
-                                                              .value =
-                                                          await Database()
-                                                              .uploadPictureGetUrl(
-                                                                  imageTempUrl
-                                                                      .value);
+                                                    if (imageTempUrl.value.path != "") {
+                                                      _postController.imageTempUrl.value =
+                                                          await Database().uploadPictureGetUrl(imageTempUrl.value);
                                                     }
                                                     await _postController.add(
-                                                        body: bodyController.text
-                                                            .trim(),
-                                                        category: categorySelected
-                                                            .value
-                                                            .trim(),
-                                                        userHandle:
-                                                            _userController
-                                                                .user.email!,
-                                                        userName: _userController
-                                                            .user.name!,
-                                                        userImage: _userController
-                                                            .user.userImage!,
-                                                        postImage:
-                                                            _postController
-                                                                .imageTempUrl
-                                                                .value,
-                                                        actionData:
-                                                            selectedDate.value,
-                                                        subCategorie:
-                                                            subcategorySelected
-                                                                .value);
+                                                        body: bodyController.text.trim(),
+                                                        category: categorySelected.value.trim(),
+                                                        userHandle: _userController.user.email!,
+                                                        userName: _userController.user.name!,
+                                                        userImage: _userController.user.userImage!,
+                                                        postImage: _postController.imageTempUrl.value,
+                                                        actionData: selectedDate.value,
+                                                        subCategorie: subcategorySelected.value);
                                                   }
                                                   isLoading.value = false;
-                                                  // postController.get();
                                                   Get.snackbar(
                                                     'Sucesso!',
                                                     '"Postagem concluida!',
-                                                    snackPosition:
-                                                        SnackPosition.TOP,
-                                                    duration:
-                                                        Duration(seconds: 5),
+                                                    snackPosition: SnackPosition.TOP,
+                                                    duration: Duration(seconds: 5),
                                                     colorText: Colors.white,
                                                   ).show();
                                                 } catch (e) {
@@ -701,12 +578,9 @@ class PostAddEditScreen extends StatelessWidget {
                                                   Get.snackbar(
                                                     'Erro!',
                                                     'Infelizmente não foi possivel salvar as informações!',
-                                                    snackPosition:
-                                                        SnackPosition.TOP,
-                                                    backgroundColor:
-                                                        corPrimaria,
-                                                    duration:
-                                                        Duration(seconds: 5),
+                                                    snackPosition: SnackPosition.TOP,
+                                                    backgroundColor: corPrimaria,
+                                                    duration: Duration(seconds: 5),
                                                     colorText: Colors.white,
                                                   ).show();
                                                 }
@@ -715,29 +589,22 @@ class PostAddEditScreen extends StatelessWidget {
                                                 Get.snackbar(
                                                   'Erro!',
                                                   'Opa, Preencha o campo de texto!',
-                                                  snackPosition:
-                                                      SnackPosition.TOP,
+                                                  snackPosition: SnackPosition.TOP,
                                                   backgroundColor: corPrimaria,
-                                                  duration:
-                                                      Duration(seconds: 5),
+                                                  duration: Duration(seconds: 5),
                                                   colorText: Colors.white,
                                                 ).show();
                                               }
                                             },
-                                            iconeBotao: Icon(Icons.save,
-                                                size: 20, color: Colors.white),
-                                            textoBotao: Get.arguments != null
-                                                ? "Atualizar"
-                                                : "Postar",
+                                            iconeBotao: Icon(Icons.save, size: 20, color: Colors.white),
+                                            textoBotao: Get.arguments != null ? "Atualizar" : "Postar",
                                           )
                                         : Container(
                                             height: 20,
                                             width: 20,
                                             child: Center(
                                               child: CircularProgressIndicator(
-                                                  valueColor:
-                                                      AlwaysStoppedAnimation(
-                                                          corPrimariaClara)),
+                                                  valueColor: AlwaysStoppedAnimation(corPrimariaClara)),
                                             ),
                                           ),
                                   ),
@@ -756,16 +623,14 @@ class PostAddEditScreen extends StatelessWidget {
                                 actions: [
                                   BotaoSimples(
                                     textoBotao: "Cancelar",
-                                    width:
-                                        MediaQuery.of(context).size.width / 2.8,
+                                    width: MediaQuery.of(context).size.width / 2.8,
                                     executarAcao: () {
                                       Get.close(0);
                                     },
                                   ),
                                   BotaoSimples(
                                     textoBotao: "Deletar",
-                                    width:
-                                        MediaQuery.of(context).size.width / 2.8,
+                                    width: MediaQuery.of(context).size.width / 2.8,
                                     executarAcao: () {
                                       Database().deletePost(
                                         id: model.id!,
@@ -791,28 +656,11 @@ class PostAddEditScreen extends StatelessWidget {
     );
   }
 
-  // ###############################################################################################################
-  // ###############################################################################################################
-  // ###############################################################################################################
-
   void imageSelected(File? image) async {
     if (image != null) {
-      CroppedFile? croppedImage =
-          await ImageCropper.platform.cropImage(sourcePath: image.path);
+      CroppedFile? croppedImage = await ImageCropper.platform.cropImage(sourcePath: image.path);
 
       imageTempUrl.value = File(croppedImage!.path);
-      // print("\n\n\nCHEGUEI AQUI");
-
-      // _postController.imageTempUrl.value =
-      //     await Database().uploadPictureGetUrl(File(croppedImage!.path));
     }
   }
-
-  // ###############################################################################################################
-  // ###############################################################################################################
-  // ###############################################################################################################
-
-  // ##################################################################################################
-  // ##################################################################################################
-  // ##################################################################################################
 }

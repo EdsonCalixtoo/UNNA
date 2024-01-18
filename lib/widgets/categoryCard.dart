@@ -30,7 +30,7 @@ class CategoryCard extends StatelessWidget {
           decoration: new BoxDecoration(
             color: Colors.transparent,
             border: Border.all(
-              color: corPrimaria, //                   <--- border color
+              color: corPrimaria,
               width: 2.0,
             ),
             borderRadius: new BorderRadius.all(Radius.circular(35.0)),
@@ -38,11 +38,7 @@ class CategoryCard extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(category.name,
-                  style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 25,
-                      fontWeight: FontWeight.w300)),
+              Text(category.name, style: TextStyle(color: corBlack, fontSize: 25, fontWeight: FontWeight.w300)),
               Icon(
                 IconData(int.parse(category.icon), fontFamily: 'MaterialIcons'),
                 size: 65,

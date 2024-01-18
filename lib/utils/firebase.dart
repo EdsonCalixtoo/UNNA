@@ -9,21 +9,8 @@ void criarPostsRandomicos({bool exibirSnack = true}) {
   print('\n\n criarPostsRandomicos INICIO -----');
   String tabela = 'unna-posts';
 
-  List<String> possiveisCategorias = [
-    'geral',
-    'esportes',
-    'lazer',
-    'bar',
-    'serviços',
-    'partys',
-    'pets'
-  ];
-  List<String> possiveisAutores = [
-    'maria@unna.com',
-    'joao@unna.com',
-    'angela@unna.com',
-    'paula@unna.com'
-  ];
+  List<String> possiveisCategorias = ['geral', 'esportes', 'lazer', 'bar', 'serviços', 'partys', 'pets'];
+  List<String> possiveisAutores = ['maria@unna.com', 'joao@unna.com', 'angela@unna.com', 'paula@unna.com'];
   List<String> possiveisAutoresShort = ['maria', 'joao', 'angela', 'paula'];
   List<String> possiveisImagensAutores = [
     'https://firebasestorage.googleapis.com/v0/b/unna-449e5.appspot.com/o/unnaImagens%2Fuser0.png?alt=media&token=b878693e-6554-41f3-9b35-d4eeaf7d470c',
@@ -38,8 +25,7 @@ void criarPostsRandomicos({bool exibirSnack = true}) {
     'https://firebasestorage.googleapis.com/v0/b/unna-449e5.appspot.com/o/unnaImagens%2Fpost1.jpg?alt=media&token=cfe9accd-4525-4624-b022-3690a3be0bd5',
   ];
   int autorRandomico = numeroRandomicoDentrUmRange(0, possiveisAutores.length);
-  int categoriaRandomico =
-      numeroRandomicoDentrUmRange(0, possiveisCategorias.length);
+  int categoriaRandomico = numeroRandomicoDentrUmRange(0, possiveisCategorias.length);
 
   var elemento = {
     'body': WordPair.random().asPascalCase,
@@ -57,13 +43,11 @@ void criarPostsRandomicos({bool exibirSnack = true}) {
 
   if (exibirSnack) {
     Get.snackbar('Sucesso', 'criarPostsRandomicos - terminou',
-        snackPosition: SnackPosition.TOP,
-        duration: Duration(seconds: 5),
-        colorText: Colors.white);
+        snackPosition: SnackPosition.TOP, duration: Duration(seconds: 5), colorText: Colors.white);
   }
 
   print(' criarPostsRandomicos FIM -----');
-} //criarPostsRandomicos
+}
 
 void criarPostRandomicoEmMass(int qtde) {
   print('\n\n criarPostRandomicoEmMass INICIO -----');
@@ -73,12 +57,10 @@ void criarPostRandomicoEmMass(int qtde) {
   }
 
   Get.snackbar('Sucesso', 'criarPostsRandomicos - terminou',
-      snackPosition: SnackPosition.TOP,
-      duration: Duration(seconds: 5),
-      colorText: Colors.white);
+      snackPosition: SnackPosition.TOP, duration: Duration(seconds: 5), colorText: Colors.white);
 
   print(' criarPostRandomicoEmMass FIM -----');
-} //criarPostRandomicoEmMass
+}
 
 void apagarConteudoTabela() async {
   print('\n\n criarPostsRandomicos INICIO -----');
@@ -95,4 +77,4 @@ void apagarConteudoTabela() async {
   );
 
   print(' criarPostsRandomicos FIM -----');
-} //apagarConteudoTabela
+}

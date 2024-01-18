@@ -2,7 +2,6 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
-
 import '../controllers/postController.dart';
 import '../controllers/userController.dart';
 import '../models/post.dart';
@@ -54,14 +53,9 @@ class PostCardSimple extends StatelessWidget {
             children: [
               Expanded(
                 child: Container(
-                  // color: Colors.blue,
                   padding: const EdgeInsets.fromLTRB(20, 15, 20, 0),
                   child: Text(
-                    DateFormat('dd.MM hh:mm')
-                            .format(post.createdAt!.toDate())
-                            .toString() +
-                        ': ' +
-                        post.body!,
+                    DateFormat('dd.MM hh:mm').format(post.createdAt!.toDate()).toString() + ': ' + post.body!,
                     maxLines: 3,
                     overflow: TextOverflow.ellipsis,
                   ),
@@ -87,21 +81,14 @@ class PostCardSimple extends StatelessWidget {
                   children: [
                     Container(
                       width: 90,
-                      // color: Colors.green,
                       child: Row(
                         children: [
-                          LikeButton(
-                              isLiked: isLiked == true, onTap: () => onTap()),
+                          LikeButton(isLiked: isLiked == true, onTap: () => onTap()),
                           Expanded(
                             child: Text(
-                              post.likeCount! > 0
-                                  ? post.likeCount.toString()
-                                  : '',
+                              post.likeCount! > 0 ? post.likeCount.toString() : '',
                               overflow: TextOverflow.ellipsis,
-                              style: TextStyle(
-                                  color: Colors.black54,
-                                  fontSize: 13,
-                                  fontWeight: FontWeight.w900),
+                              style: TextStyle(color: Colors.black54, fontSize: 13, fontWeight: FontWeight.w900),
                             ),
                           ),
                         ],
@@ -110,7 +97,6 @@ class PostCardSimple extends StatelessWidget {
                     SizedBox(width: 30),
                     Container(
                       width: 70,
-                      // color: Colors.yellow,
                       child: GestureDetector(
                         onTap: () {
                           Get.to(PostCommentScreen(), arguments: post);
@@ -119,9 +105,7 @@ class PostCardSimple extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
                             Icon(
-                              post.commentCount! > 0
-                                  ? Icons.sms_outlined
-                                  : Icons.chat_bubble_outline,
+                              post.commentCount! > 0 ? Icons.sms_outlined : Icons.chat_bubble_outline,
                               size: 25,
                               color: Colors.black54,
                             ),
@@ -130,17 +114,13 @@ class PostCardSimple extends StatelessWidget {
                               child: Text(
                                 post.commentCount.toString(),
                                 overflow: TextOverflow.ellipsis,
-                                style: TextStyle(
-                                    color: Colors.black54,
-                                    fontSize: 13,
-                                    fontWeight: FontWeight.w900),
+                                style: TextStyle(color: Colors.black54, fontSize: 13, fontWeight: FontWeight.w900),
                               ),
                             ),
                           ],
                         ),
                       ),
                     ),
-                    //
                   ],
                 ),
               ],
@@ -153,13 +133,6 @@ class PostCardSimple extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // PostController _postController = Get.find<PostController>();
-    // UserController _userController = Get.find<UserController>();
-
-    // void onClickLike() {
-    //   userController.toggleLike(post.id);
-    // }
-
     return Container(
       padding: EdgeInsets.all(10),
       margin: EdgeInsets.only(bottom: 15),
@@ -167,26 +140,13 @@ class PostCardSimple extends StatelessWidget {
         color: Colors.white,
         borderRadius: new BorderRadius.all(Radius.circular(25.0)),
       ),
-      // color: Colors.blue,
-      // height: 500,
       child: Column(
         children: [
-          // SizedBox(height: 2),
           imagePost(context, post.postImage!),
           textBody(),
-          GetX<UserController>(
-              // init: Get.put<CourseController>(CourseController()),
-              builder: (UserController userController) {
-            // List<String> tempLikes = new List<String>.from(userController.likes);
-
+          GetX<UserController>(builder: (UserController userController) {
             return baseLine(post.likes!.contains(userController.user.id), () {
               postController.toggleLike(userController.user.id!, post);
-
-              // if (tempLikes.contains(post.id) == true) {
-              //   post.likeCount--;
-              // } else {
-              //   post.likeCount++;
-              // }
             });
           }),
         ],

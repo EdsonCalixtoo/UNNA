@@ -22,15 +22,11 @@ class DebugAdminScreen extends StatelessWidget {
                     backgroundColor: Colors.blue,
                   ),
                   onPressed: () async {
-                    // print('Firebase - criar posts randomicos');
-                    // await copiaEtapasDoHack();
                     criarPostsRandomicos();
                   },
                   child: Text('Firebase - criar posts randomicos'),
                 ),
               ),
-              //
-              //
               Container(
                 width: double.maxFinite,
                 child: ElevatedButton(
@@ -47,7 +43,6 @@ class DebugAdminScreen extends StatelessWidget {
                 width: double.maxFinite,
                 child: ElevatedButton(
                   onPressed: () async {
-                    // await testaAtualizacaoEntregavel();
                     apagarConteudoTabela();
                   },
                   child: Text('Firebase - apagar TODA tabela'),
@@ -61,11 +56,7 @@ class DebugAdminScreen extends StatelessWidget {
                 width: double.maxFinite,
                 child: ElevatedButton(
                   onPressed: () async {
-                    // await testaPegarListaAreasAtuacaoHackatonAtual();
-                    // Database().userProfileData('edson@unna.com');
-
                     UserController _userController = Get.find<UserController>();
-
                     _userController.getUserProfileNumbers('edson@unna.com');
                   },
                   child: Text('Usuario - pegar dados profile'),

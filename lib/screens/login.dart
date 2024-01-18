@@ -31,32 +31,24 @@ class Login extends GetWidget<AuthController> {
                   mainAxisSize: MainAxisSize.max,
                   children: <Widget>[
                     !isKeyboardVisible
-                        // Text("UNNA", style: TextStyle(fontFamily: 'GrandHotel', fontSize: 55))
                         ? Image.asset(
                             'assets/images/logo.png',
                             height: 200,
                             width: 200,
-                            // color: Colors.white,
-                            // colorBlendMode: BlendMode.darken,
                             fit: BoxFit.fitHeight,
                           )
                         : Container(),
                     SizedBox(height: 36),
                     TextFormField(
                       decoration: InputDecoration(
-                          prefixIcon: Icon(Icons.email_outlined,
-                              color: corPrimariaEscura),
+                          prefixIcon: Icon(Icons.email_outlined, color: corPrimariaEscura),
                           enabledBorder: OutlineInputBorder(
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(90.0)),
-                            borderSide:
-                                BorderSide(width: 2, color: corPrimariaEscura),
+                            borderRadius: BorderRadius.all(Radius.circular(90.0)),
+                            borderSide: BorderSide(width: 2, color: corPrimariaEscura),
                           ),
                           focusedBorder: OutlineInputBorder(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(90.0)),
-                              borderSide: BorderSide(
-                                  width: 2, color: corPrimariaEscura)),
+                              borderRadius: BorderRadius.all(Radius.circular(90.0)),
+                              borderSide: BorderSide(width: 2, color: corPrimariaEscura)),
                           filled: true,
                           fillColor: Colors.transparent,
                           hintText: 'Email',
@@ -64,26 +56,19 @@ class Login extends GetWidget<AuthController> {
                       controller: emailController,
                       autocorrect: false,
                       keyboardType: TextInputType.emailAddress,
-                      // cursorColor: Theme.of(context).colorScheme.primary,
                       style: TextStyle(color: corPrimariaEscura),
                     ),
                     SizedBox(height: 16),
                     TextFormField(
                       decoration: InputDecoration(
-                          prefixIcon:
-                              Icon(Icons.lock_open, color: corPrimariaEscura),
+                          prefixIcon: Icon(Icons.lock_open, color: corPrimariaEscura),
                           enabledBorder: OutlineInputBorder(
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(90.0)),
-                            borderSide:
-                                BorderSide(width: 2, color: corPrimariaEscura),
+                            borderRadius: BorderRadius.all(Radius.circular(90.0)),
+                            borderSide: BorderSide(width: 2, color: corPrimariaEscura),
                           ),
                           focusedBorder: OutlineInputBorder(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(90.0)),
-                              borderSide: BorderSide(
-                                  width: 2, color: corPrimariaEscura)),
-                          // hintStyle: GoogleFonts.lato(fontStyle: FontStyle.normal),
+                              borderRadius: BorderRadius.all(Radius.circular(90.0)),
+                              borderSide: BorderSide(width: 2, color: corPrimariaEscura)),
                           filled: true,
                           fillColor: Colors.transparent,
                           hintText: 'Senha',
@@ -96,10 +81,8 @@ class Login extends GetWidget<AuthController> {
                     SizedBox(height: 36),
                     ElevatedButton(
                       onPressed: () {
-                        if ((emailController.text.trim() != '') &&
-                            (passwordController.text.trim() != '')) {
-                          controller.login(
-                              emailController.text, passwordController.text);
+                        if ((emailController.text.trim() != '') && (passwordController.text.trim() != '')) {
+                          controller.login(emailController.text, passwordController.text);
                         } else {
                           Get.snackbar(
                             'Opa, ta errado manolo',
@@ -111,8 +94,7 @@ class Login extends GetWidget<AuthController> {
                         }
                       },
                       style: ElevatedButton.styleFrom(
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(80.0)),
+                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(80.0)),
                         padding: const EdgeInsets.all(0.0),
                       ),
                       child: Ink(
@@ -126,19 +108,13 @@ class Login extends GetWidget<AuthController> {
                           borderRadius: BorderRadius.all(Radius.circular(80.0)),
                         ),
                         child: Container(
-                          constraints: const BoxConstraints(
-                              minWidth: 88.0,
-                              minHeight:
-                                  36.0), // min sizes for Material buttons
+                          constraints: const BoxConstraints(minWidth: 88.0, minHeight: 36.0),
                           alignment: Alignment.center,
                           height: 55,
                           child: const Text(
                             'ENTRAR',
                             textAlign: TextAlign.center,
-                            style: TextStyle(
-                                fontSize: 21,
-                                letterSpacing: 1.2,
-                                color: Colors.white),
+                            style: TextStyle(fontSize: 21, letterSpacing: 1.2, color: Colors.white),
                           ),
                         ),
                       ),
@@ -154,8 +130,7 @@ class Login extends GetWidget<AuthController> {
                           onPressed: () {},
                         ),
                         TextButton(
-                          child: Text("Cadastrar",
-                              style: TextStyle(color: corPrimariaEscura)),
+                          child: Text("Cadastrar", style: TextStyle(color: corPrimariaEscura)),
                           onPressed: () {
                             Get.to(SignUp());
                           },

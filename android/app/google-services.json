@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "685505780771",
+    "firebase_url": "https://unna-374aa-default-rtdb.firebaseio.com",
     "project_id": "unna-374aa",
     "storage_bucket": "unna-374aa.appspot.com"
   },
@@ -29,6 +30,13 @@
             {
               "client_id": "685505780771-hponnj4rorbdvmqt0ds8ljlbevkdpm12.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "685505780771-c3s68554otlapg5a3o4escpefgj6kq7l.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.unna.social.unna"
+              }
             }
           ]
         }

@@ -21,12 +21,10 @@ class _ProfileExternalScreenState extends State<ProfileExternalScreen> {
   @override
   void initState() {
     scrollController.addListener(() {
-      if (scrollController.position.maxScrollExtent ==
-          scrollController.offset) {
+      if (scrollController.position.maxScrollExtent == scrollController.offset) {
         final UserController userController = Get.put(UserController());
 
-        Get.find<PostController>()
-            .getMore(quantity: 10, userId: userController.user.id!);
+        Get.find<PostController>().getMore(quantity: 10, userId: userController.user.id!);
       }
     });
 
@@ -48,15 +46,12 @@ class _ProfileExternalScreenState extends State<ProfileExternalScreen> {
             return Scaffold(
               backgroundColor: corFundoClara,
               body: Center(
-                child: CircularProgressIndicator(
-                    valueColor: AlwaysStoppedAnimation(corPrimariaClara)),
+                child: CircularProgressIndicator(valueColor: AlwaysStoppedAnimation(corPrimariaClara)),
               ),
             );
           }
           if (snapshot.hasError || snapshot.data == null) {
-            return Scaffold(
-                backgroundColor: corFundoClara,
-                body: Center(child: Text("Erro ao carregar Posts")));
+            return Scaffold(backgroundColor: corFundoClara, body: Center(child: Text("Erro ao carregar Posts")));
           }
           return Scaffold(
             backgroundColor: corFundoClara,
@@ -69,8 +64,6 @@ class _ProfileExternalScreenState extends State<ProfileExternalScreen> {
               userImage: Get.arguments['userImage'],
               userName: Get.arguments['userName'],
             ),
-            // extendBody: true,
-            // extendBodyBehindAppBar: true,
             body: Stack(
               children: [
                 Container(
@@ -86,7 +79,6 @@ class _ProfileExternalScreenState extends State<ProfileExternalScreen> {
                       color: corFundoClara,
                       borderRadius: BorderRadius.only(
                         topLeft: Radius.circular(40),
-                        // bottomRight: Radius.circular(40),
                       )),
                   child: Container(),
                 ),
@@ -94,39 +86,20 @@ class _ProfileExternalScreenState extends State<ProfileExternalScreen> {
                   builder: (context) {
                     if (snapshot.data!.docs.length != 0) {
                       return ListView.builder(
-                          padding: const EdgeInsets.only(
-                              left: 30, right: 30, top: 10),
+                          padding: const EdgeInsets.only(left: 30, right: 30, top: 10),
                           shrinkWrap: true,
                           controller: scrollController,
                           itemCount: snapshot.data!.docs.length,
                           itemBuilder: (BuildContext ctxt, int index) {
-                            return new PostCardSimple(
-                                post: snapshot.data!.docs[index].data());
+                            return new PostCardSimple(post: snapshot.data!.docs[index].data());
                           });
                     } else {
                       return Center(child: Text('nenhum post no momento'));
                     }
                   },
                 ),
-                // Container(
-                //   height: 40,
-                //   width: 40,
-                //   decoration: BoxDecoration(
-                //       color: Colors.purple,
-                //       borderRadius: BorderRadius.only(
-                //         topLeft: Radius.circular(40),
-                //         bottomRight: Radius.circular(40),
-                //       )),
-                //   child: Container(),
-                // ),
-                // Container(
-                //   height: 30,
-                //   width: 30,
-                //   child: Container(),
-                // ),
               ],
             ),
-            // bottomNavigationBar: CustomNavBar()
           );
         });
   }

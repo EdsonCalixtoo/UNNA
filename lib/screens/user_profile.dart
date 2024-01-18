@@ -33,16 +33,8 @@ class UserProfileScreen extends StatelessWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Text(number,
-            style: TextStyle(
-                fontSize: 15,
-                fontWeight: FontWeight.bold,
-                color: Colors.black)),
-        Text(info,
-            style: TextStyle(
-                fontSize: 15,
-                fontWeight: FontWeight.normal,
-                color: Colors.black)),
+        Text(number, style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold, color: corBlack)),
+        Text(info, style: TextStyle(fontSize: 15, fontWeight: FontWeight.normal, color: corBlack)),
       ],
     );
   }
@@ -68,7 +60,7 @@ class UserProfileScreen extends StatelessWidget {
     nameTextController.text = _userController.user.name ?? "";
     aboutTextController.text = _userController.user.about ?? "";
 
-    _userController.imageTempUrl.value = _userController.user.userImage!;
+    _userController.imageTempUrl.value = _userController.user.userImage ?? '';
 
     return Scaffold(
         backgroundColor: corFundoClara,
@@ -83,8 +75,7 @@ class UserProfileScreen extends StatelessWidget {
                       padding: EdgeInsets.all(10),
                       decoration: new BoxDecoration(
                         color: Colors.white,
-                        borderRadius:
-                            new BorderRadius.all(Radius.circular(25.0)),
+                        borderRadius: new BorderRadius.all(Radius.circular(25.0)),
                       ),
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
@@ -99,20 +90,14 @@ class UserProfileScreen extends StatelessWidget {
                                           print("\n\n* SALVAR PROFILE \n");
                                           isLoading.value = true;
                                           _userController.imageTempUrl.value =
-                                              await Database()
-                                                  .uploadPictureGetUrl(
-                                                      imageTempUrl.value);
+                                              await Database().uploadPictureGetUrl(imageTempUrl.value);
 
-                                          if ((nameTextController.text.trim() !=
-                                              '')) {
+                                          if ((nameTextController.text.trim() != '')) {
                                             await _userController.edit(
                                                 id: _userController.user.id!,
-                                                about: aboutTextController.text
-                                                    .trim(),
-                                                name: nameTextController.text
-                                                    .trim(),
-                                                userImage: _userController
-                                                    .imageTempUrl.value);
+                                                about: aboutTextController.text.trim(),
+                                                name: nameTextController.text.trim(),
+                                                userImage: _userController.imageTempUrl.value);
                                             imageTempUrl.value = File("");
                                             isLoading.value = false;
                                             Get.snackbar(
@@ -142,16 +127,14 @@ class UserProfileScreen extends StatelessWidget {
                                         width: 20,
                                         child: Center(
                                           child: CircularProgressIndicator(
-                                              valueColor:
-                                                  AlwaysStoppedAnimation(
-                                                      corPrimariaClara)),
+                                              valueColor: AlwaysStoppedAnimation(corPrimariaClara)),
                                         ),
                                       ),
                               ),
                               Text(
                                 title,
                                 style: TextStyle(
-                                    color: Colors.black,
+                                    color: corBlack,
                                     fontSize: constraints.maxWidth * 0.06,
                                     fontWeight: FontWeight.bold),
                               ),
@@ -169,29 +152,24 @@ class UserProfileScreen extends StatelessWidget {
                             height: 15,
                           ),
                           StreamBuilder<QuerySnapshot<PostModel>>(
-                            stream: Database().getPostsWithId(
-                                email: _userController.user.email!),
+                            stream: Database().getPostsWithId(email: _userController.user.email ?? ''),
                             builder: (context, snapshot) {
-                              if (snapshot.connectionState ==
-                                  ConnectionState.waiting) {
+                              if (snapshot.connectionState == ConnectionState.waiting) {
                                 return Scaffold(
                                   backgroundColor: corFundoClara,
                                   body: Center(
-                                    child: CircularProgressIndicator(
-                                        valueColor: AlwaysStoppedAnimation(
-                                            corPrimariaClara)),
+                                    child:
+                                        CircularProgressIndicator(valueColor: AlwaysStoppedAnimation(corPrimariaClara)),
                                   ),
                                 );
                               }
                               if (snapshot.hasError || snapshot.data == null) {
                                 return Scaffold(
                                     backgroundColor: corFundoClara,
-                                    body: Center(
-                                        child: Text("Erro ao carregar Posts")));
+                                    body: Center(child: Text("Erro ao carregar Posts")));
                               }
                               List<PostModel> posts = List.generate(
-                                  snapshot.data!.docs.length,
-                                  (index) => snapshot.data!.docs[index].data());
+                                  snapshot.data!.docs.length, (index) => snapshot.data!.docs[index].data());
                               return Column(
                                 children: [
                                   Row(
@@ -199,25 +177,18 @@ class UserProfileScreen extends StatelessWidget {
                                       GestureDetector(
                                         onTap: () async {
                                           imageTempUrl.value = File("");
-                                          final ImagePicker picker =
-                                              ImagePicker();
-                                          XFile? image = await picker.pickImage(
-                                              source: ImageSource.gallery);
+                                          final ImagePicker picker = ImagePicker();
+                                          XFile? image = await picker.pickImage(source: ImageSource.gallery);
                                           if (image != null) {
                                             imageSelected(File(image.path));
                                           }
                                         },
-                                        child: Obx(() => imageTempUrl
-                                                    .value.path ==
-                                                ''
+                                        child: Obx(() => imageTempUrl.value.path == ''
                                             ? CircleAvatar(
                                                 backgroundColor: Colors.white,
-                                                radius:
-                                                    constraints.maxWidth * 0.15,
-                                                backgroundImage:
-                                                    CachedNetworkImageProvider(
-                                                  _userController
-                                                      .imageTempUrl.value,
+                                                radius: constraints.maxWidth * 0.15,
+                                                backgroundImage: CachedNetworkImageProvider(
+                                                  _userController.imageTempUrl.value,
                                                 ),
                                               )
                                             : Container(
@@ -228,16 +199,11 @@ class UserProfileScreen extends StatelessWidget {
                                                   shape: BoxShape.circle,
                                                 ),
                                                 child: Column(
-                                                    crossAxisAlignment:
-                                                        CrossAxisAlignment
-                                                            .center,
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .center,
+                                                    crossAxisAlignment: CrossAxisAlignment.center,
+                                                    mainAxisAlignment: MainAxisAlignment.center,
                                                     children: [
                                                       Icon(
-                                                        Icons
-                                                            .photo_size_select_actual,
+                                                        Icons.photo_size_select_actual,
                                                         color: Colors.white,
                                                         size: 40,
                                                       ),
@@ -245,27 +211,19 @@ class UserProfileScreen extends StatelessWidget {
                                                         "Defina\nImagem",
                                                         style: TextStyle(
                                                             fontSize: 12,
-                                                            fontWeight:
-                                                                FontWeight.w400,
-                                                            color:
-                                                                Colors.white),
+                                                            fontWeight: FontWeight.w400,
+                                                            color: Colors.white),
                                                       ),
                                                     ]),
                                               )),
                                       ),
                                       Expanded(
                                           child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceAround,
+                                        mainAxisAlignment: MainAxisAlignment.spaceAround,
                                         children: [
-                                          userInfoDetail("Likes",
-                                              getLikesCounts(posts).toString()),
-                                          userInfoDetail(
-                                              "Posts", posts.length.toString()),
-                                          userInfoDetail(
-                                              "Comments",
-                                              getCommentsCounts(posts)
-                                                  .toString())
+                                          userInfoDetail("Likes", getLikesCounts(posts).toString()),
+                                          userInfoDetail("Posts", posts.length.toString()),
+                                          userInfoDetail("Comments", getCommentsCounts(posts).toString())
                                         ],
                                       ))
                                     ],
@@ -278,58 +236,22 @@ class UserProfileScreen extends StatelessWidget {
                                     child: TextFormField(
                                       decoration: InputDecoration(
                                         enabledBorder: OutlineInputBorder(
-                                          borderRadius: BorderRadius.all(
-                                              Radius.circular(15.0)),
-                                          borderSide: BorderSide(
-                                              width: 2, color: corPrimaria),
+                                          borderRadius: BorderRadius.all(Radius.circular(15.0)),
+                                          borderSide: BorderSide(width: 2, color: corPrimaria),
                                         ),
                                         focusedBorder: OutlineInputBorder(
-                                            borderRadius: BorderRadius.all(
-                                                Radius.circular(15.0)),
-                                            borderSide: BorderSide(
-                                                width: 2, color: corPrimaria)),
-                                        // hintStyle: GoogleFonts.lato(fontStyle: FontStyle.normal),
+                                            borderRadius: BorderRadius.all(Radius.circular(15.0)),
+                                            borderSide: BorderSide(width: 2, color: corPrimaria)),
                                         filled: true,
                                         fillColor: Colors.transparent,
                                         label: Text('Nome'),
-                                        labelStyle:
-                                            TextStyle(color: corPrimariaEscura),
+                                        labelStyle: TextStyle(color: corPrimariaEscura),
                                       ),
                                       controller: nameTextController,
                                       autocorrect: false,
-                                      style: TextStyle(color: Colors.black),
+                                      style: TextStyle(color: corBlack),
                                     ),
                                   ),
-                                  // SizedBox(height: 16),
-                                  // SizedBox(
-                                  //   width: constraints.maxWidth * 0.85,
-                                  //   child: TextFormField(
-                                  //       decoration: InputDecoration(
-                                  //         enabledBorder: OutlineInputBorder(
-                                  //           borderRadius:
-                                  //               BorderRadius.all(Radius.circular(15.0)),
-                                  //           borderSide: BorderSide(
-                                  //               width: 2, color: corPrimaria),
-                                  //         ),
-                                  //         focusedBorder: OutlineInputBorder(
-                                  //             borderRadius: BorderRadius.all(
-                                  //                 Radius.circular(15.0)),
-                                  //             borderSide: BorderSide(
-                                  //                 width: 2, color: corPrimaria)),
-                                  //         filled: true,
-                                  //         fillColor: Colors.transparent,
-                                  //         label: Text('Sobre min...'),
-                                  //         labelStyle: TextStyle(
-                                  //           color: corPrimariaEscura,
-                                  //         ),
-                                  //         alignLabelWithHint: true,
-                                  //       ),
-                                  //       controller: aboutTextController,
-                                  //       autocorrect: false,
-                                  //       keyboardType: TextInputType.emailAddress,
-                                  //       style: TextStyle(color: Colors.black),
-                                  //       maxLines: 3),
-                                  // ),
                                   SizedBox(height: 10),
                                   if (posts.isNotEmpty)
                                     Obx(() {
@@ -339,30 +261,21 @@ class UserProfileScreen extends StatelessWidget {
                                               itemCount: posts.length,
                                               primary: false,
                                               gridDelegate:
-                                                  SliverGridDelegateWithFixedCrossAxisCount(
-                                                      crossAxisCount: 3),
-                                              itemBuilder: (context, index) =>
-                                                  Padding(
-                                                padding:
-                                                    const EdgeInsets.all(5.0),
+                                                  SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3),
+                                              itemBuilder: (context, index) => Padding(
+                                                padding: const EdgeInsets.all(5.0),
                                                 child: GestureDetector(
                                                   onTap: () {
                                                     isGrid.value = false;
                                                   },
                                                   child: ClipRRect(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            15),
+                                                    borderRadius: BorderRadius.circular(15),
                                                     child: Container(
                                                       child: CachedNetworkImage(
-                                                        imageUrl: posts[index]
-                                                            .postImage!,
-                                                        placeholder: (context,
-                                                                url) =>
-                                                            CircularProgressIndicator(
-                                                          valueColor:
-                                                              AlwaysStoppedAnimation(
-                                                            Colors.black,
+                                                        imageUrl: posts[index].postImage!,
+                                                        placeholder: (context, url) => CircularProgressIndicator(
+                                                          valueColor: AlwaysStoppedAnimation(
+                                                            corBlack,
                                                           ),
                                                         ),
                                                         fit: BoxFit.cover,
@@ -376,8 +289,7 @@ class UserProfileScreen extends StatelessWidget {
                                               primary: false,
                                               shrinkWrap: true,
                                               itemCount: posts.length,
-                                              itemBuilder: (context, index) =>
-                                                  GestureDetector(
+                                              itemBuilder: (context, index) => GestureDetector(
                                                 onTap: () {
                                                   isGrid.value = true;
                                                 },
@@ -392,8 +304,7 @@ class UserProfileScreen extends StatelessWidget {
                                     SizedBox(
                                       height: constraints.maxHeight * 0.1,
                                       child: Center(
-                                        child:
-                                            Text("Você ainda não postou nada"),
+                                        child: Text("Você ainda não postou nada"),
                                       ),
                                     ),
                                 ],
@@ -409,24 +320,19 @@ class UserProfileScreen extends StatelessWidget {
                         padding: EdgeInsets.all(20),
                         decoration: new BoxDecoration(
                           color: Colors.white,
-                          borderRadius:
-                              new BorderRadius.all(Radius.circular(25.0)),
+                          borderRadius: new BorderRadius.all(Radius.circular(25.0)),
                         ),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text('Admin...',
-                                style: TextStyle(
-                                    color: Colors.black,
-                                    fontSize: 25,
-                                    fontWeight: FontWeight.w300)),
+                                style: TextStyle(color: corBlack, fontSize: 25, fontWeight: FontWeight.w300)),
                             SizedBox(height: 10),
                             BotaoSimples(
                               executarAcao: () async {
                                 Get.to(CategoryAddEditScreen());
                               },
-                              iconeBotao: Icon(Icons.filter_1_outlined,
-                                  size: 20, color: Colors.white),
+                              iconeBotao: Icon(Icons.filter_1_outlined, size: 20, color: Colors.white),
                               textoBotao: "Categoria - Gerenciar",
                             ),
                             SizedBox(height: 10),
@@ -434,8 +340,7 @@ class UserProfileScreen extends StatelessWidget {
                               executarAcao: () async {
                                 Get.to(DebugAdminScreen());
                               },
-                              iconeBotao: Icon(Icons.add_circle_outline,
-                                  size: 20, color: Colors.white),
+                              iconeBotao: Icon(Icons.add_circle_outline, size: 20, color: Colors.white),
                               textoBotao: "Operacoes Especiais",
                             )
                           ],
@@ -449,28 +354,14 @@ class UserProfileScreen extends StatelessWidget {
         ));
   }
 
-  // ###############################################################################################################
-  // ###############################################################################################################
-  // ###############################################################################################################
-
   void imageSelected(File? image) async {
     if (image != null) {
-      CroppedFile? croppedImage =
-          await ImageCropper.platform.cropImage(sourcePath: image.path);
+      CroppedFile? croppedImage = await ImageCropper.platform.cropImage(sourcePath: image.path);
 
       print("\n\n\nCHEGUEI AQUI");
       if (croppedImage != null) {
-        _userController.imageTempUrl.value =
-            await Database().uploadPictureGetUrl(File(croppedImage.path));
+        _userController.imageTempUrl.value = await Database().uploadPictureGetUrl(File(croppedImage.path));
       }
     }
   }
-
-  // ###############################################################################################################
-  // ###############################################################################################################
-  // ###############################################################################################################
-
-  // ##################################################################################################
-  // ##################################################################################################
-  // ##################################################################################################
 }
