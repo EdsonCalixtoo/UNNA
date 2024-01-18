@@ -52,6 +52,7 @@ class DefaultFirebaseOptions {
     messagingSenderId: '685505780771',
     projectId: 'unna-374aa',
     authDomain: 'unna-374aa.firebaseapp.com',
+    databaseURL: 'https://unna-374aa-default-rtdb.firebaseio.com',
     storageBucket: 'unna-374aa.appspot.com',
     measurementId: 'G-HTXV6N7JP0',
   );
@@ -61,6 +62,7 @@ class DefaultFirebaseOptions {
     appId: '1:685505780771:android:1614a4d1da234d14712596',
     messagingSenderId: '685505780771',
     projectId: 'unna-374aa',
+    databaseURL: 'https://unna-374aa-default-rtdb.firebaseio.com',
     storageBucket: 'unna-374aa.appspot.com',
   );
 
@@ -69,6 +71,7 @@ class DefaultFirebaseOptions {
     appId: '1:685505780771:ios:dbeb5ed93cff1a3d712596',
     messagingSenderId: '685505780771',
     projectId: 'unna-374aa',
+    databaseURL: 'https://unna-374aa-default-rtdb.firebaseio.com',
     storageBucket: 'unna-374aa.appspot.com',
     iosClientId: '685505780771-c3s68554otlapg5a3o4escpefgj6kq7l.apps.googleusercontent.com',
     iosBundleId: 'com.unna.social.unna',

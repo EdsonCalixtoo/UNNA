@@ -6,8 +6,7 @@ class LikeButton extends StatefulWidget {
   bool isLiked;
   final Function? onTap;
 
-  LikeButton({Key? key, this.isLiked = false, required this.onTap})
-      : super(key: key);
+  LikeButton({Key? key, this.isLiked = false, required this.onTap}) : super(key: key);
   @override
   _LikeButtonState createState() => _LikeButtonState();
 }
@@ -24,7 +23,6 @@ class _LikeButtonState extends State<LikeButton> {
             setState(() {
               widget.isLiked = !widget.isLiked;
               showAnimation = true;
-              // controller.play();
             });
           } else {
             setState(() {
@@ -39,14 +37,11 @@ class _LikeButtonState extends State<LikeButton> {
         },
         child: showAnimation == false
             ? Container(
-                // color: Colors.blue,
                 height: 50,
                 width: 50,
                 child: Center(
                   child: Icon(
-                    widget.isLiked == true
-                        ? Icons.favorite
-                        : Icons.favorite_border,
+                    widget.isLiked == true ? Icons.favorite : Icons.favorite_border,
                     size: 25,
                     color: widget.isLiked == true ? Colors.red : Colors.black54,
                   ),

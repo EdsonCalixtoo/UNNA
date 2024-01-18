@@ -19,8 +19,7 @@ class PostCard extends StatelessWidget {
   final PostModel post;
   final bool isIgnoring;
 
-  PostCard({Key? key, required this.post, this.isIgnoring = false})
-      : super(key: key);
+  PostCard({Key? key, required this.post, this.isIgnoring = false}) : super(key: key);
 
   PostController postController = Get.find<PostController>();
   UserController userController = Get.find<UserController>();
@@ -73,8 +72,6 @@ class PostCard extends StatelessWidget {
               children: [
                 GestureDetector(
                   onTap: () {
-                    // postController.updateFilter(
-                    //     'posts_profile_user', post.userHandle!);
                     Get.to(ProfileExternalScreen(), arguments: {
                       'userImage': post.userImage,
                       'userHandle': post.userHandle,
@@ -85,7 +82,7 @@ class PostCard extends StatelessWidget {
                     decoration: BoxDecoration(
                       boxShadow: <BoxShadow>[
                         BoxShadow(
-                          color: Colors.black.withAlpha(50),
+                          color: corBlack.withAlpha(50),
                           blurRadius: 17.0,
                           offset: Offset(0, 12),
                           spreadRadius: 1,
@@ -109,12 +106,11 @@ class PostCard extends StatelessWidget {
                   children: [
                     Text(
                       post.userHandle!.split('@')[0],
-                      style: TextStyle(color: Colors.black, fontSize: 15),
+                      style: TextStyle(color: corBlack, fontSize: 15),
                     ),
                     SizedBox(height: 5),
                     Text(
-                      Utils.dateTimeParseString(
-                          date: post.createdAt!.toDate(), setHours: true),
+                      Utils.dateTimeParseString(date: post.createdAt!.toDate(), setHours: true),
                       style: TextStyle(color: Colors.grey, fontSize: 12),
                     )
                   ],
@@ -143,7 +139,6 @@ class PostCard extends StatelessWidget {
             children: [
               Expanded(
                 child: Container(
-                  // color: Colors.blue,
                   padding: const EdgeInsets.fromLTRB(20, 15, 20, 0),
                   child: Text(
                     post.body!,
@@ -172,26 +167,18 @@ class PostCard extends StatelessWidget {
                   children: [
                     Container(
                       width: 70,
-                      // color: Colors.green,
                       child: Row(
                         children: [
                           LikeButton(
-                              isLiked:
-                                  post.likes!.contains(userController.user.id),
+                              isLiked: post.likes!.contains(userController.user.id),
                               onTap: () {
-                                postController.toggleLike(
-                                    userController.user.id!, post);
+                                postController.toggleLike(userController.user.id!, post);
                               }),
                           Expanded(
                             child: Text(
-                              post.likeCount! > 0
-                                  ? post.likeCount.toString()
-                                  : '0',
+                              post.likeCount! > 0 ? post.likeCount.toString() : '0',
                               overflow: TextOverflow.ellipsis,
-                              style: TextStyle(
-                                  color: Colors.black54,
-                                  fontSize: 13,
-                                  fontWeight: FontWeight.w900),
+                              style: TextStyle(color: Colors.black54, fontSize: 13, fontWeight: FontWeight.w900),
                             ),
                           ),
                         ],
@@ -200,7 +187,6 @@ class PostCard extends StatelessWidget {
                     SizedBox(width: 30),
                     Container(
                       width: 80,
-                      // color: Colors.yellow,
                       child: GestureDetector(
                         onTap: () {
                           Get.to(PostCommentScreen(), arguments: post);
@@ -209,9 +195,7 @@ class PostCard extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
                             Icon(
-                              post.commentCount! > 0
-                                  ? CupertinoIcons.text_bubble_fill
-                                  : CupertinoIcons.bubble_left,
+                              post.commentCount! > 0 ? CupertinoIcons.text_bubble_fill : CupertinoIcons.bubble_left,
                               size: 25,
                               color: Colors.black54,
                             ),
@@ -220,52 +204,18 @@ class PostCard extends StatelessWidget {
                               child: Text(
                                 post.commentCount.toString(),
                                 overflow: TextOverflow.ellipsis,
-                                style: TextStyle(
-                                    color: Colors.black54,
-                                    fontSize: 13,
-                                    fontWeight: FontWeight.w900),
+                                style: TextStyle(color: Colors.black54, fontSize: 13, fontWeight: FontWeight.w900),
                               ),
                             ),
                           ],
                         ),
                       ),
                     ),
-                    //
                   ],
                 ),
               ],
             ),
           ),
-          /*GestureDetector(
-            onTap: () {
-              postController.updateFilter(post.category!, '');
-            },
-            child: Container(
-                height: 50,
-                // color: Colors.green,
-                width: 30,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    Expanded(
-                      child: Text(
-                        post.category!,
-                        textAlign: TextAlign.right,
-                        overflow: TextOverflow.ellipsis,
-                        style: TextStyle(
-                            color: Colors.black45,
-                            fontSize: 13,
-                            fontWeight: FontWeight.w500),
-                      ),
-                    ),
-                    Icon(
-                      Icons.flag_outlined,
-                      size: 28,
-                      color: Colors.black54,
-                    )
-                  ],
-                )),
-          )*/
         ],
       ),
     );

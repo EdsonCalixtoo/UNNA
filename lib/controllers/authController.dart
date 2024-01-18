@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
+import 'package:unna/screens/start.dart';
 
 import '../controllers/userController.dart';
 import '../models/user.dart';
@@ -24,9 +25,7 @@ class AuthController extends GetxController {
 
   void createUser(String name, String email, String password) async {
     try {
-      UserCredential user = await _auth.createUserWithEmailAndPassword(
-          email: email.trim(), password: password);
-      //create user in database.dart
+      UserCredential user = await _auth.createUserWithEmailAndPassword(email: email.trim(), password: password);
       UserModel _user = UserModel(
         id: user.user?.uid,
         name: name,
@@ -50,13 +49,14 @@ class AuthController extends GetxController {
 
   void login(String email, String password) async {
     try {
-      UserCredential user = await _auth.signInWithEmailAndPassword(
-          email: email.trim(), password: password);
-      Get.find<UserController>().user =
-          await Database().getUser(user.user!.uid);
+      // UserCredential user = await _auth.signInWithEmailAndPassword(
+      //     email: email.trim(), password: password);
+      // Get.find<UserController>().user =
+      //     await Database().getUser(user.user!.uid);
 
-      Get.offAll(Home());
+      Get.offAll(StartPage());
     } catch (e) {
+      print('3');
       Get.snackbar(
         "Error signing in",
         e.toString(),

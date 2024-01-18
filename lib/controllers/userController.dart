@@ -41,22 +41,15 @@ class UserController extends GetxController {
   }
 
   Future<void> edit(
-      {required String id,
-      required String name,
-      required String about,
-      required String userImage}) async {
+      {required String id, required String name, required String about, required String userImage}) async {
     isLoading.value = true;
-    // await Future.delayed(Duration(seconds: 6));
     Database().editUserProfile({
       'id': id,
       'name': name.trim(),
       'about': about.trim(),
-      'userImage': userImage != ''
-          ? userImage
-          : 'https://eu.ui-avatars.com/api/?name=$name&background=random'
+      'userImage': userImage != '' ? userImage : 'https://eu.ui-avatars.com/api/?name=$name&background=random'
     });
 
-    // imageTempUrl.value = '';
     isLoading.value = false;
   }
 
@@ -66,20 +59,14 @@ class UserController extends GetxController {
   }
 
   Future<void> getUserProfileNumbers(String userHandle) async {
-    // loading ON
     isLoading.value = true;
-
     Map<String, dynamic> userData;
-
     userData = await Database().userProfileData(userHandle);
-
     this.userProfileData(userData);
 
     print('\n\n --- TERMINOU uploadImageCard');
-
     print(this.userProfileData.toString());
 
-    // loading OFF
     isLoading.value = false;
   }
 }

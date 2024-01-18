@@ -5,7 +5,7 @@ import '../models/category.dart';
 import '../services/database.dart';
 
 class CategoryController extends GetxController {
-  // Rx<List<PostModel>> categoryList = Rx<List<PostModel>>();
+  RxList<CategoryModel> categories = <CategoryModel>[].obs;
   List<CategoryModel> categoryList = [];
   final categorySelected = "geral".obs;
 
@@ -14,9 +14,7 @@ class CategoryController extends GetxController {
 
   @override
   // ignore: must_call_super
-  void onInit() {
-    // get();
-  }
+  void onInit() {}
 
   @override
   void onClose() {
@@ -27,32 +25,32 @@ class CategoryController extends GetxController {
     return Database().getStreamCategories();
   }
 
-  Future<void> get() async {
+  Future<List<CategoryModel>> get() async {
     List<CategoryModel> newCategories = [];
     newCategories = await Database().getCategories();
+
+    print('---------------');
+    print(newCategories[0].name);
+    print(newCategories[0].subCategories);
 
     if (newCategories.length > 0) {
       categoryList.clear();
       newCategories.forEach((post) => categoryList.add(post));
     }
-    // return newCategories;
-  } // get
+
+    categories.assignAll(newCategories);
+    return newCategories;
+  }
 
   Future<void> add(String name, String iconText, int order) async {
     isLoading.value = true;
-
-    Database().addCategory(
-        {'name': name.trim(), 'iconText': iconText, 'order': order});
-
+    Database().addCategory({'name': name.trim(), 'iconText': iconText, 'order': order});
     isLoading.value = false;
   }
 
   Future<void> edit(String id, String name, String iconText, int order) async {
     isLoading.value = true;
-    // await Future.delayed(Duration(seconds: 6));
-    Database().editCategory(
-        {'id': id, 'name': name.trim(), 'iconText': iconText, 'order': order});
-
+    Database().editCategory({'id': id, 'name': name.trim(), 'iconText': iconText, 'order': order});
     isLoading.value = false;
   }
 }

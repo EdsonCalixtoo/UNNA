@@ -17,17 +17,11 @@ class PostController extends GetxController {
 
   void setFilter() {
     List<PostModel> filteredList = [];
-    if (filterLiked.value ||
-        filterCategory.value != "" ||
-        filterDate.value != DateTime(1500)) {
+    if (filterLiked.value || filterCategory.value != "" || filterDate.value != DateTime(1500)) {
       filteredList.addAll(listAllPosts);
       if (filterDate.value != DateTime(1500)) {
         filteredList.removeWhere((element) {
-          if (element.actionData!
-                  .toDate()
-                  .difference(filterDate.value)
-                  .inSeconds <=
-              0) {
+          if (element.actionData!.toDate().difference(filterDate.value).inSeconds <= 0) {
             return true;
           } else {
             return false;
@@ -72,17 +66,13 @@ class PostController extends GetxController {
     return Database().getStreamPosts(null);
   }
 
-  Stream<QuerySnapshot<CommentModel>> getStreamComments(
-      {required String postId}) {
+  Stream<QuerySnapshot<CommentModel>> getStreamComments({required String postId}) {
     return Database().getStreamComments(postId: postId);
   }
 
-  // versão legada abaixo
   final postList = [].obs;
   final postListUserProfile = [].obs;
   final commentList = [].obs;
-
-  // Stream<List<PostModel>> courseStream;
   final isLoading = false.obs;
   final isLoadingSendingComment = false.obs;
   final isFetchingTop = false.obs;
@@ -93,21 +83,14 @@ class PostController extends GetxController {
   final imageTempUrl = ''.obs;
   String selectedFilter = 'geral';
 
-  // List<PostModel> get posts => postList;
-
   @override
   // ignore: must_call_super
   void onInit() {
     print('OnInit postController selectedFilter=' + selectedFilter);
-    // courseStream = Database().courseStream();
-    // postList.bindStream(courseStream); //stream coming from firebase
-    // get(startDate: null, quantity: 10);
   }
 
   @override
   void onClose() {
-    // courseStream.cancel();
-    // postList?.dispose();
     super.onClose();
   }
 
@@ -133,27 +116,19 @@ class PostController extends GetxController {
 
   Future<void> getComments({required String postId}) async {
     print('\n\n --- RODOU getComments postId=' + postId);
-
     isFetching.value = true;
-
     commentList.clear();
-
     List<CommentModel> newComments = [];
-
-    // await Future.delayed(Duration(seconds: 6));
     newComments = await Database().getComments(postId: postId);
 
-    if (newComments.length > 0) {
-      newComments.forEach((comments) => commentList.add(comments));
-    }
+    if (newComments.length > 0) newComments.forEach((comments) => commentList.add(comments));
 
     print('\n\n --- TERMINOU getComments');
 
     isFetching.value = false;
-  } // getComments
+  }
 
   Future<void> getMore({int quantity = 10, required String userId}) async {
-    // loading ON
     isFetchingBotton.value = true;
 
     print('\n\n --- RODOU getMore selectedFilter:' + selectedFilter);
@@ -181,18 +156,12 @@ class PostController extends GetxController {
     }
 
     print('\n\n --- TERMINOU getMore');
-
-    // loading OFF
     isFetchingBotton.value = false;
-  } // getMore
+  }
 
   void updateFilter(String newFilter, String userId) {
-    print(' --- this.selectedFilter=${this.selectedFilter} newFilter=' +
-        newFilter +
-        ' userId=' +
-        userId);
-    if ((newFilter != this.selectedFilter) ||
-        (this.selectedFilter == 'posts_profile_user')) {
+    print(' --- this.selectedFilter=${this.selectedFilter} newFilter=' + newFilter + ' userId=' + userId);
+    if ((newFilter != this.selectedFilter) || (this.selectedFilter == 'posts_profile_user')) {
       this.selectedFilter = newFilter;
 
       if (this.selectedFilter == 'posts_profile_user') {
@@ -205,12 +174,7 @@ class PostController extends GetxController {
     }
   }
 
-  Future<void> get(
-      {Timestamp? startDate,
-      int? quantity,
-      bool isRefresh = false,
-      String? userId}) async {
-    // loading ON
+  Future<void> get({Timestamp? startDate, int? quantity, bool isRefresh = false, String? userId}) async {
     if (!isRefresh) isFetchingBotton.value = true;
     if (startDate == null) isLoading.value = true;
 
@@ -241,9 +205,8 @@ class PostController extends GetxController {
 
     print('\n\n --- TERMINOU get');
 
-    // loading OFF
     if (!isRefresh) isFetchingBotton.value = false;
-    if (startDate == null) isLoading.value = false; // inicitial loading
+    if (startDate == null) isLoading.value = false;
   }
 
   Future<void> add(
@@ -263,9 +226,7 @@ class PostController extends GetxController {
       'likeCount': 0,
       'userHandle': userHandle,
       'userName': userName,
-      'userImage': userImage != ''
-          ? userImage
-          : 'https://eu.ui-avatars.com/api/?name=$userName&background=random',
+      'userImage': userImage != '' ? userImage : 'https://eu.ui-avatars.com/api/?name=$userName&background=random',
       'postImage': postImage != ''
           ? postImage
           : 'https://firebasestorage.googleapis.com/v0/b/experimentosdiversos.appspot.com/o/zSocialImagens%2FtesteImage.png?alt=media&token=53a7bdf7-a9e2-4752-a11f-d0ccd074936c',
@@ -292,19 +253,15 @@ class PostController extends GetxController {
       required String userName,
       required String userImage}) async {
     isLoadingSendingComment.value = true;
-    // await Future.delayed(Duration(seconds: 6));
     Database().addComment({
       'body': body.trim(),
       'userHandle': userHandle,
       'userName': userName,
-      'userImage': userImage != ''
-          ? userImage
-          : 'https://eu.ui-avatars.com/api/?name=$userName&background=random',
+      'userImage': userImage != '' ? userImage : 'https://eu.ui-avatars.com/api/?name=$userName&background=random',
       'postId': postId,
       'dateCreatedAt': Timestamp.now()
     });
 
-    // push into local comments list (avoid another call to backend)
     commentList.add(CommentModel(
       body: body.trim(),
       userHandle: userHandle,
@@ -315,10 +272,8 @@ class PostController extends GetxController {
       dateCreatedAt: Timestamp.now(),
     ));
 
-    // increase comment counts
     Database().incrementCommentCount(postId);
 
-    // adjust commentCount locally
     postList.where((post) => post.id == postId).forEach((element) {
       element.commentCount++;
     });
@@ -337,7 +292,6 @@ class PostController extends GetxController {
       required DateTime actionData,
       required String subCategorie}) async {
     isLoading.value = true;
-    // await Future.delayed(Duration(seconds: 6));
     Database().editPost({
       'id': id,
       'body': body.trim(),
@@ -345,9 +299,7 @@ class PostController extends GetxController {
       'likeCount': 0,
       'userHandle': userHandle,
       'userName': userName,
-      'userImage': userImage != ''
-          ? userImage
-          : 'https://eu.ui-avatars.com/api/?name=$userName&background=random',
+      'userImage': userImage != '' ? userImage : 'https://eu.ui-avatars.com/api/?name=$userName&background=random',
       'postImage': postImage != ''
           ? postImage
           : 'https://firebasestorage.googleapis.com/v0/b/experimentosdiversos.appspot.com/o/zSocialImagens%2FtesteImage.png?alt=media&token=53a7bdf7-a9e2-4752-a11f-d0ccd074936c',

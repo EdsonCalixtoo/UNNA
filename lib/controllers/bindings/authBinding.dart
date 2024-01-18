@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
 
 import '../authController.dart';
-import '../categoryController.dart';
+import '../category_controller.dart';
 import '../navController.dart';
 import '../postController.dart';
 import '../userController.dart';

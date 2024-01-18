@@ -37,8 +37,7 @@ class _RootState extends State<Root> {
               height: 15,
             ),
             CircularProgressIndicator(
-              valueColor:
-                  AlwaysStoppedAnimation(Theme.of(context).primaryColor),
+              valueColor: AlwaysStoppedAnimation(Theme.of(context).primaryColor),
             )
           ],
         ),
@@ -46,23 +45,3 @@ class _RootState extends State<Root> {
     );
   }
 }
-
-
-/*class Root extends GetWidget<AuthController> {
-  @override
-  Widget build(BuildContext context) {
-    return GetX(
-      initState: (_) async {
-        Get.put<UserController>(UserController());
-        // Get.put<CourseController>(CourseController(), permanent: true);
-      },
-      builder: (_) {
-        if (Get.find<AuthController>().user != null) {
-          return Home();
-        } else {
-          return Login();
-        }
-      },
-    );
-  }
-}*/

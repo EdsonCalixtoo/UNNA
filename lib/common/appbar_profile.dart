@@ -11,20 +11,11 @@ class AppBarProfile extends StatelessWidget implements PreferredSizeWidget {
   final List<PostModel> posts;
   final String userName;
 
-  AppBarProfile(
-      {Key? key,
-      this.height,
-      required this.userImage,
-      required this.posts,
-      required this.userName})
+  AppBarProfile({Key? key, this.height, required this.userImage, required this.posts, required this.userName})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    // UserController _userController = Get.find<UserController>();
-
-    // Get.find<UserController>().getUserProfileNumbers(this.userHandle);
-
     int getLikesCounts() {
       int count = 0;
       for (var element in posts) {
@@ -45,36 +36,18 @@ class AppBarProfile extends StatelessWidget implements PreferredSizeWidget {
       return Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text(number,
-              style: TextStyle(
-                  fontSize: 15,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white)),
-          Text(info,
-              style: TextStyle(
-                  fontSize: 15,
-                  fontWeight: FontWeight.normal,
-                  color: Colors.white)),
+          Text(number, style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold, color: Colors.white)),
+          Text(info, style: TextStyle(fontSize: 15, fontWeight: FontWeight.normal, color: Colors.white)),
         ],
       );
     }
-
-    // Widget circularLoadingSecundary() {
-    //   return Container(
-    //       height: 20,
-    //       width: 20,
-    //       child: Center(
-    //         child: CircularProgressIndicator(
-    //             valueColor: AlwaysStoppedAnimation(corSecundaria)),
-    //       ));
-    // }
 
     Widget userAvatar() {
       return Container(
         decoration: BoxDecoration(
           boxShadow: <BoxShadow>[
             BoxShadow(
-              color: Colors.black.withAlpha(50),
+              color: corBlack.withAlpha(50),
               blurRadius: 17.0,
               offset: Offset(0, 12),
               spreadRadius: 1,
@@ -91,21 +64,6 @@ class AppBarProfile extends StatelessWidget implements PreferredSizeWidget {
           ),
         ),
       );
-
-      // ? CircleAvatar(
-      //     radius: 36.0,
-      //     backgroundColor: Colors.black,
-      //     child: CircleAvatar(
-      //       backgroundColor: Colors.grey[300],
-      //       radius: 34.0,
-      //       backgroundImage: this.userImage == null ? AssetImage("images/person.jpg") : NetworkImage(_userController.user.userImage),
-      //     ),
-      //   )
-      // : Icon(
-      //     Icons.person_outline,
-      //     color: Colors.black,
-      //     size: 30,
-      //   );
     }
 
     Widget userName(String name) {
@@ -128,9 +86,7 @@ class AppBarProfile extends StatelessWidget implements PreferredSizeWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text(this.userName,
-                        style: TextStyle(
-                            fontSize: 26, fontWeight: FontWeight.bold)),
+                    Text(this.userName, style: TextStyle(fontSize: 26, fontWeight: FontWeight.bold)),
                     SizedBox(height: 10),
                   ],
                 ),
@@ -173,12 +129,8 @@ class AppBarProfile extends StatelessWidget implements PreferredSizeWidget {
             mainAxisAlignment: MainAxisAlignment.end,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              // SizedBox(height: 10),
-              // Text(this.userName, style: TextStyle(fontSize: 26, fontWeight: FontWeight.normal)),
               userName(this.userName),
-              // SizedBox(height: 20),
               userInfo(),
-              // bottomCurve()
             ],
           ),
           Positioned(

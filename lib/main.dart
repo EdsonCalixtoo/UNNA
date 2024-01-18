@@ -1,9 +1,8 @@
 import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 import 'controllers/bindings/authBinding.dart';
-import 'firebase_options.dart';
 import 'utils/colors.dart';
 import 'utils/root.dart';
 
@@ -16,9 +15,6 @@ Future<void> main() async {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    //print("-" * 34);
-    // print(Icons.accessibility_rounded.codePoint);
-    // print("-" * 34);
     return GetMaterialApp(
       enableLog: false,
       initialBinding: AuthBinding(),
@@ -34,8 +30,7 @@ class MyApp extends StatelessWidget {
           selectionColor: corPrimariaClara,
           selectionHandleColor: corPrimariaClara,
         ),
-        colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.blue)
-            .copyWith(secondary: corPrimariaClara),
+        colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.blue).copyWith(secondary: corPrimariaClara),
       ),
     );
   }

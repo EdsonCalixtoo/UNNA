@@ -7,12 +7,7 @@ class BotaoSimples extends StatelessWidget {
   final String textoBotao;
   final Icon? iconeBotao;
   final double? width;
-  const BotaoSimples(
-      {Key? key,
-      required this.executarAcao,
-      required this.textoBotao,
-      this.iconeBotao,
-      this.width})
+  const BotaoSimples({Key? key, required this.executarAcao, required this.textoBotao, this.iconeBotao, this.width})
       : super(key: key);
 
   @override
@@ -21,8 +16,7 @@ class BotaoSimples extends StatelessWidget {
       borderRadius: BorderRadius.circular(5),
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(80.0)),
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(80.0)),
           padding: const EdgeInsets.all(0.0),
         ),
         onPressed: () {
@@ -39,9 +33,7 @@ class BotaoSimples extends StatelessWidget {
             borderRadius: BorderRadius.all(Radius.circular(80.0)),
           ),
           child: Container(
-              constraints: const BoxConstraints(
-                  minWidth: 88.0,
-                  minHeight: 36.0), // min sizes for Material buttons
+              constraints: const BoxConstraints(minWidth: 88.0, minHeight: 36.0),
               alignment: Alignment.center,
               padding: EdgeInsets.symmetric(horizontal: 20),
               height: 55,
@@ -60,8 +52,7 @@ class BotaoSimples extends StatelessWidget {
                   Text(
                     textoBotao,
                     textAlign: TextAlign.center,
-                    style: TextStyle(
-                        fontSize: 21, letterSpacing: 1.2, color: Colors.white),
+                    style: TextStyle(fontSize: 21, letterSpacing: 1.2, color: Colors.white),
                   )
                 ],
               )),

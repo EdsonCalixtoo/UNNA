@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:unna/controllers/postController.dart';
 
-import '../controllers/categoryController.dart';
+import '../controllers/category_controller.dart';
 import '../utils/colors.dart';
 import '../utils/utils.dart';
 
@@ -12,21 +12,18 @@ class FilterScreen extends StatefulWidget {
   _FilterScreenState createState() => _FilterScreenState();
 }
 
-class _FilterScreenState extends State<FilterScreen>
-    with SingleTickerProviderStateMixin {
+class _FilterScreenState extends State<FilterScreen> with SingleTickerProviderStateMixin {
   CategoryController _categoryController = Get.find<CategoryController>();
   PostController _postController = Get.find<PostController>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // extendBodyBehindAppBar: true,
       extendBody: true,
       appBar: AppBar(
-        iconTheme: IconThemeData(color: Colors.black),
+        iconTheme: IconThemeData(color: corBlack),
         title: Text(
           "Filtros",
-          style: TextStyle(
-              color: Colors.black, fontSize: 35, fontWeight: FontWeight.w300),
+          style: TextStyle(color: corBlack, fontSize: 35, fontWeight: FontWeight.w300),
         ),
         backgroundColor: corFundoClara,
         elevation: 0,
@@ -42,16 +39,14 @@ class _FilterScreenState extends State<FilterScreen>
                       actionsAlignment: MainAxisAlignment.spaceEvenly,
                       actions: [
                         ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                              backgroundColor: corPrimaria),
+                          style: ElevatedButton.styleFrom(backgroundColor: corPrimaria),
                           onPressed: () {
                             Get.close(0);
                           },
                           child: Text("Sair"),
                         ),
                         ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                              backgroundColor: corPrimaria),
+                          style: ElevatedButton.styleFrom(backgroundColor: corPrimaria),
                           onPressed: () {
                             Get.close(0);
                             _postController.resetFilters();
@@ -87,15 +82,13 @@ class _FilterScreenState extends State<FilterScreen>
                 ),
                 height: MediaQuery.of(context).size.height * 0.80,
                 width: double.infinity,
-                // color: Colors.green,
                 child: FutureBuilder(
                   future: _categoryController.get(),
                   builder: (context, snapshot) {
                     if (snapshot.connectionState == ConnectionState.waiting) {
                       return Center(
                         child: CircularProgressIndicator(
-                            valueColor: AlwaysStoppedAnimation(
-                                Theme.of(context).primaryColor)),
+                            valueColor: AlwaysStoppedAnimation(Theme.of(context).primaryColor)),
                       );
                     }
                     return filters();
@@ -142,8 +135,7 @@ class _FilterScreenState extends State<FilterScreen>
             ],
           ),
           trailing: ElevatedButton(
-            style: ElevatedButton.styleFrom(
-                backgroundColor: Theme.of(context).primaryColor),
+            style: ElevatedButton.styleFrom(backgroundColor: Theme.of(context).primaryColor),
             onPressed: () {
               Get.dialog(
                 DatePickerDialog(
@@ -163,9 +155,7 @@ class _FilterScreenState extends State<FilterScreen>
               () => Text(
                 _postController.filterDate.value == DateTime(1500)
                     ? "Selecione a data"
-                    : Utils.dateTimeParseString(
-                        date: _postController.filterDate.value,
-                        setHours: false),
+                    : Utils.dateTimeParseString(date: _postController.filterDate.value, setHours: false),
               ),
             ),
           ),
@@ -198,27 +188,19 @@ class _FilterScreenState extends State<FilterScreen>
                       ),
                       title: Text(_categoryController.categoryList[index].name),
                       children: List.generate(
-                          _categoryController
-                              .categoryList[index].subCategories.length,
+                          _categoryController.categoryList[index].subCategories.length,
                           (i) => Obx(
                                 () => CheckboxListTile(
                                     activeColor: corPrimaria,
-                                    title: Text(_categoryController
-                                        .categoryList[index].subCategories[i]),
-                                    value:
-                                        _postController.filterCategory.value ==
-                                            _categoryController
-                                                .categoryList[index]
-                                                .subCategories[i],
+                                    title: Text(_categoryController.categoryList[index].subCategories[i]),
+                                    value: _postController.filterCategory.value ==
+                                        _categoryController.categoryList[index].subCategories[i],
                                     onChanged: (value) {
                                       if (value!) {
                                         _postController.filterCategory.value =
-                                            _categoryController
-                                                .categoryList[index]
-                                                .subCategories[i];
+                                            _categoryController.categoryList[index].subCategories[i];
                                       } else {
-                                        _postController.filterCategory.value =
-                                            "";
+                                        _postController.filterCategory.value = "";
                                       }
                                     }),
                               )),
