@@ -7,7 +7,7 @@ import 'package:get/get.dart';
 import 'package:unna/models/story_model.dart';
 
 import '../services/database.dart';
-import 'userController.dart';
+import 'user_controller.dart';
 
 class AddNewStoryController extends GetxController {
   var indexSelected = 0.obs;
@@ -18,8 +18,7 @@ class AddNewStoryController extends GetxController {
     GalleryMedia? snapshot = await GalleryPicker.collectGallery;
     List<Uint8List> files = [];
     for (var i = 0; i < snapshot!.albums.length; i++) {
-      if (snapshot.albums[i].name == "All" ||
-          snapshot.albums[i].name == "Todos") {
+      if (snapshot.albums[i].name == "All" || snapshot.albums[i].name == "Todos") {
         for (var element in snapshot.albums[i].medias) {
           if (element.isImage) {
             Uint8List data = await element.getData();

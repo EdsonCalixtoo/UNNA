@@ -1,7 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
-import 'package:unna/controllers/userController.dart';
-
+import 'package:unna/controllers/user_controller.dart';
 import '../models/comment.dart';
 import '../models/post.dart';
 import '../services/database.dart';
@@ -9,11 +8,15 @@ import '../services/database.dart';
 class PostController extends GetxController {
   UserController _userController = Get.find<UserController>();
   List<PostModel> listAllPosts = [];
+  RxBool isOptionsFilterVisible = false.obs;
   var filteredPosts = [].obs;
-
   var filterLiked = false.obs;
   var filterCategory = "".obs;
   var filterDate = DateTime(1500).obs;
+
+  void setOptionsFinishVisible(bool value) {
+    isOptionsFilterVisible.value = value;
+  }
 
   void setFilter() {
     List<PostModel> filteredList = [];
@@ -62,8 +65,8 @@ class PostController extends GetxController {
     setFilter();
   }
 
-  Stream<QuerySnapshot<PostModel>> getStreamPosts() {
-    return Database().getStreamPosts(null);
+  Stream<QuerySnapshot<PostModel>> getStreamPosts(String category, String subCategory) {
+    return Database().getStreamPosts(null, category, subCategory);
   }
 
   Stream<QuerySnapshot<CommentModel>> getStreamComments({required String postId}) {

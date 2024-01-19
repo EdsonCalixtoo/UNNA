@@ -5,15 +5,15 @@ import 'package:get/get.dart';
 import 'package:unna/controllers/category_controller.dart';
 import 'package:unna/models/post.dart';
 import 'package:unna/models/story_model.dart';
-import 'package:unna/screens/sports_category.dart';
-import 'package:unna/screens/story_page.dart';
+import 'package:unna/screens/posts.dart';
+import 'package:unna/screens/sub_category.dart';
 import '../common/appbar_home.dart';
 import '../controllers/add_new_story_controller.dart';
-import '../controllers/postController.dart';
-import '../controllers/userController.dart';
+import '../controllers/post_controller.dart';
+import '../controllers/user_controller.dart';
 import '../services/database.dart';
 import '../utils/colors.dart';
-import '../widgets/postCard.dart';
+import '../widgets/post_card.dart';
 import 'add_new_story.dart';
 
 class Home extends StatefulWidget {
@@ -50,7 +50,7 @@ class _HomeState extends State<Home> {
 
     return Scaffold(
         backgroundColor: corFundoClara,
-        appBar: AppBarHome(),
+        appBar: AppBarHome(isHome: true, isFilter: false),
         extendBody: false,
         extendBodyBehindAppBar: false,
         body: SingleChildScrollView(
@@ -75,7 +75,7 @@ class _HomeState extends State<Home> {
                     ]),
                     child: TextButton(
                         onPressed: () {
-                          Get.to(GeneralCategory());
+                          Get.to(Posts(category: 'geral'));
                         },
                         style: TextButton.styleFrom(
                           padding: EdgeInsets.zero,
@@ -113,7 +113,11 @@ class _HomeState extends State<Home> {
                       )
                     ]),
                     child: TextButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Get.to(SubCategory(
+                            category: 'Pets',
+                          ));
+                        },
                         style: TextButton.styleFrom(
                           padding: EdgeInsets.zero,
                           fixedSize: Size((width * 0.5) - 22, (width * 0.5) - 22),
@@ -160,7 +164,11 @@ class _HomeState extends State<Home> {
                       )
                     ]),
                     child: TextButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Get.to(SubCategory(
+                            category: 'Esportes',
+                          ));
+                        },
                         style: TextButton.styleFrom(
                           padding: EdgeInsets.zero,
                           fixedSize: Size((width * 0.5) - 22, (width * 0.5) - 22),
@@ -197,7 +205,11 @@ class _HomeState extends State<Home> {
                       )
                     ]),
                     child: TextButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Get.to(SubCategory(
+                            category: 'Lazer',
+                          ));
+                        },
                         style: TextButton.styleFrom(
                           padding: EdgeInsets.zero,
                           fixedSize: Size((width * 0.5) - 22, (width * 0.5) - 22),
@@ -244,7 +256,11 @@ class _HomeState extends State<Home> {
                       )
                     ]),
                     child: TextButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Get.to(SubCategory(
+                            category: 'Voluntariados',
+                          ));
+                        },
                         style: TextButton.styleFrom(
                           padding: EdgeInsets.zero,
                           fixedSize: Size((width * 0.5) - 22, (width * 0.5) - 22),
@@ -261,7 +277,7 @@ class _HomeState extends State<Home> {
                             children: [
                               Icon(Icons.hail_rounded, size: 50, color: corSilverSoft),
                               Text(
-                                'Valuntariados',
+                                'Voluntariados',
                                 style: TextStyle(fontSize: 17, fontWeight: FontWeight.w600, color: corSilverSoft),
                               )
                             ],
@@ -272,292 +288,6 @@ class _HomeState extends State<Home> {
               ),
             ),
           ]),
-        ))
-
-        /*SingleChildScrollView(
-          child: Column(
-            children: [
-              SizedBox(
-                height: 5,
-              ),
-              StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
-                stream: Database().getStorys(),
-                builder: (context, snapshot) {                  
-                  if (snapshot.connectionState == ConnectionState.waiting) {
-                    return SizedBox(
-                      height: 70,
-                      width: double.infinity,
-                      child: Center(
-                        child: LinearProgressIndicator(
-                          valueColor: AlwaysStoppedAnimation(
-                              Theme.of(context).primaryColor),
-                        ),
-                      ),
-                    );
-                  }                  
-                  if (snapshot.hasError || snapshot.data == null) {
-                    return SizedBox(
-                      height: 70,
-                      width: double.infinity,
-                      child: Center(
-                        child: Text("Erro ao carregar Storys"),
-                      ),
-                    );
-                  }  
-
-                  List<StoryModel> tempStorys = [];
-                  for (var i = 0; i < snapshot.data!.docs.length; i++) {
-                    tempStorys
-                        .add(StoryModel.fromMap(snapshot.data!.docs[i].data()));
-                  }
-                  
-                  tempStorys.sort(
-                    (a, b) {
-                      if (a.userModel.id == b.userModel.id) {
-                        return -1;
-                      } else {
-                        return 1;
-                      }
-                    },
-                  );
-
-                  List<List<StoryModel>> storys = [];
-                  String curretId = "";
-                  for (var i = 0; i < tempStorys.length; i++) {
-                    if (curretId != tempStorys[i].userModel.id) {
-                      curretId = tempStorys[i].userModel.id!;
-                      storys.add([]);
-                    }
-                    if (curretId == tempStorys[i].userModel.id) {
-                      storys.last.add(tempStorys[i]);
-                    }
-                  }
-                  
-                  if (_userController.user.userImage != null) {
-                    storys.sort(
-                      (a, b) {
-                        if (a.first.userModel.id == _userController.user.id) {
-                          return -1;
-                        } else {
-                          return 1;
-                        }
-                      },
-                    );
-                  }
-                  
-                  bool contain = false;
-                  if (_userController.user.userImage != null) {
-                    for (var i = 0; i < storys.length; i++) {
-                      if (storys[i].first.userModel.id ==
-                          _userController.user.id) {
-                        contain = true;
-                      }
-                    }
-                    if (contain == false) {
-                      storys.insert(0, []);
-                    }
-                  }                  
-
-                  return Container(
-                    height: 70,
-                    width: double.infinity,
-                    child: ListView.separated(
-                      padding: EdgeInsets.only(left: 15),
-                      itemCount: storys.length,
-                      scrollDirection: Axis.horizontal,
-                      separatorBuilder: (context, index) => SizedBox(
-                        width: 5,
-                      ),
-                      itemBuilder: (context, index) => Stack(
-                        children: [
-                          GestureDetector(
-                            onTap: () {
-                              if (storys[index].isNotEmpty) {
-                                Get.to(StoryPage(
-                                  storys: storys,
-                                  initialPage: index,
-                                ));
-                              } else {
-                                Get.snackbar(
-                                    "Ops", "Você não tem story no momento",
-                                    backgroundColor:
-                                        Theme.of(context).primaryColor,
-                                    colorText: Colors.white);
-                              }
-                            },
-                            child: CircleAvatar(
-                              radius: 35,
-                              backgroundImage: index == 0
-                                  ? CachedNetworkImageProvider(
-                                      _userController.user.userImage!)
-                                  : CachedNetworkImageProvider(
-                                      storys[index].first.userModel.userImage!),
-                              backgroundColor: Theme.of(context).primaryColor,
-                            ),
-                          ),
-                          if (index == 0)
-                            Positioned(
-                              bottom: 0,
-                              right: 0,
-                              child: GestureDetector(
-                                onTap: () {
-                                  Get.dialog(AlertDialog(
-                                    actionsAlignment:
-                                        MainAxisAlignment.spaceEvenly,
-                                    title: Text("Tipo do Story"),
-                                    actions: [
-                                      ElevatedButton(
-                                        style: ElevatedButton.styleFrom(
-                                            backgroundColor:
-                                                Theme.of(context).primaryColor),
-                                        onPressed: () {
-                                          Get.back();
-                                          Get.dialog(Builder(
-                                            builder: (context) {
-                                              AddNewStoryController controller =
-                                                  AddNewStoryController();
-                                              String textStory = "";
-                                              return AlertDialog(
-                                                actionsAlignment:
-                                                    MainAxisAlignment.center,
-                                                title: Text("Texto do Story"),
-                                                content: TextField(
-                                                  onChanged: (value) {
-                                                    textStory = value;
-                                                  },
-                                                  cursorColor: Theme.of(context)
-                                                      .primaryColor,
-                                                  decoration: InputDecoration(
-                                                    enabledBorder:
-                                                        OutlineInputBorder(
-                                                            borderSide:
-                                                                BorderSide(
-                                                      color: Theme.of(context)
-                                                          .primaryColor,
-                                                    )),
-                                                    focusedBorder:
-                                                        OutlineInputBorder(
-                                                            borderSide:
-                                                                BorderSide(
-                                                      color: Theme.of(context)
-                                                          .primaryColor,
-                                                    )),
-                                                  ),
-                                                ),
-                                                actions: [
-                                                  ElevatedButton(
-                                                    style:
-                                                        ElevatedButton.styleFrom(
-                                                            backgroundColor: Theme
-                                                                    .of(context)
-                                                                .primaryColor),
-                                                    onPressed: () {
-                                                      if (textStory
-                                                          .trim()
-                                                          .isNotEmpty) {
-                                                        controller.sendStoryText(
-                                                          textStory.trim(),
-                                                        );
-                                                      }
-                                                    },
-                                                    child: Obx(() =>
-                                                        controller.isLoading.value
-                                                            ? Padding(
-                                                                padding:
-                                                                    const EdgeInsets
-                                                                        .all(5.0),
-                                                                child:
-                                                                    CircularProgressIndicator(
-                                                                  valueColor:
-                                                                      AlwaysStoppedAnimation(
-                                                                          Colors
-                                                                              .white),
-                                                                ),
-                                                              )
-                                                            : Text("Adicionar")),
-                                                  )
-                                                ],
-                                              );
-                                            },
-                                          ));
-                                        },
-                                        child: Text("Tipo Texto"),
-                                      ),
-                                      ElevatedButton(
-                                        style: ElevatedButton.styleFrom(
-                                            backgroundColor:
-                                                Theme.of(context).primaryColor),
-                                        onPressed: () {
-                                          Get.back();
-                                          Get.to(AddNewStory());
-                                        },
-                                        child: Text("Tipo Imagem"),
-                                      )
-                                    ],
-                                  ));
-                                },
-                                child: Container(
-                                  padding: EdgeInsets.all(3),
-                                  decoration: BoxDecoration(
-                                      color: corBlack,
-                                      shape: BoxShape.circle,
-                                      border: Border.all(color: Colors.white)),
-                                  child: Icon(
-                                    Icons.add,
-                                    color: Colors.white,
-                                  ),
-                                ),
-                              ),
-                            )
-                        ],
-                      ),
-                    ),
-                  );
-                },
-              ),
-              StreamBuilder<QuerySnapshot<PostModel>>(
-                stream: postController.getStreamPosts(),
-                builder: (context, snapshot) {
-                  if (snapshot.connectionState == ConnectionState.waiting) {
-                    return Center(
-                      child: CircularProgressIndicator(
-                          valueColor: AlwaysStoppedAnimation(corPrimariaClara)),
-                    );
-                  }
-                  if (snapshot.hasError || snapshot.data == null) {
-                    return Center(child: Text("Erro ao carregar Posts"));
-                  }
-                  postController.listAllPosts.clear();
-                  for (var element in snapshot.data!.docs) {
-                    postController.listAllPosts.add(element.data());
-                  }
-                  postController.setFilter();
-
-                  return Obx(() {
-                    if (postController.filteredPosts.isEmpty) {
-                      return SizedBox(
-                          height: MediaQuery.of(context).size.height / 2,
-                          width: MediaQuery.of(context).size.width,
-                          child: Center(child: Text('nenhum post no momento')));
-                    }
-                    return ListView.builder(
-                        padding:
-                            const EdgeInsets.only(left: 8, right: 8, top: 15),
-                        shrinkWrap: true,
-                        primary: false,
-                        controller: scrollController,
-                        itemCount: postController.filteredPosts.length,
-                        itemBuilder: (BuildContext ctxt, int index) {
-                          return PostCard(
-                            post: postController.filteredPosts[index],
-                          );
-                        });
-                  });
-                },
-              ),              
-            ],
-          ),
-        ),*/
-        );
+        )));
   }
 }

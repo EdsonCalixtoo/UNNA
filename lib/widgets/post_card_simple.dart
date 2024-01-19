@@ -2,11 +2,11 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
-import '../controllers/postController.dart';
-import '../controllers/userController.dart';
+import '../controllers/post_controller.dart';
+import '../controllers/user_controller.dart';
 import '../models/post.dart';
 import '../screens/post_comment.dart';
-import 'likeButton.dart';
+import 'like_button.dart';
 
 // ignore: must_be_immutable
 class PostCardSimple extends StatelessWidget {

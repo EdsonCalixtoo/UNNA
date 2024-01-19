@@ -7,12 +7,12 @@ import 'package:unna/screens/post_add_edit.dart';
 import 'package:unna/utils/colors.dart';
 import 'package:unna/utils/utils.dart';
 
-import '../controllers/postController.dart';
-import '../controllers/userController.dart';
+import '../controllers/post_controller.dart';
+import '../controllers/user_controller.dart';
 import '../models/post.dart';
 import '../screens/post_comment.dart';
 import '../screens/user_profile_external.dart';
-import '../widgets/likeButton.dart';
+import 'like_button.dart';
 
 // ignore: must_be_immutable
 class PostCard extends StatelessWidget {

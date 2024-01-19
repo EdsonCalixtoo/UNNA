@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:unna/utils/colors.dart';
-import '../controllers/postController.dart';
+import '../controllers/post_controller.dart';
 import '../screens/user_profile_external.dart';
 
 import '../models/comment.dart';

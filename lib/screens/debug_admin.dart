@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../controllers/userController.dart';
+import '../controllers/user_controller.dart';
 import '../utils/firebase.dart';
 
 class DebugAdminScreen extends StatelessWidget {
