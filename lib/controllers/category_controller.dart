@@ -25,14 +25,13 @@ class CategoryController extends GetxController {
     return Database().getStreamCategories();
   }
 
-  Future<List<CategoryModel>> get() async {
+  Future<List<CategoryModel>> get(String category) async {
     List<CategoryModel> newCategories = [];
-    newCategories = await Database().getCategories();
+    newCategories = await Database().getCategories(category);
 
     print('---------------');
     print(newCategories[0].name);
     print(newCategories[0].subCategories);
-
     if (newCategories.length > 0) {
       categoryList.clear();
       newCategories.forEach((post) => categoryList.add(post));

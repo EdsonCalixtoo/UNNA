@@ -1,8 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:unna/controllers/postController.dart';
-
+import 'package:unna/controllers/post_controller.dart';
 import '../controllers/category_controller.dart';
 import '../utils/colors.dart';
 import '../utils/utils.dart';
@@ -83,7 +82,7 @@ class _FilterScreenState extends State<FilterScreen> with SingleTickerProviderSt
                 height: MediaQuery.of(context).size.height * 0.80,
                 width: double.infinity,
                 child: FutureBuilder(
-                  future: _categoryController.get(),
+                  future: _categoryController.get('geral'),
                   builder: (context, snapshot) {
                     if (snapshot.connectionState == ConnectionState.waiting) {
                       return Center(

@@ -2,7 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 import 'package:unna/screens/start.dart';
 
-import '../controllers/userController.dart';
+import 'user_controller.dart';
 import '../models/user.dart';
 import '../screens/home.dart';
 import '../screens/login.dart';

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../controllers/navController.dart';
-import '../controllers/userController.dart';
+import '../controllers/nav_controller.dart';
+import '../controllers/user_controller.dart';
 import '../utils/colors.dart';
 
 class CustomNavBar extends StatelessWidget {
@@ -73,13 +73,13 @@ class CustomNavBar extends StatelessWidget {
                   iconElement(0, navController.selectedIndex, Icons.widgets_outlined, () {
                     pageController.jumpToPage(0);
                   }, navController),
-                  iconElement(1, navController.selectedIndex, Icons.filter_alt, () => pageController.jumpToPage(1),
-                      navController),
+                  // iconElement(1, navController.selectedIndex, Icons.filter_alt, () => pageController.jumpToPage(1),
+                  //     navController),
                   centralButton(navController, () {
-                    pageController.jumpToPage(2);
+                    pageController.jumpToPage(1);
                   }),
                   iconElement(3, navController.selectedIndex, Icons.person_outline, () {
-                    pageController.jumpToPage(3);
+                    pageController.jumpToPage(2);
                   }, navController),
                 ],
               ))),

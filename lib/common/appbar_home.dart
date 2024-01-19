@@ -1,22 +1,52 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 import '../controllers/category_controller.dart';
-import '../controllers/postController.dart';
+import '../controllers/post_controller.dart';
 import '../utils/colors.dart';
 
 class AppBarHome extends StatelessWidget implements PreferredSizeWidget {
-  AppBarHome({Key? key}) : super(key: key);
+  AppBarHome({Key? key, required this.isHome, required this.isFilter});
+  final bool isHome;
+  final bool isFilter;
 
   @override
   Widget build(BuildContext context) {
     CategoryController categoryController = Get.find<CategoryController>();
     PostController postController = Get.find<PostController>();
+
     return SafeArea(
       child: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
         centerTitle: true,
+        actions: [
+          !isFilter
+              ? SizedBox()
+              : IconButton(
+                  icon: Icon(
+                    Icons.filter_alt_rounded,
+                    color: corPrimaria,
+                    size: 32,
+                  ),
+                  onPressed: () {
+                    postController.setOptionsFinishVisible(true);
+                  },
+                  tooltip: 'Filtrar',
+                )
+        ],
+        leading: isHome
+            ? SizedBox()
+            : IconButton(
+                icon: Icon(
+                  Icons.arrow_back,
+                  color: corPrimaria,
+                  size: 32,
+                ),
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                tooltip: 'Voltar',
+              ),
         title: Row(mainAxisSize: MainAxisSize.min, children: [
           Text(
             "U",

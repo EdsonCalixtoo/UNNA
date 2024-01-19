@@ -5,10 +5,10 @@ import 'package:unna/models/post.dart';
 import 'package:unna/services/database.dart';
 
 import '../common/appbar_profile.dart';
-import '../controllers/postController.dart';
-import '../controllers/userController.dart';
+import '../controllers/post_controller.dart';
+import '../controllers/user_controller.dart';
 import '../utils/colors.dart';
-import '../widgets/postCardSimple.dart';
+import '../widgets/post_card_simple.dart';
 
 class ProfileExternalScreen extends StatefulWidget {
   @override

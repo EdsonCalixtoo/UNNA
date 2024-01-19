@@ -9,11 +9,11 @@ import 'package:unna/models/comment.dart';
 import '../common/botao_cortado.dart';
 import '../common/botao_simples.dart';
 import '../controllers/category_controller.dart';
-import '../controllers/postController.dart';
-import '../controllers/userController.dart';
+import '../controllers/post_controller.dart';
+import '../controllers/user_controller.dart';
 import '../models/post.dart';
 import '../utils/colors.dart';
-import '../widgets/commentCard.dart';
+import '../widgets/comment_card.dart';
 
 // ignore: must_be_immutable
 class PostCommentScreen extends StatelessWidget {

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:get/get.dart';
 import '../utils/colors.dart';
-import '../controllers/authController.dart';
+import '../controllers/auth_controller.dart';
 import '../screens/login.dart';
 
 class SignUp extends GetWidget<AuthController> {

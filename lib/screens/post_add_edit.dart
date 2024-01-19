@@ -10,8 +10,8 @@ import 'package:scroll_date_picker/scroll_date_picker.dart';
 
 import '../common/botao_simples.dart';
 import '../controllers/category_controller.dart';
-import '../controllers/postController.dart';
-import '../controllers/userController.dart';
+import '../controllers/post_controller.dart';
+import '../controllers/user_controller.dart';
 import '../models/post.dart';
 import '../services/database.dart';
 import '../utils/colors.dart';

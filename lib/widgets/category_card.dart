@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../controllers/navController.dart';
-import '../controllers/postController.dart';
+import '../controllers/nav_controller.dart';
+import '../controllers/post_controller.dart';
 import '../screens/home.dart';
 import '../utils/colors.dart';
 import '../models/category.dart';

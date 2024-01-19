@@ -525,7 +525,7 @@ class _CategoryAddEditScreenState extends State<CategoryAddEditScreen> {
                                         iconTextController.text.trim(), int.parse(orderController.text.trim()));
                                   }
 
-                                  categoryControler.get();
+                                  categoryControler.get('geral');
                                   Get.back();
                                 } else {
                                   Get.snackbar(

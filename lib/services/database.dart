@@ -127,13 +127,24 @@ class Database {
         .snapshots();
   }
 
-  Future<List<CategoryModel>> getCategories() async {
+  // Stream<QuerySnapshot<CategoryModel>> getStreamCategories() {
+  //   return _firestore
+  //       .collection('unna-categories')
+  //       .orderBy("order", descending: false)
+  //       .withConverter<CategoryModel>(
+  //         fromFirestore: (snapshot, options) => CategoryModel.fromJson(snapshot.data()!),
+  //         toFirestore: (value, options) => value.toMap(),
+  //       )
+  //       .snapshots();
+  // }
+
+  Future<List<CategoryModel>> getCategories(String category) async {
     List<CategoryModel> resultado = [];
     QuerySnapshot categories;
 
     try {
       CollectionReference postQuery = _firestore.collection('unna-categories');
-      categories = await postQuery.orderBy('order', descending: false).get();
+      categories = await postQuery.where('category', isEqualTo: category).orderBy('createdAt', descending: true).get();
 
       if (categories.docs.isNotEmpty) {
         print('\n getPosts: there is data');
@@ -143,6 +154,31 @@ class Database {
       }
 
       return resultado;
+    } catch (e) {
+      print(e);
+      rethrow;
+    }
+  }
+
+  Future<List<String>> getSubCategories(String category) async {
+    List<String> subCategories = [];
+
+    try {
+      CollectionReference postQuery = _firestore.collection('unna-categories');
+      QuerySnapshot categories = await postQuery.where('name', isEqualTo: category).get();
+
+      if (categories.docs.isNotEmpty) {
+        print('\n getPosts: there is data');
+        categories.docs.forEach((QueryDocumentSnapshot<Object?> doc) {
+          // Verifica se o campo 'subCategories' é do tipo List e, em seguida, converte para List<String>
+          if (doc['subCategories'] is List) {
+            List<String> subCategoriesData = (doc['subCategories'] as List).cast<String>();
+            subCategories.addAll(subCategoriesData);
+          }
+        });
+      }
+
+      return subCategories;
     } catch (e) {
       print(e);
       rethrow;
@@ -239,21 +275,39 @@ class Database {
         .snapshots();
   }
 
-  Stream<QuerySnapshot<PostModel>> getStreamPosts(
-    Timestamp? startDate,
-  ) {
-    return _firestore
-        .collection('unna-posts')
-        .where('createdAt', isGreaterThan: startDate)
-        .orderBy('createdAt', descending: true)
-        .limit(200)
-        .withConverter<PostModel>(
-          fromFirestore: (snapshot, options) => PostModel.fromJson(
-            snapshot.data()!,
-          ).copyWith(id: snapshot.id),
-          toFirestore: (value, options) => value.toMap(),
-        )
-        .snapshots();
+  Stream<QuerySnapshot<PostModel>> getStreamPosts(Timestamp? startDate, String category, String subCategory) {
+    print('category: $category | sub: $subCategory');
+
+    if (subCategory.isEmpty) {
+      return _firestore
+          .collection('unna-posts')
+          .where('createdAt', isGreaterThan: startDate)
+          .where('category', isEqualTo: category)
+          .orderBy('createdAt', descending: true)
+          .limit(200)
+          .withConverter<PostModel>(
+            fromFirestore: (snapshot, options) => PostModel.fromJson(
+              snapshot.data()!,
+            ).copyWith(id: snapshot.id),
+            toFirestore: (value, options) => value.toMap(),
+          )
+          .snapshots();
+    } else {
+      return _firestore
+          .collection('unna-posts')
+          .where('createdAt', isGreaterThan: startDate)
+          .where('category', isEqualTo: category)
+          .where('subCategorie', isEqualTo: subCategory)
+          // .orderBy('createdAt', descending: true)
+          .limit(200)
+          .withConverter<PostModel>(
+            fromFirestore: (snapshot, options) => PostModel.fromJson(
+              snapshot.data()!,
+            ).copyWith(id: snapshot.id),
+            toFirestore: (value, options) => value.toMap(),
+          )
+          .snapshots();
+    }
   }
 
   Future<List<PostModel>> getPosts(

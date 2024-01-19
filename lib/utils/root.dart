@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../controllers/userController.dart';
+import '../controllers/user_controller.dart';
 
 class Root extends StatefulWidget {
   const Root({super.key});

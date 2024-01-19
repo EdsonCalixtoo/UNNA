@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:story/story.dart';
 
-import '../controllers/userController.dart';
+import '../controllers/user_controller.dart';
 import '../models/story_model.dart';
 import '../services/database.dart';
 import '../utils/colors.dart';
@@ -23,8 +23,7 @@ class _StoryPageState extends State<StoryPage> {
   @override
   void initState() {
     super.initState();
-    indicatorAnimationController = ValueNotifier<IndicatorAnimationCommand>(
-        IndicatorAnimationCommand.resume);
+    indicatorAnimationController = ValueNotifier<IndicatorAnimationCommand>(IndicatorAnimationCommand.resume);
   }
 
   @override
@@ -56,18 +55,13 @@ class _StoryPageState extends State<StoryPage> {
               child: story.type == StoryType.Text
                   ? Center(
                       child: Text(story.storyData!,
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontSize:
-                                  MediaQuery.of(context).size.width * 0.055)),
+                          style: TextStyle(color: Colors.white, fontSize: MediaQuery.of(context).size.width * 0.055)),
                     )
                   : story.type == StoryType.Video
                       ? Center(
                           child: Text("Não Implementado",
-                              style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: MediaQuery.of(context).size.width *
-                                      0.055)),
+                              style:
+                                  TextStyle(color: Colors.white, fontSize: MediaQuery.of(context).size.width * 0.055)),
                         )
                       : Image.memory(
                           story.storyData!,
@@ -135,16 +129,13 @@ class _StoryPageState extends State<StoryPage> {
                       backgroundColor: corFundoClara,
                       child: Icon(Icons.delete_forever, color: Colors.red),
                       onPressed: () {
-                        indicatorAnimationController.value =
-                            IndicatorAnimationCommand.pause;
+                        indicatorAnimationController.value = IndicatorAnimationCommand.pause;
                         Get.dialog(AlertDialog(
                           title: Text("Deseja deletar o Story?"),
                           actionsAlignment: MainAxisAlignment.center,
                           actions: [
                             ElevatedButton(
-                              style: ElevatedButton.styleFrom(
-                                  backgroundColor:
-                                      Theme.of(context).primaryColor),
+                              style: ElevatedButton.styleFrom(backgroundColor: Theme.of(context).primaryColor),
                               onPressed: () {
                                 Get.back();
                                 Database().deleteStory(story.id);
@@ -154,8 +145,7 @@ class _StoryPageState extends State<StoryPage> {
                             )
                           ],
                         )).then((value) {
-                          indicatorAnimationController.value =
-                              IndicatorAnimationCommand.resume;
+                          indicatorAnimationController.value = IndicatorAnimationCommand.resume;
                         });
                       }))
           ],

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:unna/screens/start.dart';
 
-import '../controllers/authController.dart';
+import 'auth_controller.dart';
 import '../models/user.dart';
 import '../screens/login.dart';
 import '../services/database.dart';

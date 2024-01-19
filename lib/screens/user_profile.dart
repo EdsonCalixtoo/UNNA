@@ -8,11 +8,11 @@ import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:unna/models/post.dart';
 import 'package:unna/screens/category_add_edit.dart';
-import 'package:unna/widgets/postCard.dart';
+import 'package:unna/widgets/post_card.dart';
 
 import '../common/botao_simples.dart';
-import '../controllers/authController.dart';
-import '../controllers/userController.dart';
+import '../controllers/auth_controller.dart';
+import '../controllers/user_controller.dart';
 import '../screens/debug_admin.dart';
 import '../services/database.dart';
 import '../utils/colors.dart';
