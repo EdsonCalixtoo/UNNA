@@ -41,5 +41,11 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
+    <key>NSPhotoLibraryUsageDescription</key>
+	<string>O acesso a galeria será usado para importar uma foto da galeria para o aplicativo.</string>
+	<key>CADisableMinimumFrameDurationOnPhone</key>
+	<true/>
+	<key>UIApplicationSupportsIndirectInputEvents</key>
+	<true/>
 </dict>
 </plist>
