@@ -1,11 +1,9 @@
 import 'dart:convert';
 import 'dart:typed_data';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:gallery_picker/gallery_picker.dart';
 import 'package:get/get.dart';
 import 'package:unna/models/story_model.dart';
-
 import '../services/database.dart';
 import 'user_controller.dart';
 

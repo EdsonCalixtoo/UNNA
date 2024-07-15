@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../controllers/category_controller.dart';
 import '../controllers/post_controller.dart';
 import '../utils/colors.dart';
 
@@ -11,7 +10,6 @@ class AppBarHome extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
-    CategoryController categoryController = Get.find<CategoryController>();
     PostController postController = Get.find<PostController>();
 
     return SafeArea(

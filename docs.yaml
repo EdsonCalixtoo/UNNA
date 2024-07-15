@@ -2,9 +2,18 @@ Project Name: UNNA
 
 Description: This is a documentation of UNNA project, which includes a mobile application
 
-Statistics:
-  - number of lines: 7.346
-  - number of screens: 9
-  - number of files: 51
+Project architectre: MVC layer first
 
-To do:  
+Statistics:
+  - lines: 7.264
+  - files: 51
+  - folders: 9
+  - screens: 9
+  - packages: 22
+  - average lines per file: 142
+
+Text editor settings:
+  - Editor: VSCode
+  - Dart line length: 120
+
+To do:

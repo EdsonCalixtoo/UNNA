@@ -5,7 +5,6 @@ import 'package:intl/intl.dart';
 import 'package:unna/utils/colors.dart';
 import '../controllers/post_controller.dart';
 import '../screens/user_profile_external.dart';
-
 import '../models/comment.dart';
 
 class CommentCard extends StatelessWidget {

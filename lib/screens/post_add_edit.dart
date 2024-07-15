@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
@@ -7,7 +6,6 @@ import 'package:get/get.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:scroll_date_picker/scroll_date_picker.dart';
-
 import '../common/botao_simples.dart';
 import '../controllers/category_controller.dart';
 import '../controllers/post_controller.dart';
@@ -439,6 +437,7 @@ class PostAddEditScreen extends StatelessWidget {
                               )),
                         ),
                         SizedBox(height: 10),
+                        // ignore: invalid_use_of_protected_member
                         Obx(() => subCategorias.value.isNotEmpty
                             ? SizedBox(
                                 width: constraints.maxWidth * 0.85,

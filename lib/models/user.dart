@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class UserModel {
@@ -38,22 +37,14 @@ class UserModel {
     };
   }
 
-  factory UserModel.fromMap(
-      DocumentSnapshot<Map<String, dynamic>> documentSnapshot) {
+  factory UserModel.fromMap(DocumentSnapshot<Map<String, dynamic>> documentSnapshot) {
     return UserModel(
         id: documentSnapshot.id,
-        name: documentSnapshot.data()!['name'] != null
-            ? documentSnapshot.data()!['name'] as String
-            : null,
-        email: documentSnapshot.data()!['email'] != null
-            ? documentSnapshot.data()!['email'] as String
-            : null,
-        about: documentSnapshot.data()!['about'] != null
-            ? documentSnapshot.data()!['about'] as String
-            : null,
-        userImage: documentSnapshot.data()!['userImage'] != null
-            ? documentSnapshot.data()!['userImage'] as String
-            : null,
+        name: documentSnapshot.data()!['name'] != null ? documentSnapshot.data()!['name'] as String : null,
+        email: documentSnapshot.data()!['email'] != null ? documentSnapshot.data()!['email'] as String : null,
+        about: documentSnapshot.data()!['about'] != null ? documentSnapshot.data()!['about'] as String : null,
+        userImage:
+            documentSnapshot.data()!['userImage'] != null ? documentSnapshot.data()!['userImage'] as String : null,
         role: documentSnapshot.data()!['role'] as String,
         likes: documentSnapshot.data()!['likes'] != null
             ? List<String>.from(
@@ -64,21 +55,11 @@ class UserModel {
 
   factory UserModel.fromMapMap(Map<String, dynamic> documentSnapshot) {
     return UserModel(
-        id: documentSnapshot['id'] != null
-            ? documentSnapshot['id'] as String
-            : null,
-        name: documentSnapshot['name'] != null
-            ? documentSnapshot['name'] as String
-            : null,
-        email: documentSnapshot['email'] != null
-            ? documentSnapshot['email'] as String
-            : null,
-        about: documentSnapshot['about'] != null
-            ? documentSnapshot['about'] as String
-            : null,
-        userImage: documentSnapshot['userImage'] != null
-            ? documentSnapshot['userImage'] as String
-            : null,
+        id: documentSnapshot['id'] != null ? documentSnapshot['id'] as String : null,
+        name: documentSnapshot['name'] != null ? documentSnapshot['name'] as String : null,
+        email: documentSnapshot['email'] != null ? documentSnapshot['email'] as String : null,
+        about: documentSnapshot['about'] != null ? documentSnapshot['about'] as String : null,
+        userImage: documentSnapshot['userImage'] != null ? documentSnapshot['userImage'] as String : null,
         role: documentSnapshot['role'] as String,
         likes: documentSnapshot['likes'] != null
             ? List<String>.from(

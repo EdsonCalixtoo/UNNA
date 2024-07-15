@@ -1,6 +1,5 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class PostModel {
@@ -69,11 +68,8 @@ class PostModel {
         commentCount: documentSnapshot.data()!["commentCount"],
         likeCount: documentSnapshot.data()!["likeCount"],
         createdAt: documentSnapshot.data()!["createdAt"],
-        likes: documentSnapshot.data()!['likes'] != null
-            ? List<String>.from((documentSnapshot.data()!['likes']))
-            : [],
-        actionData: documentSnapshot.data()!['actionData'] ??
-            documentSnapshot.data()!["createdAt"],
+        likes: documentSnapshot.data()!['likes'] != null ? List<String>.from((documentSnapshot.data()!['likes'])) : [],
+        actionData: documentSnapshot.data()!['actionData'] ?? documentSnapshot.data()!["createdAt"],
         subCategorie: documentSnapshot.data()!["subCategorie"]);
   }
 
@@ -89,11 +85,8 @@ class PostModel {
         commentCount: documentSnapshot["commentCount"],
         likeCount: documentSnapshot["likeCount"],
         createdAt: documentSnapshot["createdAt"],
-        likes: documentSnapshot['likes'] != null
-            ? List<String>.from((documentSnapshot['likes']))
-            : [],
-        actionData:
-            documentSnapshot['actionData'] ?? documentSnapshot["createdAt"],
+        likes: documentSnapshot['likes'] != null ? List<String>.from((documentSnapshot['likes'])) : [],
+        actionData: documentSnapshot['actionData'] ?? documentSnapshot["createdAt"],
         subCategorie: documentSnapshot["subCategorie"]);
   }
 

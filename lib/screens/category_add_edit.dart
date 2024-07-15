@@ -1,10 +1,11 @@
+// ignore_for_file: invalid_use_of_protected_member
+
 import 'package:flutter/material.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:get/get.dart';
 import 'package:unna/models/category.dart';
 import 'package:unna/services/database.dart';
 import 'package:url_launcher/url_launcher.dart';
-
 import '../common/botao_simples.dart';
 import '../controllers/category_controller.dart';
 import '../utils/colors.dart';

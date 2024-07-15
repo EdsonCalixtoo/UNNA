@@ -1,7 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
 import 'dart:typed_data';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:unna/models/user.dart';
 
@@ -46,16 +45,14 @@ class StoryModel {
               : StoryType.Image,
       storyData: map['type'] == "Text"
           ? map['storyData']
-          : Uint8List.fromList(List<int>.generate(
-              storyData.length, (index) => storyData[index])),
+          : Uint8List.fromList(List<int>.generate(storyData.length, (index) => storyData[index])),
       createdAt: map['createdAt'] == null ? Timestamp.now() : map['createdAt'],
     );
   }
 
   String toJson() => json.encode(toMap());
 
-  factory StoryModel.fromJson(String source) =>
-      StoryModel.fromMap(json.decode(source) as Map<String, dynamic>);
+  factory StoryModel.fromJson(String source) => StoryModel.fromMap(json.decode(source) as Map<String, dynamic>);
 
   StoryModel copyWith({
     String? id,

@@ -2,11 +2,9 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:scroll_date_picker/scroll_date_picker.dart';
 import 'package:unna/screens/post_add_edit.dart';
 import 'package:unna/utils/colors.dart';
 import 'package:unna/utils/utils.dart';
-
 import '../controllers/post_controller.dart';
 import '../controllers/user_controller.dart';
 import '../models/post.dart';

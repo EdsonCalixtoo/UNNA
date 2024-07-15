@@ -1,6 +1,5 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class CommentModel {
@@ -33,8 +32,7 @@ class CommentModel {
     };
   }
 
-  factory CommentModel.fromMap(
-      DocumentSnapshot<Map<String, dynamic>> documentSnapshot) {
+  factory CommentModel.fromMap(DocumentSnapshot<Map<String, dynamic>> documentSnapshot) {
     return CommentModel(
       body: documentSnapshot.data()!['body'] as String,
       userHandle: documentSnapshot.data()!['userHandle'] as String,

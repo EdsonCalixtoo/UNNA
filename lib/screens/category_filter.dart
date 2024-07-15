@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 import '../controllers/category_controller.dart';
 import '../utils/colors.dart';
 import '../widgets/category_card.dart';

@@ -1,6 +1,5 @@
 class Utils {
-  static String dateTimeParseString(
-      {required DateTime date, required bool setHours}) {
+  static String dateTimeParseString({required DateTime date, required bool setHours}) {
     String day = date.day.toString();
     String month = date.month.toString();
     String year = date.year.toString();

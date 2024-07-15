@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -9,7 +8,6 @@ import 'package:image_picker/image_picker.dart';
 import 'package:unna/models/post.dart';
 import 'package:unna/screens/category_add_edit.dart';
 import 'package:unna/widgets/post_card.dart';
-
 import '../common/botao_simples.dart';
 import '../controllers/auth_controller.dart';
 import '../controllers/user_controller.dart';

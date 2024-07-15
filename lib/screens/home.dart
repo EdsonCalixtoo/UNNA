@@ -1,20 +1,10 @@
-import 'package:cached_network_image/cached_network_image.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:unna/controllers/category_controller.dart';
-import 'package:unna/models/post.dart';
-import 'package:unna/models/story_model.dart';
 import 'package:unna/screens/posts.dart';
 import 'package:unna/screens/sub_category.dart';
 import '../common/appbar_home.dart';
-import '../controllers/add_new_story_controller.dart';
 import '../controllers/post_controller.dart';
-import '../controllers/user_controller.dart';
-import '../services/database.dart';
 import '../utils/colors.dart';
-import '../widgets/post_card.dart';
-import 'add_new_story.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -24,7 +14,6 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   final scrollController = ScrollController();
   PostController postController = Get.find<PostController>();
-  CategoryController _categoryController = Get.find<CategoryController>();
   String selectedFilter = 'geral';
 
   @override
@@ -40,12 +29,6 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
-    UserController _userController = Get.find<UserController>();
-    final double heightMarginTop = MediaQuery.of(context).padding.top;
-    final double heightMarginBottom = MediaQuery.of(context).padding.bottom;
-    final double appBarHeight = AppBar().preferredSize.height;
-    final double height =
-        MediaQuery.of(context).size.height - appBarHeight - heightMarginTop - heightMarginBottom - kToolbarHeight;
     final double width = MediaQuery.of(context).size.width;
 
     return Scaffold(

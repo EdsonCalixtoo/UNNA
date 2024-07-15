@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:story/story.dart';
-
 import '../controllers/user_controller.dart';
 import '../models/story_model.dart';
 import '../services/database.dart';

@@ -2,7 +2,6 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:unna/models/post.dart';
-
 import '../utils/colors.dart';
 
 class AppBarProfile extends StatelessWidget implements PreferredSizeWidget {

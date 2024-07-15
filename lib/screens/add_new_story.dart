@@ -1,8 +1,6 @@
 import 'dart:typed_data';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 import '../controllers/add_new_story_controller.dart';
 import '../utils/colors.dart';
 
@@ -47,8 +45,7 @@ class _AddNewStoryState extends State<AddNewStory> {
                           ? Padding(
                               padding: const EdgeInsets.all(5.0),
                               child: CircularProgressIndicator(
-                                valueColor:
-                                    AlwaysStoppedAnimation(Colors.white),
+                                valueColor: AlwaysStoppedAnimation(Colors.white),
                               ),
                             )
                           : Text("Adicionar")))
@@ -69,8 +66,7 @@ class _AddNewStoryState extends State<AddNewStory> {
                   width: double.infinity,
                   child: Center(
                     child: CircularProgressIndicator(
-                      valueColor: AlwaysStoppedAnimation(
-                          Theme.of(context).primaryColor),
+                      valueColor: AlwaysStoppedAnimation(Theme.of(context).primaryColor),
                     ),
                   ),
                 );
@@ -90,22 +86,18 @@ class _AddNewStoryState extends State<AddNewStory> {
                   Container(
                     width: constraints.maxWidth,
                     height: constraints.maxHeight / 2,
-                    child: Obx(() => Image.memory(
-                        snapshot.data![controller.indexSelected.value],
-                        fit: BoxFit.cover)),
+                    child: Obx(() => Image.memory(snapshot.data![controller.indexSelected.value], fit: BoxFit.cover)),
                   ),
                   SizedBox(
                     width: constraints.maxWidth,
                     height: constraints.maxHeight / 2,
                     child: GridView.builder(
-                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: 3),
+                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3),
                       itemCount: snapshot.data!.length,
                       itemBuilder: (context, index) => GestureDetector(
                         onTap: () {
                           controller.indexSelected.value = index;
-                          controller.data =
-                              snapshot.data![controller.indexSelected.value];
+                          controller.data = snapshot.data![controller.indexSelected.value];
                         },
                         child: Obx(
                           () => Container(
@@ -113,15 +105,12 @@ class _AddNewStoryState extends State<AddNewStory> {
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(15),
                               border: Border.all(
-                                  color: controller.indexSelected.value == index
-                                      ? corPrimaria
-                                      : Colors.transparent,
+                                  color: controller.indexSelected.value == index ? corPrimaria : Colors.transparent,
                                   width: 5),
                             ),
                             child: ClipRRect(
                               borderRadius: BorderRadius.circular(10),
-                              child: Image.memory(snapshot.data![index],
-                                  fit: BoxFit.cover),
+                              child: Image.memory(snapshot.data![index], fit: BoxFit.cover),
                             ),
                           ),
                         ),
