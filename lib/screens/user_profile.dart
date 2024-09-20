@@ -305,6 +305,17 @@ class UserProfileScreen extends StatelessWidget {
                                         child: Text("Você ainda não postou nada"),
                                       ),
                                     ),
+                                  Tooltip(
+                                    message: 'Excluir conta',
+                                    child: IconButton(
+                                      onPressed: () {
+                                        Get.find<AuthController>().signOut();
+                                      },
+                                      icon: Icon(
+                                        Icons.delete,
+                                      ),
+                                    ),
+                                  )
                                 ],
                               );
                             },
