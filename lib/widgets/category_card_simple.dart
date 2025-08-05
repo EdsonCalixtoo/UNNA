@@ -4,7 +4,10 @@ import '../models/category.dart';
 class CategoryCardSimple extends StatelessWidget {
   final CategoryModel category;
 
-  const CategoryCardSimple({Key? key, required this.category}) : super(key: key);
+  const CategoryCardSimple({
+    Key? key,
+    required this.category,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -17,9 +20,19 @@ class CategoryCardSimple extends StatelessWidget {
                   flex: 10,
                   child: Text(
                     category.order.toString(),
-                    style: TextStyle(fontSize: 12),
+                    style: TextStyle(
+                      fontSize: 12,
+                    ),
                   )),
-              Expanded(flex: 20, child: Icon(IconData(int.parse(category.icon), fontFamily: 'MaterialIcons'))),
+              Expanded(
+                flex: 20,
+                child: Icon(
+                  IconData(
+                    int.parse(category.icon),
+                    fontFamily: 'MaterialIcons',
+                  ),
+                ),
+              ),
               Expanded(
                 flex: 70,
                 child: Text(

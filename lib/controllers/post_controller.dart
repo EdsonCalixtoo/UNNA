@@ -65,8 +65,15 @@ class PostController extends GetxController {
     setFilter();
   }
 
-  Stream<QuerySnapshot<PostModel>> getStreamPosts(String category, String subCategory) {
-    return Database().getStreamPosts(null, category, subCategory);
+  Stream<QuerySnapshot<PostModel>> getStreamPosts(
+    String category,
+    String subCategory,
+  ) {
+    return Database().getStreamPosts(
+      null,
+      category,
+      subCategory,
+    );
   }
 
   Stream<QuerySnapshot<CommentModel>> getStreamComments({required String postId}) {
@@ -177,7 +184,12 @@ class PostController extends GetxController {
     }
   }
 
-  Future<void> get({Timestamp? startDate, int? quantity, bool isRefresh = false, String? userId}) async {
+  Future<void> get({
+    Timestamp? startDate,
+    int? quantity,
+    bool isRefresh = false,
+    String? userId,
+  }) async {
     if (!isRefresh) isFetchingBotton.value = true;
     if (startDate == null) isLoading.value = true;
 
@@ -212,15 +224,16 @@ class PostController extends GetxController {
     if (startDate == null) isLoading.value = false;
   }
 
-  Future<void> add(
-      {required String body,
-      String category = 'geral',
-      required String userHandle,
-      required String userName,
-      required String userImage,
-      required String postImage,
-      required DateTime actionData,
-      required String subCategorie}) async {
+  Future<void> add({
+    required String body,
+    String category = 'geral',
+    required String userHandle,
+    required String userName,
+    required String userImage,
+    required String postImage,
+    required DateTime actionData,
+    required String subCategorie,
+  }) async {
     isLoading.value = true;
     await Future.delayed(Duration(seconds: 6));
     Database().addPost({
@@ -236,25 +249,29 @@ class PostController extends GetxController {
       'category': category != '' ? category : 'geral',
       'createdAt': Timestamp.now(),
       'actionData': actionData,
-      'subCategorie': subCategorie
+      'subCategorie': subCategorie,
     });
 
     imageTempUrl.value = '';
     isLoading.value = false;
   }
 
-  void deleteComment({required postId, required commentId}) {
+  void deleteComment({
+    required postId,
+    required commentId,
+  }) {
     Database().deleteComment(postId, commentId);
 
     commentList.removeWhere((comment) => comment.id == commentId);
   }
 
-  Future<void> addComment(
-      {required String postId,
-      required String body,
-      required String userHandle,
-      required String userName,
-      required String userImage}) async {
+  Future<void> addComment({
+    required String postId,
+    required String body,
+    required String userHandle,
+    required String userName,
+    required String userImage,
+  }) async {
     isLoadingSendingComment.value = true;
     Database().addComment({
       'body': body.trim(),
@@ -262,7 +279,7 @@ class PostController extends GetxController {
       'userName': userName,
       'userImage': userImage != '' ? userImage : 'https://eu.ui-avatars.com/api/?name=$userName&background=random',
       'postId': postId,
-      'dateCreatedAt': Timestamp.now()
+      'dateCreatedAt': Timestamp.now(),
     });
 
     commentList.add(CommentModel(
@@ -284,16 +301,17 @@ class PostController extends GetxController {
     isLoadingSendingComment.value = false;
   }
 
-  Future<void> edit(
-      {required String id,
-      required String body,
-      String category = 'geral',
-      required String userHandle,
-      required String userName,
-      required String userImage,
-      required String postImage,
-      required DateTime actionData,
-      required String subCategorie}) async {
+  Future<void> edit({
+    required String id,
+    required String body,
+    String category = 'geral',
+    required String userHandle,
+    required String userName,
+    required String userImage,
+    required String postImage,
+    required DateTime actionData,
+    required String subCategorie,
+  }) async {
     isLoading.value = true;
     Database().editPost({
       'id': id,
@@ -308,7 +326,7 @@ class PostController extends GetxController {
           : 'https://firebasestorage.googleapis.com/v0/b/experimentosdiversos.appspot.com/o/zSocialImagens%2FtesteImage.png?alt=media&token=53a7bdf7-a9e2-4752-a11f-d0ccd074936c',
       'category': category != '' ? category : 'geral',
       'actionData': actionData,
-      'subCategorie': subCategorie
+      'subCategorie': subCategorie,
     });
 
     imageTempUrl.value = '';

@@ -54,55 +54,69 @@ class PostCommentScreen extends StatelessWidget {
               background: Stack(
                 children: [
                   Container(
-                      height: 270,
-                      width: double.infinity,
-                      decoration: new BoxDecoration(
-                        gradient: new LinearGradient(begin: Alignment.topLeft, end: Alignment.bottomRight, colors: [
+                    height: 270,
+                    width: double.infinity,
+                    decoration: new BoxDecoration(
+                      gradient: new LinearGradient(
+                        begin: Alignment.topLeft,
+                        end: Alignment.bottomRight,
+                        colors: [
                           Color.fromRGBO(64, 64, 64, 0.5),
                           Color.fromRGBO(0, 0, 0, 0.8),
                           Color.fromRGBO(0, 0, 0, 1),
-                        ]),
-                        image: new DecorationImage(
-                          image: CachedNetworkImageProvider(post != null
-                              ? post!.postImage!
-                              : 'https://firebasestorage.googleapis.com/v0/b/experimentosdiversos.appspot.com/o/zSocialImagens%2FtesteImage.png?alt=media&token=53a7bdf7-a9e2-4752-a11f-d0ccd074936c'),
-                          fit: BoxFit.cover,
-                          colorFilter: new ColorFilter.mode(Colors.grey.withOpacity(0.3), BlendMode.dstATop),
+                        ],
+                      ),
+                      image: new DecorationImage(
+                        image: CachedNetworkImageProvider(post != null
+                            ? post!.postImage!
+                            : 'https://firebasestorage.googleapis.com/v0/b/experimentosdiversos.appspot.com/o/zSocialImagens%2FtesteImage.png?alt=media&token=53a7bdf7-a9e2-4752-a11f-d0ccd074936c'),
+                        fit: BoxFit.cover,
+                        colorFilter: new ColorFilter.mode(
+                          Colors.grey.withOpacity(0.3),
+                          BlendMode.dstATop,
                         ),
                       ),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          userLine(),
-                          post!.body != null
-                              ? Row(
-                                  children: [
-                                    Expanded(
-                                      child: Container(
-                                        color: Colors.black26,
-                                        padding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
-                                        child: Text(
-                                          post!.body!,
-                                          maxLines: 3,
-                                          overflow: TextOverflow.ellipsis,
-                                          style: TextStyle(height: 1.3, color: Colors.white, letterSpacing: 1.1),
+                    ),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        userLine(),
+                        post!.body != null
+                            ? Row(
+                                children: [
+                                  Expanded(
+                                    child: Container(
+                                      color: Colors.black26,
+                                      padding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
+                                      child: Text(
+                                        post!.body!,
+                                        maxLines: 3,
+                                        overflow: TextOverflow.ellipsis,
+                                        style: TextStyle(
+                                          height: 1.3,
+                                          color: Colors.white,
+                                          letterSpacing: 1.1,
                                         ),
                                       ),
                                     ),
-                                  ],
-                                )
-                              : Container()
-                        ],
-                      )),
+                                  ),
+                                ],
+                              )
+                            : Container()
+                      ],
+                    ),
+                  ),
                 ],
               ),
             ),
           ),
           SliverList(
-            delegate: SliverChildListDelegate([
-              commentsArea(),
-              SizedBox(height: 16),
-            ]),
+            delegate: SliverChildListDelegate(
+              [
+                commentsArea(),
+                SizedBox(height: 16),
+              ],
+            ),
           )
         ],
       ),
@@ -115,66 +129,90 @@ class PostCommentScreen extends StatelessWidget {
       child: Row(
         children: [
           Expanded(
-              flex: 70,
-              child: TextFormField(
-                decoration: InputDecoration(
-                    prefixIcon: Icon(Icons.campaign, color: corPrimaria),
-                    enabledBorder: OutlineInputBorder(
-                      borderRadius:
-                          BorderRadius.only(bottomLeft: Radius.circular(90.0), topLeft: Radius.circular(90.0)),
-                      borderSide: BorderSide(width: 2, color: corPrimaria),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                        borderRadius:
-                            BorderRadius.only(bottomLeft: Radius.circular(90.0), topLeft: Radius.circular(90.0)),
-                        borderSide: BorderSide(width: 2, color: corPrimaria)),
-                    filled: true,
-                    fillColor: Colors.white,
-                    hintText: 'Seu comentario...',
-                    hintStyle: TextStyle(color: corPrimariaEscura)),
-                controller: commentTextController,
-                autocorrect: false,
-                style: TextStyle(color: corBlack),
-              )),
-          Obx(() => Expanded(
-                flex: 20,
-                child: _postController.isLoadingSendingComment.value == true
-                    ? loadingElement()
-                    : BotaoCortado(
-                        executarAcao: () {
-                          if ((commentTextController.text.trim() != '')) {
-                            _postController.addComment(
-                              postId: post!.id!,
-                              body: commentTextController.text.trim(),
-                              userHandle: _userController.user.email!,
-                              userName: _userController.user.name!,
-                              userImage: _userController.user.userImage!,
-                            );
+            flex: 70,
+            child: TextFormField(
+              decoration: InputDecoration(
+                prefixIcon: Icon(
+                  Icons.campaign,
+                  color: corPrimaria,
+                ),
+                enabledBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.only(
+                    bottomLeft: Radius.circular(90.0),
+                    topLeft: Radius.circular(90.0),
+                  ),
+                  borderSide: BorderSide(
+                    width: 2,
+                    color: corPrimaria,
+                  ),
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.only(
+                    bottomLeft: Radius.circular(90.0),
+                    topLeft: Radius.circular(90.0),
+                  ),
+                  borderSide: BorderSide(
+                    width: 2,
+                    color: corPrimaria,
+                  ),
+                ),
+                filled: true,
+                fillColor: Colors.white,
+                hintText: 'Seu comentario...',
+                hintStyle: TextStyle(
+                  color: corPrimariaEscura,
+                ),
+              ),
+              controller: commentTextController,
+              autocorrect: false,
+              style: TextStyle(
+                color: corBlack,
+              ),
+            ),
+          ),
+          Obx(
+            () => Expanded(
+              flex: 20,
+              child: _postController.isLoadingSendingComment.value == true
+                  ? loadingElement()
+                  : BotaoCortado(
+                      executarAcao: () {
+                        if ((commentTextController.text.trim() != '')) {
+                          _postController.addComment(
+                            postId: post!.id!,
+                            body: commentTextController.text.trim(),
+                            userHandle: _userController.user.email!,
+                            userName: _userController.user.name!,
+                            userImage: _userController.user.userImage!,
+                          );
 
-                            commentTextController.text = '';
-                            _scrollController.animateTo(
-                              _scrollController.position.maxScrollExtent,
-                              duration: Duration(seconds: 1),
-                              curve: Curves.fastOutSlowIn,
-                            );
-                          } else {
-                            Get.snackbar(
-                              'Opa, ta errado manolo',
-                              'Preenche os campos direito que vai!',
-                              snackPosition: SnackPosition.TOP,
-                              duration: Duration(seconds: 5),
-                              colorText: Colors.white,
-                            );
-                          }
+                          commentTextController.text = '';
+                          _scrollController.animateTo(
+                            _scrollController.position.maxScrollExtent,
+                            duration: Duration(seconds: 1),
+                            curve: Curves.fastOutSlowIn,
+                          );
+                        } else {
+                          Get.snackbar(
+                            'Opa, ta errado manolo',
+                            'Preenche os campos direito que vai!',
+                            snackPosition: SnackPosition.TOP,
+                            duration: Duration(seconds: 5),
+                            colorText: Colors.white,
+                          );
+                        }
 
-                          print("enviei comentario");
-                        },
-                        iconeBotao: Icon(Icons.send,
-                            size: 30,
-                            color: _postController.isLoading.value == false ? Colors.white : Colors.transparent),
-                        textoBotao: "",
+                        print("enviei comentario");
+                      },
+                      iconeBotao: Icon(
+                        Icons.send,
+                        size: 30,
+                        color: _postController.isLoading.value == false ? Colors.white : Colors.transparent,
                       ),
-              )),
+                      textoBotao: "",
+                    ),
+            ),
+          ),
         ],
       ),
     );
@@ -184,11 +222,20 @@ class PostCommentScreen extends StatelessWidget {
     return Container(
       height: 53,
       decoration: new BoxDecoration(
-          color: corPrimaria,
-          borderRadius: new BorderRadius.only(bottomRight: Radius.circular(90.0), topRight: Radius.circular(90.0))),
+        color: corPrimaria,
+        borderRadius: new BorderRadius.only(
+          bottomRight: Radius.circular(90.0),
+          topRight: Radius.circular(90.0),
+        ),
+      ),
       child: Center(
         child: SizedBox(
-            width: 30, height: 30, child: CircularProgressIndicator(valueColor: AlwaysStoppedAnimation(Colors.white))),
+          width: 30,
+          height: 30,
+          child: CircularProgressIndicator(
+            valueColor: AlwaysStoppedAnimation(Colors.white),
+          ),
+        ),
       ),
     );
   }
@@ -202,7 +249,9 @@ class PostCommentScreen extends StatelessWidget {
             size: 45,
             color: Colors.black54,
           ),
-          Text("Nenhum comentario no momento")
+          Text(
+            "Nenhum comentario no momento",
+          )
         ],
       ),
     );
@@ -254,7 +303,10 @@ class PostCommentScreen extends StatelessWidget {
         gradient: LinearGradient(
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
-          colors: [corFundoClara, corFundoEscura],
+          colors: [
+            corFundoClara,
+            corFundoEscura,
+          ],
         ),
       ),
       child: Center(
@@ -270,28 +322,49 @@ class PostCommentScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               mainAxisSize: MainAxisSize.max,
               children: <Widget>[
-                Text("aqui vem os comentarios"),
-                SizedBox(height: 260),
+                Text(
+                  "aqui vem os comentarios",
+                ),
+                SizedBox(
+                  height: 260,
+                ),
                 TextFormField(
                   decoration: InputDecoration(
-                      prefixIcon: Icon(Icons.loyalty, color: corPrimaria),
-                      enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(90.0)),
-                        borderSide: BorderSide(width: 2, color: Theme.of(context).colorScheme.primary),
+                    prefixIcon: Icon(
+                      Icons.loyalty,
+                      color: corPrimaria,
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(90.0)),
+                      borderSide: BorderSide(
+                        width: 2,
+                        color: Theme.of(context).colorScheme.primary,
                       ),
-                      focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(90.0)),
-                          borderSide: BorderSide(width: 2, color: Theme.of(context).colorScheme.primary)),
-                      filled: true,
-                      fillColor: Colors.transparent,
-                      hintText: 'Nome',
-                      hintStyle: TextStyle(color: corPrimariaEscura)),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(90.0)),
+                      borderSide: BorderSide(
+                        width: 2,
+                        color: Theme.of(context).colorScheme.primary,
+                      ),
+                    ),
+                    filled: true,
+                    fillColor: Colors.transparent,
+                    hintText: 'Nome',
+                    hintStyle: TextStyle(
+                      color: corPrimariaEscura,
+                    ),
+                  ),
                   controller: commentTextController,
                   autocorrect: false,
                   keyboardType: TextInputType.emailAddress,
-                  style: TextStyle(color: corBlack),
+                  style: TextStyle(
+                    color: corBlack,
+                  ),
                 ),
-                SizedBox(height: 16),
+                SizedBox(
+                  height: 16,
+                ),
               ],
             ),
           ),
@@ -320,12 +393,20 @@ class PostCommentScreen extends StatelessWidget {
                   children: [
                     Text(
                       post!.userHandle!.split('@')[0],
-                      style: TextStyle(color: Colors.white, fontSize: 15),
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 15,
+                      ),
                     ),
-                    SizedBox(height: 5),
+                    SizedBox(
+                      height: 5,
+                    ),
                     Text(
                       DateFormat('dd.MM hh:mm').format(post!.createdAt!.toDate()).toString(),
-                      style: TextStyle(color: Colors.white, fontSize: 12),
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 12,
+                      ),
                     )
                   ],
                 ),
@@ -363,44 +444,56 @@ class PostCommentScreen extends StatelessWidget {
     return Container(
       color: Colors.transparent,
       child: Padding(
-          padding: EdgeInsets.all(8.0),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: <Widget>[
-              Expanded(
-                flex: 35,
-                child: BotaoSimples(
-                  executarAcao: () {
-                    Get.back();
-                  },
-                  iconeBotao: Icon(Icons.cancel, size: 20, color: Colors.white),
-                  textoBotao: "Cancelar",
+        padding: EdgeInsets.all(8.0),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: <Widget>[
+            Expanded(
+              flex: 35,
+              child: BotaoSimples(
+                executarAcao: () {
+                  Get.back();
+                },
+                iconeBotao: Icon(
+                  Icons.cancel,
+                  size: 20,
+                  color: Colors.white,
                 ),
+                textoBotao: "Cancelar",
               ),
-              SizedBox(width: 30),
-              Expanded(
-                flex: 35,
-                child: GetX<CategoryController>(
-                    initState: (_) {},
-                    builder: (categoryControler) {
-                      return !categoryControler.isLoading()
-                          ? BotaoSimples(
-                              executarAcao: () async {
-                                print("\n\n* SALVAR \n");
-                              },
-                              iconeBotao: Icon(Icons.save, size: 20, color: Colors.white),
-                              textoBotao: "Enviar",
-                            )
-                          : Container(
-                              height: 20,
-                              width: 20,
-                              child: Center(
-                                child: CircularProgressIndicator(valueColor: AlwaysStoppedAnimation(corPrimariaClara)),
-                              ));
-                    }),
-              ),
-            ],
-          )),
+            ),
+            SizedBox(width: 30),
+            Expanded(
+              flex: 35,
+              child: GetX<CategoryController>(
+                  initState: (_) {},
+                  builder: (categoryControler) {
+                    return !categoryControler.isLoading()
+                        ? BotaoSimples(
+                            executarAcao: () async {
+                              print("\n\n* SALVAR \n");
+                            },
+                            iconeBotao: Icon(
+                              Icons.save,
+                              size: 20,
+                              color: Colors.white,
+                            ),
+                            textoBotao: "Enviar",
+                          )
+                        : Container(
+                            height: 20,
+                            width: 20,
+                            child: Center(
+                              child: CircularProgressIndicator(
+                                valueColor: AlwaysStoppedAnimation(corPrimariaClara),
+                              ),
+                            ),
+                          );
+                  }),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

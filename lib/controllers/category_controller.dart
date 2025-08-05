@@ -42,13 +42,22 @@ class CategoryController extends GetxController {
 
   Future<void> add(String name, String iconText, int order) async {
     isLoading.value = true;
-    Database().addCategory({'name': name.trim(), 'iconText': iconText, 'order': order});
+    Database().addCategory({
+      'name': name.trim(),
+      'iconText': iconText,
+      'order': order,
+    });
     isLoading.value = false;
   }
 
   Future<void> edit(String id, String name, String iconText, int order) async {
     isLoading.value = true;
-    Database().editCategory({'id': id, 'name': name.trim(), 'iconText': iconText, 'order': order});
+    Database().editCategory({
+      'id': id,
+      'name': name.trim(),
+      'iconText': iconText,
+      'order': order,
+    });
     isLoading.value = false;
   }
 }

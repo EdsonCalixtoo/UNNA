@@ -10,6 +10,7 @@ class CommentModel {
   String postId;
   String userName;
   Timestamp? dateCreatedAt;
+
   CommentModel({
     required this.body,
     required this.userHandle,

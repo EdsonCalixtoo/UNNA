@@ -9,9 +9,27 @@ void criarPostsRandomicos({bool exibirSnack = true}) {
   print('\n\n criarPostsRandomicos INICIO -----');
   String tabela = 'unna-posts';
 
-  List<String> possiveisCategorias = ['geral', 'esportes', 'lazer', 'bar', 'serviços', 'partys', 'pets'];
-  List<String> possiveisAutores = ['maria@unna.com', 'joao@unna.com', 'angela@unna.com', 'paula@unna.com'];
-  List<String> possiveisAutoresShort = ['maria', 'joao', 'angela', 'paula'];
+  List<String> possiveisCategorias = [
+    'geral',
+    'esportes',
+    'lazer',
+    'bar',
+    'serviços',
+    'partys',
+    'pets',
+  ];
+  List<String> possiveisAutores = [
+    'maria@unna.com',
+    'joao@unna.com',
+    'angela@unna.com',
+    'paula@unna.com',
+  ];
+  List<String> possiveisAutoresShort = [
+    'maria',
+    'joao',
+    'angela',
+    'paula',
+  ];
   List<String> possiveisImagensAutores = [
     'https://firebasestorage.googleapis.com/v0/b/unna-449e5.appspot.com/o/unnaImagens%2Fuser0.png?alt=media&token=b878693e-6554-41f3-9b35-d4eeaf7d470c',
     'https://firebasestorage.googleapis.com/v0/b/unna-449e5.appspot.com/o/unnaImagens%2Fuser1.png?alt=media&token=141dbee3-31fd-49e4-b77b-880b511d5b17',
@@ -42,8 +60,13 @@ void criarPostsRandomicos({bool exibirSnack = true}) {
   Database().createNewElement(tabela, elemento);
 
   if (exibirSnack) {
-    Get.snackbar('Sucesso', 'criarPostsRandomicos - terminou',
-        snackPosition: SnackPosition.TOP, duration: Duration(seconds: 5), colorText: Colors.white);
+    Get.snackbar(
+      'Sucesso',
+      'criarPostsRandomicos - terminou',
+      snackPosition: SnackPosition.TOP,
+      duration: Duration(seconds: 5),
+      colorText: Colors.white,
+    );
   }
 
   print(' criarPostsRandomicos FIM -----');
@@ -56,8 +79,13 @@ void criarPostRandomicoEmMass(int qtde) {
     criarPostsRandomicos(exibirSnack: false);
   }
 
-  Get.snackbar('Sucesso', 'criarPostsRandomicos - terminou',
-      snackPosition: SnackPosition.TOP, duration: Duration(seconds: 5), colorText: Colors.white);
+  Get.snackbar(
+    'Sucesso',
+    'criarPostsRandomicos - terminou',
+    snackPosition: SnackPosition.TOP,
+    duration: Duration(seconds: 5),
+    colorText: Colors.white,
+  );
 
   print(' criarPostRandomicoEmMass FIM -----');
 }

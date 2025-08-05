@@ -6,7 +6,11 @@ class LikeButton extends StatefulWidget {
   bool isLiked;
   final Function? onTap;
 
-  LikeButton({Key? key, this.isLiked = false, required this.onTap}) : super(key: key);
+  LikeButton({
+    Key? key,
+    this.isLiked = false,
+    required this.onTap,
+  }) : super(key: key);
   @override
   _LikeButtonState createState() => _LikeButtonState();
 }
@@ -54,7 +58,8 @@ class _LikeButtonState extends State<LikeButton> {
                   "assets/lottie/5236-like.json",
                   repeat: false,
                   reverse: false,
-                )),
+                ),
+              ),
       ),
     );
   }

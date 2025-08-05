@@ -32,31 +32,41 @@ class _HomeState extends State<Home> {
     final double width = MediaQuery.of(context).size.width;
 
     return Scaffold(
-        backgroundColor: corFundoClara,
-        appBar: AppBarHome(isHome: true, isFilter: false),
-        extendBody: false,
-        extendBodyBehindAppBar: false,
-        body: SingleChildScrollView(
-            child: Container(
-          padding: const EdgeInsets.only(left: 14, right: 14, top: 14, bottom: 14),
-          child: Column(mainAxisAlignment: MainAxisAlignment.start, children: [
-            SizedBox(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Container(
-                    height: (width * 0.5) - 22,
-                    width: (width * 0.5) - 22,
-                    decoration:
-                        BoxDecoration(color: corWhite, borderRadius: BorderRadius.circular(20), boxShadow: const [
-                      BoxShadow(
-                        color: corShadows,
-                        spreadRadius: 1,
-                        blurRadius: 6,
-                        offset: Offset(0, 0),
-                      )
-                    ]),
-                    child: TextButton(
+      backgroundColor: corFundoClara,
+      appBar: AppBarHome(isHome: true, isFilter: false),
+      extendBody: false,
+      extendBodyBehindAppBar: false,
+      body: SingleChildScrollView(
+        child: Container(
+          padding: const EdgeInsets.only(
+            left: 14,
+            right: 14,
+            top: 14,
+            bottom: 14,
+          ),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              SizedBox(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Container(
+                      height: (width * 0.5) - 22,
+                      width: (width * 0.5) - 22,
+                      decoration: BoxDecoration(
+                        color: corWhite,
+                        borderRadius: BorderRadius.circular(20),
+                        boxShadow: const [
+                          BoxShadow(
+                            color: corShadows,
+                            spreadRadius: 1,
+                            blurRadius: 6,
+                            offset: Offset(0, 0),
+                          )
+                        ],
+                      ),
+                      child: TextButton(
                         onPressed: () {
                           Get.to(Posts(category: 'geral'));
                         },
@@ -69,33 +79,46 @@ class _HomeState extends State<Home> {
                           ),
                         ),
                         child: const Center(
-                            child: SizedBox(
-                          height: 130,
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              Icon(Icons.fitbit_rounded, size: 50, color: corSilverSoft),
-                              Text(
-                                'Geral',
-                                style: TextStyle(fontSize: 17, fontWeight: FontWeight.w600, color: corSilverSoft),
-                              )
-                            ],
+                          child: SizedBox(
+                            height: 130,
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                Icon(
+                                  Icons.fitbit_rounded,
+                                  size: 50,
+                                  color: corSilverSoft,
+                                ),
+                                Text(
+                                  'Geral',
+                                  style: TextStyle(
+                                    fontSize: 17,
+                                    fontWeight: FontWeight.w600,
+                                    color: corSilverSoft,
+                                  ),
+                                )
+                              ],
+                            ),
                           ),
-                        ))),
-                  ),
-                  Container(
-                    height: (width * 0.5) - 22,
-                    width: (width * 0.5) - 22,
-                    decoration:
-                        BoxDecoration(color: corWhite, borderRadius: BorderRadius.circular(20), boxShadow: const [
-                      BoxShadow(
-                        color: corShadows,
-                        spreadRadius: 1,
-                        blurRadius: 6,
-                        offset: Offset(0, 0),
-                      )
-                    ]),
-                    child: TextButton(
+                        ),
+                      ),
+                    ),
+                    Container(
+                      height: (width * 0.5) - 22,
+                      width: (width * 0.5) - 22,
+                      decoration: BoxDecoration(
+                        color: corWhite,
+                        borderRadius: BorderRadius.circular(20),
+                        boxShadow: const [
+                          BoxShadow(
+                            color: corShadows,
+                            spreadRadius: 1,
+                            blurRadius: 6,
+                            offset: Offset(0, 0),
+                          )
+                        ],
+                      ),
+                      child: TextButton(
                         onPressed: () {
                           Get.to(SubCategory(
                             category: 'Pets',
@@ -110,43 +133,56 @@ class _HomeState extends State<Home> {
                           ),
                         ),
                         child: const Center(
-                            child: SizedBox(
-                          height: 130,
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              Icon(Icons.pets_rounded, size: 50, color: corSilverSoft),
-                              Text(
-                                'Pets',
-                                style: TextStyle(fontSize: 17, fontWeight: FontWeight.w600, color: corSilverSoft),
-                              )
-                            ],
+                          child: SizedBox(
+                            height: 130,
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                Icon(
+                                  Icons.pets_rounded,
+                                  size: 50,
+                                  color: corSilverSoft,
+                                ),
+                                Text(
+                                  'Pets',
+                                  style: TextStyle(
+                                    fontSize: 17,
+                                    fontWeight: FontWeight.w600,
+                                    color: corSilverSoft,
+                                  ),
+                                )
+                              ],
+                            ),
                           ),
-                        ))),
-                  ),
-                ],
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               ),
-            ),
-            const SizedBox(
-              height: 14,
-            ),
-            SizedBox(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Container(
-                    height: (width * 0.5) - 22,
-                    width: (width * 0.5) - 22,
-                    decoration:
-                        BoxDecoration(color: corWhite, borderRadius: BorderRadius.circular(20), boxShadow: const [
-                      BoxShadow(
-                        color: corShadows,
-                        spreadRadius: 1,
-                        blurRadius: 6,
-                        offset: Offset(0, 0),
-                      )
-                    ]),
-                    child: TextButton(
+              const SizedBox(
+                height: 14,
+              ),
+              SizedBox(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Container(
+                      height: (width * 0.5) - 22,
+                      width: (width * 0.5) - 22,
+                      decoration: BoxDecoration(
+                        color: corWhite,
+                        borderRadius: BorderRadius.circular(20),
+                        boxShadow: const [
+                          BoxShadow(
+                            color: corShadows,
+                            spreadRadius: 1,
+                            blurRadius: 6,
+                            offset: Offset(0, 0),
+                          )
+                        ],
+                      ),
+                      child: TextButton(
                         onPressed: () {
                           Get.to(SubCategory(
                             category: 'Esportes',
@@ -161,33 +197,46 @@ class _HomeState extends State<Home> {
                           ),
                         ),
                         child: const Center(
-                            child: SizedBox(
-                          height: 130,
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              Icon(Icons.sports_handball_rounded, size: 50, color: corSilverSoft),
-                              Text(
-                                'Esportes',
-                                style: TextStyle(fontSize: 17, fontWeight: FontWeight.w600, color: corSilverSoft),
-                              )
-                            ],
+                          child: SizedBox(
+                            height: 130,
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                Icon(
+                                  Icons.sports_handball_rounded,
+                                  size: 50,
+                                  color: corSilverSoft,
+                                ),
+                                Text(
+                                  'Esportes',
+                                  style: TextStyle(
+                                    fontSize: 17,
+                                    fontWeight: FontWeight.w600,
+                                    color: corSilverSoft,
+                                  ),
+                                )
+                              ],
+                            ),
                           ),
-                        ))),
-                  ),
-                  Container(
-                    height: (width * 0.5) - 22,
-                    width: (width * 0.5) - 22,
-                    decoration:
-                        BoxDecoration(color: corWhite, borderRadius: BorderRadius.circular(20), boxShadow: const [
-                      BoxShadow(
-                        color: corShadows,
-                        spreadRadius: 1,
-                        blurRadius: 6,
-                        offset: Offset(0, 0),
-                      )
-                    ]),
-                    child: TextButton(
+                        ),
+                      ),
+                    ),
+                    Container(
+                      height: (width * 0.5) - 22,
+                      width: (width * 0.5) - 22,
+                      decoration: BoxDecoration(
+                        color: corWhite,
+                        borderRadius: BorderRadius.circular(20),
+                        boxShadow: const [
+                          BoxShadow(
+                            color: corShadows,
+                            spreadRadius: 1,
+                            blurRadius: 6,
+                            offset: Offset(0, 0),
+                          )
+                        ],
+                      ),
+                      child: TextButton(
                         onPressed: () {
                           Get.to(SubCategory(
                             category: 'Lazer',
@@ -202,47 +251,62 @@ class _HomeState extends State<Home> {
                           ),
                         ),
                         child: const Center(
-                            child: SizedBox(
-                          height: 130,
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              Icon(Icons.park_rounded, size: 50, color: corSilverSoft),
-                              Text(
-                                'Lazer',
-                                style: TextStyle(fontSize: 17, fontWeight: FontWeight.w600, color: corSilverSoft),
-                              )
-                            ],
+                          child: SizedBox(
+                            height: 130,
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                Icon(
+                                  Icons.park_rounded,
+                                  size: 50,
+                                  color: corSilverSoft,
+                                ),
+                                Text(
+                                  'Lazer',
+                                  style: TextStyle(
+                                    fontSize: 17,
+                                    fontWeight: FontWeight.w600,
+                                    color: corSilverSoft,
+                                  ),
+                                )
+                              ],
+                            ),
                           ),
-                        ))),
-                  ),
-                ],
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               ),
-            ),
-            const SizedBox(
-              height: 14,
-            ),
-            SizedBox(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Container(
-                    height: (width * 0.5) - 22,
-                    width: (width * 0.5) - 22,
-                    decoration:
-                        BoxDecoration(color: corWhite, borderRadius: BorderRadius.circular(20), boxShadow: const [
-                      BoxShadow(
-                        color: corShadows,
-                        spreadRadius: 1,
-                        blurRadius: 6,
-                        offset: Offset(0, 0),
-                      )
-                    ]),
-                    child: TextButton(
+              const SizedBox(
+                height: 14,
+              ),
+              SizedBox(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Container(
+                      height: (width * 0.5) - 22,
+                      width: (width * 0.5) - 22,
+                      decoration: BoxDecoration(
+                        color: corWhite,
+                        borderRadius: BorderRadius.circular(20),
+                        boxShadow: const [
+                          BoxShadow(
+                            color: corShadows,
+                            spreadRadius: 1,
+                            blurRadius: 6,
+                            offset: Offset(0, 0),
+                          )
+                        ],
+                      ),
+                      child: TextButton(
                         onPressed: () {
-                          Get.to(SubCategory(
-                            category: 'Voluntariados',
-                          ));
+                          Get.to(
+                            SubCategory(
+                              category: 'Voluntariados',
+                            ),
+                          );
                         },
                         style: TextButton.styleFrom(
                           padding: EdgeInsets.zero,
@@ -253,24 +317,37 @@ class _HomeState extends State<Home> {
                           ),
                         ),
                         child: const Center(
-                            child: SizedBox(
-                          height: 130,
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              Icon(Icons.hail_rounded, size: 50, color: corSilverSoft),
-                              Text(
-                                'Voluntariados',
-                                style: TextStyle(fontSize: 17, fontWeight: FontWeight.w600, color: corSilverSoft),
-                              )
-                            ],
+                          child: SizedBox(
+                            height: 130,
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                Icon(
+                                  Icons.hail_rounded,
+                                  size: 50,
+                                  color: corSilverSoft,
+                                ),
+                                Text(
+                                  'Voluntariados',
+                                  style: TextStyle(
+                                    fontSize: 17,
+                                    fontWeight: FontWeight.w600,
+                                    color: corSilverSoft,
+                                  ),
+                                )
+                              ],
+                            ),
                           ),
-                        ))),
-                  ),
-                ],
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               ),
-            ),
-          ]),
-        )));
+            ],
+          ),
+        ),
+      ),
+    );
   }
 }

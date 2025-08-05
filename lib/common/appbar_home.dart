@@ -4,7 +4,11 @@ import '../controllers/post_controller.dart';
 import '../utils/colors.dart';
 
 class AppBarHome extends StatelessWidget implements PreferredSizeWidget {
-  AppBarHome({Key? key, required this.isHome, required this.isFilter});
+  AppBarHome({
+    Key? key,
+    required this.isHome,
+    required this.isFilter,
+  });
   final bool isHome;
   final bool isFilter;
 
@@ -45,26 +49,43 @@ class AppBarHome extends StatelessWidget implements PreferredSizeWidget {
                 },
                 tooltip: 'Voltar',
               ),
-        title: Row(mainAxisSize: MainAxisSize.min, children: [
-          Text(
-            "U",
-            style: TextStyle(
-              fontSize: 30,
-              fontWeight: FontWeight.w800,
-              color: corBlack,
+        title: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text(
+              "U",
+              style: TextStyle(
+                fontSize: 30,
+                fontWeight: FontWeight.w800,
+                color: corBlack,
+              ),
             ),
-          ),
-          Text("N", style: TextStyle(fontSize: 30, fontWeight: FontWeight.w800, color: corSecundaria)),
-          Text("И", style: TextStyle(fontSize: 30, fontWeight: FontWeight.w900, color: corPrimaria)),
-          Text(
-            "A",
-            style: TextStyle(
-              fontSize: 30,
-              fontWeight: FontWeight.w800,
-              color: corBlack,
+            Text(
+              "N",
+              style: TextStyle(
+                fontSize: 30,
+                fontWeight: FontWeight.w800,
+                color: corSecundaria,
+              ),
             ),
-          ),
-        ]),
+            Text(
+              "И",
+              style: TextStyle(
+                fontSize: 30,
+                fontWeight: FontWeight.w900,
+                color: corPrimaria,
+              ),
+            ),
+            Text(
+              "A",
+              style: TextStyle(
+                fontSize: 30,
+                fontWeight: FontWeight.w800,
+                color: corBlack,
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

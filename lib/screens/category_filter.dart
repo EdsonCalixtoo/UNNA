@@ -11,7 +11,14 @@ class CategoryFilterScreen extends StatelessWidget {
       extendBody: true,
       appBar: AppBar(
         iconTheme: IconThemeData(color: corBlack),
-        title: Text("Categoria", style: TextStyle(color: corBlack, fontSize: 35, fontWeight: FontWeight.w300)),
+        title: Text(
+          "Categoria",
+          style: TextStyle(
+            color: corBlack,
+            fontSize: 35,
+            fontWeight: FontWeight.w300,
+          ),
+        ),
         backgroundColor: corFundoClara,
         elevation: 0,
       ),
@@ -53,7 +60,11 @@ class CategoryFilterScreen extends StatelessWidget {
       init: Get.put<CategoryController>(CategoryController()),
       builder: (CategoryController? categoryController) {
         if (categoryController?.isLoading.value == true) {
-          return Center(child: CircularProgressIndicator(valueColor: AlwaysStoppedAnimation(corPrimariaClara)));
+          return Center(
+            child: CircularProgressIndicator(
+              valueColor: AlwaysStoppedAnimation(corPrimariaClara),
+            ),
+          );
         } else {
           if (categoryController != null && categoryController.categoryList.length > 0) {
             return GridView.count(
@@ -67,7 +78,9 @@ class CategoryFilterScreen extends StatelessWidget {
               }).toList(),
             );
           } else {
-            return Text("Lista Vazia...");
+            return Text(
+              "Lista Vazia...",
+            );
           }
         }
       },

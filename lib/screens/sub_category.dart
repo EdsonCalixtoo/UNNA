@@ -8,7 +8,10 @@ import 'package:unna/screens/posts.dart';
 import 'package:unna/utils/colors.dart';
 
 class SubCategory extends StatefulWidget {
-  SubCategory({Key? key, required this.category});
+  SubCategory({
+    Key? key,
+    required this.category,
+  });
   final String category;
 
   @override
@@ -239,11 +242,12 @@ class _SubCategoryState extends State<SubCategory> {
     final double width = MediaQuery.of(context).size.width;
 
     return Scaffold(
-        backgroundColor: corFundoClara,
-        appBar: AppBarHome(isHome: false, isFilter: false),
-        extendBody: false,
-        extendBodyBehindAppBar: false,
-        body: Obx(() {
+      backgroundColor: corFundoClara,
+      appBar: AppBarHome(isHome: false, isFilter: false),
+      extendBody: false,
+      extendBodyBehindAppBar: false,
+      body: Obx(
+        () {
           return ListView.builder(
             itemCount: _subCategoryController.categories.length,
             itemBuilder: (BuildContext context, int index) {
@@ -262,7 +266,10 @@ class _SubCategoryState extends State<SubCategory> {
                       ),
                       Text(
                         _subCategoryController.categories[index].name,
-                        style: TextStyle(fontSize: 18, color: corSilverSoft),
+                        style: TextStyle(
+                          fontSize: 18,
+                          color: corSilverSoft,
+                        ),
                       ),
                     ],
                   ),
@@ -270,6 +277,8 @@ class _SubCategoryState extends State<SubCategory> {
               );
             },
           );
-        }));
+        },
+      ),
+    );
   }
 }

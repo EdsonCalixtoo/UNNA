@@ -31,7 +31,7 @@ class CommentCard extends StatelessWidget {
               Get.off(ProfileExternalScreen(), arguments: {
                 'userImage': comment.userImage,
                 'userHandle': comment.userHandle,
-                'userName': comment.userName
+                'userName': comment.userName,
               });
             },
             child: Container(
@@ -42,7 +42,7 @@ class CommentCard extends StatelessWidget {
                     blurRadius: 17.0,
                     offset: Offset(0, 12),
                     spreadRadius: 1,
-                  )
+                  ),
                 ],
               ),
               child: ClipRRect(
@@ -56,7 +56,9 @@ class CommentCard extends StatelessWidget {
               ),
             ),
           ),
-          SizedBox(width: 10),
+          SizedBox(
+            width: 10,
+          ),
           Expanded(
             child: Container(
               padding: EdgeInsets.all(10),
@@ -74,14 +76,22 @@ class CommentCard extends StatelessWidget {
                         children: [
                           Text(
                             comment.userHandle.split('@')[0],
-                            style: TextStyle(color: corBlack, fontSize: 15),
+                            style: TextStyle(
+                              color: corBlack,
+                              fontSize: 15,
+                            ),
                           ),
-                          SizedBox(width: 10),
+                          SizedBox(
+                            width: 10,
+                          ),
                           Text(
                             comment.dateCreatedAt != null
                                 ? DateFormat('dd.MM hh:mm').format(comment.dateCreatedAt!.toDate()).toString()
                                 : '',
-                            style: TextStyle(color: corBlack, fontSize: 12),
+                            style: TextStyle(
+                              color: corBlack,
+                              fontSize: 12,
+                            ),
                           )
                         ],
                       ),
@@ -91,13 +101,21 @@ class CommentCard extends StatelessWidget {
                                   onTap: () {
                                     onDelete();
                                   },
-                                  child: Icon(Icons.delete, color: Colors.grey))
+                                  child: Icon(
+                                    Icons.delete,
+                                    color: Colors.grey,
+                                  ),
+                                )
                               : Container()
                           : Container()
                     ],
                   ),
-                  SizedBox(height: 5),
-                  Text(comment.body),
+                  SizedBox(
+                    height: 5,
+                  ),
+                  Text(
+                    comment.body,
+                  ),
                 ],
               ),
             ),

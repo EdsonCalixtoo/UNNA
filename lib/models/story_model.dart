@@ -4,7 +4,11 @@ import 'dart:typed_data';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:unna/models/user.dart';
 
-enum StoryType { Text, Video, Image }
+enum StoryType {
+  Text,
+  Video,
+  Image,
+}
 
 class StoryModel {
   final String id;
@@ -12,6 +16,7 @@ class StoryModel {
   final StoryType type;
   final dynamic storyData;
   final Timestamp createdAt;
+
   StoryModel({
     required this.id,
     required this.userModel,

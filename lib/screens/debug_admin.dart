@@ -59,7 +59,9 @@ class DebugAdminScreen extends StatelessWidget {
                     UserController _userController = Get.find<UserController>();
                     _userController.getUserProfileNumbers('edson@unna.com');
                   },
-                  child: Text('Usuario - pegar dados profile'),
+                  child: Text(
+                    'Usuario - pegar dados profile',
+                  ),
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.indigoAccent[200],
                   ),

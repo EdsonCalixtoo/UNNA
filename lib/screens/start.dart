@@ -14,9 +14,15 @@ class StartPage extends StatelessWidget {
       body: PageView(
         controller: _pageController,
         physics: NeverScrollableScrollPhysics(),
-        children: [Home(), PostAddEditScreen(), UserProfileScreen()], // FilterScreen(),
+        children: [
+          Home(),
+          PostAddEditScreen(),
+          UserProfileScreen(),
+        ], // FilterScreen(),
       ),
-      bottomNavigationBar: CustomNavBar(pageController: _pageController),
+      bottomNavigationBar: CustomNavBar(
+        pageController: _pageController,
+      ),
     );
   }
 }

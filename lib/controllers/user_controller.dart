@@ -39,14 +39,18 @@ class UserController extends GetxController {
     _userModel.value = UserModel();
   }
 
-  Future<void> edit(
-      {required String id, required String name, required String about, required String userImage}) async {
+  Future<void> edit({
+    required String id,
+    required String name,
+    required String about,
+    required String userImage,
+  }) async {
     isLoading.value = true;
     Database().editUserProfile({
       'id': id,
       'name': name.trim(),
       'about': about.trim(),
-      'userImage': userImage != '' ? userImage : 'https://eu.ui-avatars.com/api/?name=$name&background=random'
+      'userImage': userImage != '' ? userImage : 'https://eu.ui-avatars.com/api/?name=$name&background=random',
     });
 
     isLoading.value = false;

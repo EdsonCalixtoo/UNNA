@@ -23,7 +23,10 @@ class CategoryCard extends StatelessWidget {
         onTap: () {
           Get.find<PostController>().updateFilter(category.name, '');
           Get.find<NavController>().selectedIndex = 0;
-          Get.offAll(Home(), arguments: category.name);
+          Get.offAll(
+            Home(),
+            arguments: category.name,
+          );
         },
         child: Container(
           padding: EdgeInsets.all(20),
@@ -38,9 +41,19 @@ class CategoryCard extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(category.name, style: TextStyle(color: corBlack, fontSize: 25, fontWeight: FontWeight.w300)),
+              Text(
+                category.name,
+                style: TextStyle(
+                  color: corBlack,
+                  fontSize: 25,
+                  fontWeight: FontWeight.w300,
+                ),
+              ),
               Icon(
-                IconData(int.parse(category.icon), fontFamily: 'MaterialIcons'),
+                IconData(
+                  int.parse(category.icon),
+                  fontFamily: 'MaterialIcons',
+                ),
                 size: 65,
               ),
               Text(""),

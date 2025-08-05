@@ -12,7 +12,10 @@ import 'like_button.dart';
 class PostCardSimple extends StatelessWidget {
   final PostModel post;
 
-  PostCardSimple({Key? key, required this.post}) : super(key: key);
+  PostCardSimple({
+    Key? key,
+    required this.post,
+  }) : super(key: key);
 
   PostController postController = Get.find<PostController>();
 
@@ -28,9 +31,11 @@ class PostCardSimple extends StatelessWidget {
         margin: EdgeInsets.all(0),
         decoration: new BoxDecoration(
           image: DecorationImage(
-            image: CachedNetworkImageProvider(urlImagem != null
-                ? urlImagem
-                : 'https://firebasestorage.googleapis.com/v0/b/experimentosdiversos.appspot.com/o/zSocialImagens%2FtesteImage.png?alt=media&token=53a7bdf7-a9e2-4752-a11f-d0ccd074936c'),
+            image: CachedNetworkImageProvider(
+              urlImagem != null
+                  ? urlImagem
+                  : 'https://firebasestorage.googleapis.com/v0/b/experimentosdiversos.appspot.com/o/zSocialImagens%2FtesteImage.png?alt=media&token=53a7bdf7-a9e2-4752-a11f-d0ccd074936c',
+            ),
             fit: BoxFit.cover,
           ),
           boxShadow: <BoxShadow>[
@@ -83,18 +88,27 @@ class PostCardSimple extends StatelessWidget {
                       width: 90,
                       child: Row(
                         children: [
-                          LikeButton(isLiked: isLiked == true, onTap: () => onTap()),
+                          LikeButton(
+                            isLiked: isLiked == true,
+                            onTap: () => onTap(),
+                          ),
                           Expanded(
                             child: Text(
                               post.likeCount! > 0 ? post.likeCount.toString() : '',
                               overflow: TextOverflow.ellipsis,
-                              style: TextStyle(color: Colors.black54, fontSize: 13, fontWeight: FontWeight.w900),
+                              style: TextStyle(
+                                color: Colors.black54,
+                                fontSize: 13,
+                                fontWeight: FontWeight.w900,
+                              ),
                             ),
                           ),
                         ],
                       ),
                     ),
-                    SizedBox(width: 30),
+                    SizedBox(
+                      width: 30,
+                    ),
                     Container(
                       width: 70,
                       child: GestureDetector(
@@ -109,12 +123,18 @@ class PostCardSimple extends StatelessWidget {
                               size: 25,
                               color: Colors.black54,
                             ),
-                            SizedBox(width: 11),
+                            SizedBox(
+                              width: 11,
+                            ),
                             Expanded(
                               child: Text(
                                 post.commentCount.toString(),
                                 overflow: TextOverflow.ellipsis,
-                                style: TextStyle(color: Colors.black54, fontSize: 13, fontWeight: FontWeight.w900),
+                                style: TextStyle(
+                                  color: Colors.black54,
+                                  fontSize: 13,
+                                  fontWeight: FontWeight.w900,
+                                ),
                               ),
                             ),
                           ],

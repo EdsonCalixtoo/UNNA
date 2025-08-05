@@ -25,39 +25,50 @@ class _AddNewStoryState extends State<AddNewStory> {
           onPressed: () {
             Get.back();
           },
-          icon: Icon(Icons.arrow_back_ios_new, color: Colors.white),
+          icon: Icon(
+            Icons.arrow_back_ios_new,
+            color: Colors.white,
+          ),
         ),
         actions: [
           IconButton(
             onPressed: () {
-              Get.dialog(AlertDialog(
-                actionsAlignment: MainAxisAlignment.center,
-                title: Text("Adicionar Story"),
-                actions: [
-                  ElevatedButton(
+              Get.dialog(
+                AlertDialog(
+                  actionsAlignment: MainAxisAlignment.center,
+                  title: Text("Adicionar Story"),
+                  actions: [
+                    ElevatedButton(
                       style: ElevatedButton.styleFrom(
                         backgroundColor: corPrimaria,
                       ),
                       onPressed: () async {
                         controller.sendStoryImage();
                       },
-                      child: Obx(() => controller.isLoading.value
-                          ? Padding(
-                              padding: const EdgeInsets.all(5.0),
-                              child: CircularProgressIndicator(
-                                valueColor: AlwaysStoppedAnimation(Colors.white),
+                      child: Obx(
+                        () => controller.isLoading.value
+                            ? Padding(
+                                padding: const EdgeInsets.all(5.0),
+                                child: CircularProgressIndicator(
+                                  valueColor: AlwaysStoppedAnimation(Colors.white),
+                                ),
+                              )
+                            : Text(
+                                "Adicionar",
                               ),
-                            )
-                          : Text("Adicionar")))
-                ],
-              ));
+                      ),
+                    ),
+                  ],
+                ),
+              );
             },
             icon: Icon(Icons.add_box),
-          )
+          ),
         ],
       ),
-      body: LayoutBuilder(builder: (context, constraints) {
-        return FutureBuilder<List<Uint8List>>(
+      body: LayoutBuilder(
+        builder: (context, constraints) {
+          return FutureBuilder<List<Uint8List>>(
             future: controller.getGalery(),
             builder: (context, snapshot) {
               if (snapshot.connectionState == ConnectionState.waiting) {
@@ -76,7 +87,9 @@ class _AddNewStoryState extends State<AddNewStory> {
                   height: 70,
                   width: double.infinity,
                   child: Center(
-                    child: Text("Erro ao carregar galeria"),
+                    child: Text(
+                      "Erro ao carregar galeria",
+                    ),
                   ),
                 );
               }
@@ -86,7 +99,12 @@ class _AddNewStoryState extends State<AddNewStory> {
                   Container(
                     width: constraints.maxWidth,
                     height: constraints.maxHeight / 2,
-                    child: Obx(() => Image.memory(snapshot.data![controller.indexSelected.value], fit: BoxFit.cover)),
+                    child: Obx(
+                      () => Image.memory(
+                        snapshot.data![controller.indexSelected.value],
+                        fit: BoxFit.cover,
+                      ),
+                    ),
                   ),
                   SizedBox(
                     width: constraints.maxWidth,
@@ -105,12 +123,16 @@ class _AddNewStoryState extends State<AddNewStory> {
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(15),
                               border: Border.all(
-                                  color: controller.indexSelected.value == index ? corPrimaria : Colors.transparent,
-                                  width: 5),
+                                color: controller.indexSelected.value == index ? corPrimaria : Colors.transparent,
+                                width: 5,
+                              ),
                             ),
                             child: ClipRRect(
                               borderRadius: BorderRadius.circular(10),
-                              child: Image.memory(snapshot.data![index], fit: BoxFit.cover),
+                              child: Image.memory(
+                                snapshot.data![index],
+                                fit: BoxFit.cover,
+                              ),
                             ),
                           ),
                         ),
@@ -119,8 +141,10 @@ class _AddNewStoryState extends State<AddNewStory> {
                   ),
                 ],
               );
-            });
-      }),
+            },
+          );
+        },
+      ),
     );
   }
 }

@@ -39,67 +39,83 @@ class _ProfileExternalScreenState extends State<ProfileExternalScreen> {
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<QuerySnapshot<PostModel>>(
-        stream: Database().getPostsWithId(email: Get.arguments['userHandle']),
-        builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return Scaffold(
-              backgroundColor: corFundoClara,
-              body: Center(
-                child: CircularProgressIndicator(valueColor: AlwaysStoppedAnimation(corPrimariaClara)),
-              ),
-            );
-          }
-          if (snapshot.hasError || snapshot.data == null) {
-            return Scaffold(backgroundColor: corFundoClara, body: Center(child: Text("Erro ao carregar Posts")));
-          }
+      stream: Database().getPostsWithId(email: Get.arguments['userHandle']),
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
           return Scaffold(
             backgroundColor: corFundoClara,
-            appBar: AppBarProfile(
-              height: 280,
-              posts: List.generate(
-                snapshot.data!.docs.length,
-                (index) => snapshot.data!.docs[index].data(),
+            body: Center(
+              child: CircularProgressIndicator(
+                valueColor: AlwaysStoppedAnimation(corPrimariaClara),
               ),
-              userImage: Get.arguments['userImage'],
-              userName: Get.arguments['userName'],
-            ),
-            body: Stack(
-              children: [
-                Container(
-                  height: 40,
-                  width: 35,
-                  child: Container(),
-                  color: corPrimaria,
-                ),
-                Container(
-                  height: 40,
-                  width: 35,
-                  decoration: BoxDecoration(
-                      color: corFundoClara,
-                      borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(40),
-                      )),
-                  child: Container(),
-                ),
-                Builder(
-                  builder: (context) {
-                    if (snapshot.data!.docs.length != 0) {
-                      return ListView.builder(
-                          padding: const EdgeInsets.only(left: 30, right: 30, top: 10),
-                          shrinkWrap: true,
-                          controller: scrollController,
-                          itemCount: snapshot.data!.docs.length,
-                          itemBuilder: (BuildContext ctxt, int index) {
-                            return new PostCardSimple(post: snapshot.data!.docs[index].data());
-                          });
-                    } else {
-                      return Center(child: Text('nenhum post no momento'));
-                    }
-                  },
-                ),
-              ],
             ),
           );
-        });
+        }
+        if (snapshot.hasError || snapshot.data == null) {
+          return Scaffold(
+            backgroundColor: corFundoClara,
+            body: Center(
+              child: Text(
+                "Erro ao carregar Posts",
+              ),
+            ),
+          );
+        }
+        return Scaffold(
+          backgroundColor: corFundoClara,
+          appBar: AppBarProfile(
+            height: 280,
+            posts: List.generate(
+              snapshot.data!.docs.length,
+              (index) => snapshot.data!.docs[index].data(),
+            ),
+            userImage: Get.arguments['userImage'],
+            userName: Get.arguments['userName'],
+          ),
+          body: Stack(
+            children: [
+              Container(
+                height: 40,
+                width: 35,
+                child: Container(),
+                color: corPrimaria,
+              ),
+              Container(
+                height: 40,
+                width: 35,
+                decoration: BoxDecoration(
+                  color: corFundoClara,
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(40),
+                  ),
+                ),
+                child: Container(),
+              ),
+              Builder(
+                builder: (context) {
+                  if (snapshot.data!.docs.length != 0) {
+                    return ListView.builder(
+                      padding: const EdgeInsets.only(left: 30, right: 30, top: 10),
+                      shrinkWrap: true,
+                      controller: scrollController,
+                      itemCount: snapshot.data!.docs.length,
+                      itemBuilder: (BuildContext ctxt, int index) {
+                        return new PostCardSimple(post: snapshot.data!.docs[index].data());
+                      },
+                    );
+                  } else {
+                    return Center(
+                      child: Text(
+                        'nenhum post no momento',
+                      ),
+                    );
+                  }
+                },
+              ),
+            ],
+          ),
+        );
+      },
+    );
   }
 }

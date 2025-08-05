@@ -13,8 +13,9 @@ class AddNewStoryController extends GetxController {
   late Uint8List data;
 
   Future<List<Uint8List>> getGalery() async {
-    GalleryMedia? snapshot = await GalleryPicker.collectGallery;
+    GalleryMedia? snapshot = (await GalleryPicker.collectGallery) as GalleryMedia?;
     List<Uint8List> files = [];
+
     for (var i = 0; i < snapshot!.albums.length; i++) {
       if (snapshot.albums[i].name == "All" || snapshot.albums[i].name == "Todos") {
         for (var element in snapshot.albums[i].medias) {

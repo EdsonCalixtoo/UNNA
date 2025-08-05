@@ -22,9 +22,16 @@ class AuthController extends GetxController {
     }
   }
 
-  void createUser(String name, String email, String password) async {
+  void createUser(
+    String name,
+    String email,
+    String password,
+  ) async {
     try {
-      UserCredential user = await _auth.createUserWithEmailAndPassword(email: email.trim(), password: password);
+      UserCredential user = await _auth.createUserWithEmailAndPassword(
+        email: email.trim(),
+        password: password,
+      );
       UserModel _user = UserModel(
         id: user.user?.uid,
         name: name,

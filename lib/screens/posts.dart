@@ -53,7 +53,10 @@ class _PostsState extends State<Posts> {
       children: [
         Scaffold(
           backgroundColor: corFundoClara,
-          appBar: AppBarHome(isHome: false, isFilter: true),
+          appBar: AppBarHome(
+            isHome: false,
+            isFilter: true,
+          ),
           extendBody: false,
           extendBodyBehindAppBar: false,
           body: SingleChildScrollView(
@@ -157,8 +160,12 @@ class _PostsState extends State<Posts> {
                                     initialPage: index,
                                   ));
                                 } else {
-                                  Get.snackbar("Ops", "Você não tem story no momento",
-                                      backgroundColor: Theme.of(context).primaryColor, colorText: Colors.white);
+                                  Get.snackbar(
+                                    "Ops",
+                                    "Você não tem story no momento",
+                                    backgroundColor: Theme.of(context).primaryColor,
+                                    colorText: Colors.white,
+                                  );
                                 }
                               },
                               child: CircleAvatar(
@@ -175,90 +182,110 @@ class _PostsState extends State<Posts> {
                                 right: 0,
                                 child: GestureDetector(
                                   onTap: () {
-                                    Get.dialog(AlertDialog(
-                                      actionsAlignment: MainAxisAlignment.spaceEvenly,
-                                      title: Text("Tipo do Story"),
-                                      actions: [
-                                        ElevatedButton(
-                                          style:
-                                              ElevatedButton.styleFrom(backgroundColor: Theme.of(context).primaryColor),
-                                          onPressed: () {
-                                            Get.back();
-                                            Get.dialog(Builder(
-                                              builder: (context) {
-                                                AddNewStoryController controller = AddNewStoryController();
-                                                String textStory = "";
-                                                return AlertDialog(
-                                                  actionsAlignment: MainAxisAlignment.center,
-                                                  title: Text("Texto do Story"),
-                                                  content: TextField(
-                                                    onChanged: (value) {
-                                                      textStory = value;
-                                                    },
-                                                    cursorColor: Theme.of(context).primaryColor,
-                                                    decoration: InputDecoration(
-                                                      enabledBorder: OutlineInputBorder(
-                                                          borderSide: BorderSide(
-                                                        color: Theme.of(context).primaryColor,
-                                                      )),
-                                                      focusedBorder: OutlineInputBorder(
-                                                          borderSide: BorderSide(
-                                                        color: Theme.of(context).primaryColor,
-                                                      )),
-                                                    ),
-                                                  ),
-                                                  actions: [
-                                                    ElevatedButton(
-                                                      style: ElevatedButton.styleFrom(
-                                                          backgroundColor: Theme.of(context).primaryColor),
-                                                      onPressed: () {
-                                                        if (textStory.trim().isNotEmpty) {
-                                                          controller.sendStoryText(
-                                                            textStory.trim(),
-                                                          );
-                                                        }
-                                                      },
-                                                      child: Obx(() => controller.isLoading.value
-                                                          ? Padding(
-                                                              padding: const EdgeInsets.all(5.0),
-                                                              child: CircularProgressIndicator(
-                                                                valueColor: AlwaysStoppedAnimation(Colors.white),
-                                                              ),
-                                                            )
-                                                          : Text("Adicionar")),
-                                                    )
-                                                  ],
-                                                );
-                                              },
-                                            ));
-                                          },
-                                          child: Text("Tipo Texto"),
+                                    Get.dialog(
+                                      AlertDialog(
+                                        actionsAlignment: MainAxisAlignment.spaceEvenly,
+                                        title: Text(
+                                          "Tipo do Story",
                                         ),
-                                        ElevatedButton(
-                                          style:
-                                              ElevatedButton.styleFrom(backgroundColor: Theme.of(context).primaryColor),
-                                          onPressed: () {
-                                            Get.back();
-                                            Get.to(AddNewStory());
-                                          },
-                                          child: Text("Tipo Imagem"),
-                                        )
-                                      ],
-                                    ));
+                                        actions: [
+                                          ElevatedButton(
+                                            style: ElevatedButton.styleFrom(
+                                                backgroundColor: Theme.of(context).primaryColor),
+                                            onPressed: () {
+                                              Get.back();
+                                              Get.dialog(
+                                                Builder(
+                                                  builder: (context) {
+                                                    AddNewStoryController controller = AddNewStoryController();
+                                                    String textStory = "";
+                                                    return AlertDialog(
+                                                      actionsAlignment: MainAxisAlignment.center,
+                                                      title: Text(
+                                                        "Texto do Story",
+                                                      ),
+                                                      content: TextField(
+                                                        onChanged: (value) {
+                                                          textStory = value;
+                                                        },
+                                                        cursorColor: Theme.of(context).primaryColor,
+                                                        decoration: InputDecoration(
+                                                          enabledBorder: OutlineInputBorder(
+                                                              borderSide: BorderSide(
+                                                            color: Theme.of(context).primaryColor,
+                                                          )),
+                                                          focusedBorder: OutlineInputBorder(
+                                                            borderSide: BorderSide(
+                                                              color: Theme.of(context).primaryColor,
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      ),
+                                                      actions: [
+                                                        ElevatedButton(
+                                                          style: ElevatedButton.styleFrom(
+                                                              backgroundColor: Theme.of(context).primaryColor),
+                                                          onPressed: () {
+                                                            if (textStory.trim().isNotEmpty) {
+                                                              controller.sendStoryText(
+                                                                textStory.trim(),
+                                                              );
+                                                            }
+                                                          },
+                                                          child: Obx(
+                                                            () => controller.isLoading.value
+                                                                ? Padding(
+                                                                    padding: const EdgeInsets.all(5.0),
+                                                                    child: CircularProgressIndicator(
+                                                                      valueColor: AlwaysStoppedAnimation(Colors.white),
+                                                                    ),
+                                                                  )
+                                                                : Text(
+                                                                    "Adicionar",
+                                                                  ),
+                                                          ),
+                                                        ),
+                                                      ],
+                                                    );
+                                                  },
+                                                ),
+                                              );
+                                            },
+                                            child: Text(
+                                              "Tipo Texto",
+                                            ),
+                                          ),
+                                          ElevatedButton(
+                                            style: ElevatedButton.styleFrom(
+                                                backgroundColor: Theme.of(context).primaryColor),
+                                            onPressed: () {
+                                              Get.back();
+                                              Get.to(AddNewStory());
+                                            },
+                                            child: Text(
+                                              "Tipo Imagem",
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    );
                                   },
                                   child: Container(
                                     padding: EdgeInsets.all(3),
                                     decoration: BoxDecoration(
-                                        color: corBlack,
-                                        shape: BoxShape.circle,
-                                        border: Border.all(color: Colors.white)),
+                                      color: corBlack,
+                                      shape: BoxShape.circle,
+                                      border: Border.all(
+                                        color: Colors.white,
+                                      ),
+                                    ),
                                     child: Icon(
                                       Icons.add,
                                       color: Colors.white,
                                     ),
                                   ),
                                 ),
-                              )
+                              ),
                           ],
                         ),
                       ),
@@ -282,14 +309,20 @@ class _PostsState extends State<Posts> {
                     }
                     postController.setFilter();
 
-                    return Obx(() {
-                      if (postController.filteredPosts.isEmpty) {
-                        return SizedBox(
+                    return Obx(
+                      () {
+                        if (postController.filteredPosts.isEmpty) {
+                          return SizedBox(
                             height: MediaQuery.of(context).size.height / 2,
                             width: MediaQuery.of(context).size.width,
-                            child: Center(child: Text('nenhum post no momento')));
-                      }
-                      return ListView.builder(
+                            child: Center(
+                              child: Text(
+                                'nenhum post no momento',
+                              ),
+                            ),
+                          );
+                        }
+                        return ListView.builder(
                           padding: const EdgeInsets.only(left: 8, right: 8, top: 15),
                           shrinkWrap: true,
                           primary: false,
@@ -299,8 +332,10 @@ class _PostsState extends State<Posts> {
                             return PostCard(
                               post: postController.filteredPosts[index],
                             );
-                          });
-                    });
+                          },
+                        );
+                      },
+                    );
                   },
                 ),
               ],
@@ -320,97 +355,112 @@ class _PostsState extends State<Posts> {
                   postController.setOptionsFinishVisible(false);
                 },
                 child: Container(
-                    color: Colors.black54,
-                    height: height,
-                    width: width,
-                    child: GestureDetector(
-                      onTapCancel: () {},
-                      child: SimpleDialog(
-                        surfaceTintColor: corWhite,
-                        contentPadding: const EdgeInsets.only(top: 12, bottom: 18, right: 20, left: 20),
-                        insetPadding: width < 340
-                            ? const EdgeInsets.only(right: 20, left: 20)
-                            : EdgeInsets.only(right: width * 0.1, left: width * 0.1),
-                        children: [
-                          SizedBox(
-                            width: width,
-                            height: 200,
-                            child: Column(
-                              children: [
-                                Container(
-                                  padding: const EdgeInsets.only(bottom: 6),
-                                  child: const Text(
-                                    'Filtrar',
-                                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600, color: corBlack),
+                  color: Colors.black54,
+                  height: height,
+                  width: width,
+                  child: GestureDetector(
+                    onTapCancel: () {},
+                    child: SimpleDialog(
+                      surfaceTintColor: corWhite,
+                      contentPadding: const EdgeInsets.only(
+                        top: 12,
+                        bottom: 18,
+                        right: 20,
+                        left: 20,
+                      ),
+                      insetPadding: width < 340
+                          ? const EdgeInsets.only(right: 20, left: 20)
+                          : EdgeInsets.only(right: width * 0.1, left: width * 0.1),
+                      children: [
+                        SizedBox(
+                          width: width,
+                          height: 200,
+                          child: Column(
+                            children: [
+                              Container(
+                                padding: const EdgeInsets.only(bottom: 6),
+                                child: const Text(
+                                  'Filtrar',
+                                  style: TextStyle(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w600,
+                                    color: corBlack,
                                   ),
                                 ),
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: [
-                                    Obx(
-                                      () => CheckboxListTile(
-                                        title: Row(
-                                          children: [
-                                            Icon(
-                                              CupertinoIcons.heart_fill,
-                                              size: 40,
-                                              color: Colors.red,
-                                            ),
-                                            Text("Por Like:"),
-                                          ],
-                                        ),
-                                        value: postController.filterLiked.value,
-                                        onChanged: (value) {
-                                          postController.filterLiked.value = value!;
-                                        },
-                                      ),
-                                    ),
-                                    ListTile(
+                              ),
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Obx(
+                                    () => CheckboxListTile(
                                       title: Row(
                                         children: [
                                           Icon(
-                                            CupertinoIcons.calendar,
+                                            CupertinoIcons.heart_fill,
                                             size: 40,
-                                            color: Colors.green,
+                                            color: Colors.red,
                                           ),
-                                          Text("Data ação:"),
+                                          Text(
+                                            "Por Like:",
+                                          ),
                                         ],
                                       ),
-                                      trailing: ElevatedButton(
-                                        style:
-                                            ElevatedButton.styleFrom(backgroundColor: Theme.of(context).primaryColor),
-                                        onPressed: () {
-                                          Get.dialog(
-                                            DatePickerDialog(
-                                              initialDate: DateTime.now(),
-                                              firstDate: DateTime(2020),
-                                              lastDate: DateTime(2100),
-                                            ),
-                                          ).then((value) {
-                                            if (value != null) {
-                                              print(value);
-                                              postController.filterDate.value = value;
-                                              postController.setFilter();
-                                            }
-                                          });
-                                        },
-                                        child: Obx(
-                                          () => Text(
-                                            postController.filterDate.value == DateTime(1500)
-                                                ? "Selecionar"
-                                                : Utils.dateTimeParseString(
-                                                    date: postController.filterDate.value, setHours: false),
+                                      value: postController.filterLiked.value,
+                                      onChanged: (value) {
+                                        postController.filterLiked.value = value!;
+                                      },
+                                    ),
+                                  ),
+                                  ListTile(
+                                    title: Row(
+                                      children: [
+                                        Icon(
+                                          CupertinoIcons.calendar,
+                                          size: 40,
+                                          color: Colors.green,
+                                        ),
+                                        Text(
+                                          "Data ação:",
+                                        ),
+                                      ],
+                                    ),
+                                    trailing: ElevatedButton(
+                                      style: ElevatedButton.styleFrom(backgroundColor: Theme.of(context).primaryColor),
+                                      onPressed: () {
+                                        Get.dialog(
+                                          DatePickerDialog(
+                                            initialDate: DateTime.now(),
+                                            firstDate: DateTime(2020),
+                                            lastDate: DateTime(2100),
                                           ),
+                                        ).then((value) {
+                                          if (value != null) {
+                                            print(value);
+                                            postController.filterDate.value = value;
+                                            postController.setFilter();
+                                          }
+                                        });
+                                      },
+                                      child: Obx(
+                                        () => Text(
+                                          postController.filterDate.value == DateTime(1500)
+                                              ? "Selecionar"
+                                              : Utils.dateTimeParseString(
+                                                  date: postController.filterDate.value, setHours: false),
                                         ),
                                       ),
                                     ),
-                                    SizedBox(
-                                      height: 10,
-                                    ),
-                                    IconButton(
-                                      onPressed: () {
-                                        Get.dialog(AlertDialog(
-                                          title: Text("Deseja limpar os filtros?"),
+                                  ),
+                                  SizedBox(
+                                    height: 10,
+                                  ),
+                                  IconButton(
+                                    onPressed: () {
+                                      Get.dialog(
+                                        AlertDialog(
+                                          title: Text(
+                                            "Deseja limpar os filtros?",
+                                          ),
                                           alignment: Alignment.center,
                                           actionsAlignment: MainAxisAlignment.spaceEvenly,
                                           actions: [
@@ -430,26 +480,28 @@ class _PostsState extends State<Posts> {
                                               child: Text("Limpar"),
                                             )
                                           ],
-                                        ));
-                                      },
-                                      icon: Icon(
-                                        Icons.filter_alt_off,
-                                        size: 32,
-                                        color: corSilverSoft,
-                                      ),
-                                    )
-                                  ],
-                                ),
-                              ],
-                            ),
-                          )
-                        ],
-                      ),
-                    )),
+                                        ),
+                                      );
+                                    },
+                                    icon: Icon(
+                                      Icons.filter_alt_off,
+                                      size: 32,
+                                      color: corSilverSoft,
+                                    ),
+                                  )
+                                ],
+                              ),
+                            ],
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                ),
               ),
             ),
           ),
-        )
+        ),
       ],
     );
   }

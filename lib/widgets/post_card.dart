@@ -17,7 +17,11 @@ class PostCard extends StatelessWidget {
   final PostModel post;
   final bool isIgnoring;
 
-  PostCard({Key? key, required this.post, this.isIgnoring = false}) : super(key: key);
+  PostCard({
+    Key? key,
+    required this.post,
+    this.isIgnoring = false,
+  }) : super(key: key);
 
   PostController postController = Get.find<PostController>();
   UserController userController = Get.find<UserController>();
@@ -73,7 +77,7 @@ class PostCard extends StatelessWidget {
                     Get.to(ProfileExternalScreen(), arguments: {
                       'userImage': post.userImage,
                       'userHandle': post.userHandle,
-                      'userName': post.userName
+                      'userName': post.userName,
                     });
                   },
                   child: Container(
@@ -84,7 +88,7 @@ class PostCard extends StatelessWidget {
                           blurRadius: 17.0,
                           offset: Offset(0, 12),
                           spreadRadius: 1,
-                        )
+                        ),
                       ],
                     ),
                     child: ClipRRect(
@@ -104,15 +108,21 @@ class PostCard extends StatelessWidget {
                   children: [
                     Text(
                       post.userHandle!.split('@')[0],
-                      style: TextStyle(color: corBlack, fontSize: 15),
+                      style: TextStyle(
+                        color: corBlack,
+                        fontSize: 15,
+                      ),
                     ),
                     SizedBox(height: 5),
                     Text(
                       Utils.dateTimeParseString(date: post.createdAt!.toDate(), setHours: true),
-                      style: TextStyle(color: Colors.grey, fontSize: 12),
+                      style: TextStyle(
+                        color: Colors.grey,
+                        fontSize: 12,
+                      ),
                     )
                   ],
-                )
+                ),
               ],
             ),
           ),
@@ -126,7 +136,7 @@ class PostCard extends StatelessWidget {
               Icons.more_horiz,
               size: 30,
             ),
-          )
+          ),
       ],
     );
   }
@@ -176,13 +186,19 @@ class PostCard extends StatelessWidget {
                             child: Text(
                               post.likeCount! > 0 ? post.likeCount.toString() : '0',
                               overflow: TextOverflow.ellipsis,
-                              style: TextStyle(color: Colors.black54, fontSize: 13, fontWeight: FontWeight.w900),
+                              style: TextStyle(
+                                color: Colors.black54,
+                                fontSize: 13,
+                                fontWeight: FontWeight.w900,
+                              ),
                             ),
                           ),
                         ],
                       ),
                     ),
-                    SizedBox(width: 30),
+                    SizedBox(
+                      width: 30,
+                    ),
                     Container(
                       width: 80,
                       child: GestureDetector(
@@ -197,12 +213,18 @@ class PostCard extends StatelessWidget {
                               size: 25,
                               color: Colors.black54,
                             ),
-                            SizedBox(width: 11),
+                            SizedBox(
+                              width: 11,
+                            ),
                             Expanded(
                               child: Text(
                                 post.commentCount.toString(),
                                 overflow: TextOverflow.ellipsis,
-                                style: TextStyle(color: Colors.black54, fontSize: 13, fontWeight: FontWeight.w900),
+                                style: TextStyle(
+                                  color: Colors.black54,
+                                  fontSize: 13,
+                                  fontWeight: FontWeight.w900,
+                                ),
                               ),
                             ),
                           ],

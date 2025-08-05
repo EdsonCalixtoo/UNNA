@@ -10,8 +10,13 @@ class AppBarProfile extends StatelessWidget implements PreferredSizeWidget {
   final List<PostModel> posts;
   final String userName;
 
-  AppBarProfile({Key? key, this.height, required this.userImage, required this.posts, required this.userName})
-      : super(key: key);
+  AppBarProfile({
+    Key? key,
+    this.height,
+    required this.userImage,
+    required this.posts,
+    required this.userName,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -35,8 +40,22 @@ class AppBarProfile extends StatelessWidget implements PreferredSizeWidget {
       return Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text(number, style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold, color: Colors.white)),
-          Text(info, style: TextStyle(fontSize: 15, fontWeight: FontWeight.normal, color: Colors.white)),
+          Text(
+            number,
+            style: TextStyle(
+              fontSize: 15,
+              fontWeight: FontWeight.bold,
+              color: Colors.white,
+            ),
+          ),
+          Text(
+            info,
+            style: TextStyle(
+              fontSize: 15,
+              fontWeight: FontWeight.normal,
+              color: Colors.white,
+            ),
+          ),
         ],
       );
     }
@@ -68,13 +87,18 @@ class AppBarProfile extends StatelessWidget implements PreferredSizeWidget {
     Widget userName(String name) {
       return Stack(
         children: [
-          Container(color: corPrimaria, height: 155, child: Container()),
+          Container(
+            color: corPrimaria,
+            height: 155,
+            child: Container(),
+          ),
           Container(
             decoration: BoxDecoration(
-                color: corFundoClara,
-                borderRadius: BorderRadius.only(
-                  bottomRight: Radius.circular(40),
-                )),
+              color: corFundoClara,
+              borderRadius: BorderRadius.only(
+                bottomRight: Radius.circular(40),
+              ),
+            ),
             height: 155,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -85,8 +109,16 @@ class AppBarProfile extends StatelessWidget implements PreferredSizeWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text(this.userName, style: TextStyle(fontSize: 26, fontWeight: FontWeight.bold)),
-                    SizedBox(height: 10),
+                    Text(
+                      this.userName,
+                      style: TextStyle(
+                        fontSize: 26,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
                   ],
                 ),
               ],
@@ -99,11 +131,12 @@ class AppBarProfile extends StatelessWidget implements PreferredSizeWidget {
     Widget userInfo() {
       return Container(
         decoration: BoxDecoration(
-            color: corPrimaria,
-            borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(40),
-              bottomRight: Radius.circular(40),
-            )),
+          color: corPrimaria,
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(40),
+            bottomRight: Radius.circular(40),
+          ),
+        ),
         height: 89,
         child: Center(
           child: Row(
