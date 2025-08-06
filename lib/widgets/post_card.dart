@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -28,35 +30,85 @@ class PostCard extends StatelessWidget {
 
   Widget imagePost(BuildContext context, String? urlImagem) {
     var widtSize = MediaQuery.of(context).size.width * 0.7;
+
     return IgnorePointer(
       ignoring: isIgnoring,
       child: GestureDetector(
         onTap: () {
           Get.to(PostCommentScreen(), arguments: post);
         },
-        child: Container(
-          height: widtSize,
-          margin: EdgeInsets.all(0),
-          decoration: new BoxDecoration(
-            image: DecorationImage(
-              onError: (exception, stackTrace) => Icon(Icons.error),
-              image: CachedNetworkImageProvider(
-                urlImagem != null
-                    ? urlImagem
-                    : 'https://firebasestorage.googleapis.com/v0/b/experimentosdiversos.appspot.com/o/zSocialImagens%2FtesteImage.png?alt=media&token=53a7bdf7-a9e2-4752-a11f-d0ccd074936c',
+        child: Stack(
+          children: [
+            Container(
+              height: widtSize,
+              margin: EdgeInsets.all(0),
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  onError: (exception, stackTrace) => const Icon(Icons.error),
+                  image: CachedNetworkImageProvider(
+                    urlImagem ??
+                        'https://firebasestorage.googleapis.com/v0/b/experimentosdiversos.appspot.com/o/zSocialImagens%2FtesteImage.png?alt=media&token=53a7bdf7-a9e2-4752-a11f-d0ccd074936c',
+                  ),
+                  fit: BoxFit.cover,
+                ),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black54,
+                    blurRadius: 15.0,
+                    offset: Offset(1, 15.75),
+                  )
+                ],
+                color: corPrimaria,
+                borderRadius: BorderRadius.circular(25.0),
               ),
-              fit: BoxFit.cover,
             ),
-            boxShadow: <BoxShadow>[
-              BoxShadow(
-                color: Colors.black54,
-                blurRadius: 15.0,
-                offset: Offset(1, 15.75),
-              )
-            ],
-            color: corPrimaria,
-            borderRadius: BorderRadius.all(Radius.circular(25.0)),
-          ),
+
+            // Aba lateral fixa no canto direito
+            Positioned(
+              right: 12,
+              top: 16,
+              bottom: 16,
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(30),
+                child: BackdropFilter(
+                  filter: ImageFilter.blur(sigmaX: 15, sigmaY: 15),
+                  child: Container(
+                    width: 60,
+                    padding: const EdgeInsets.symmetric(vertical: 24),
+                    decoration: BoxDecoration(
+                      color: Colors.white.withOpacity(0.01),
+                      borderRadius: BorderRadius.circular(30),
+                    ),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: const [
+                        Icon(
+                          Icons.favorite_border,
+                          color: Colors.white,
+                          size: 28,
+                        ),
+                        Icon(
+                          Icons.chat_bubble_outline,
+                          color: Colors.white,
+                          size: 26,
+                        ),
+                        Icon(
+                          Icons.bookmark_border,
+                          color: Colors.white,
+                          size: 26,
+                        ),
+                        Icon(
+                          Icons.send,
+                          color: Colors.white,
+                          size: 26,
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ],
         ),
       ),
     );
@@ -178,10 +230,11 @@ class PostCard extends StatelessWidget {
                       child: Row(
                         children: [
                           LikeButton(
-                              isLiked: post.likes!.contains(userController.user.id),
-                              onTap: () {
-                                postController.toggleLike(userController.user.id!, post);
-                              }),
+                            isLiked: post.likes!.contains(userController.user.id),
+                            onTap: () {
+                              postController.toggleLike(userController.user.id!, post);
+                            },
+                          ),
                           Expanded(
                             child: Text(
                               post.likeCount! > 0 ? post.likeCount.toString() : '0',
