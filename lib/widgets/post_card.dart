@@ -20,10 +20,10 @@ class PostCard extends StatelessWidget {
   final bool isIgnoring;
 
   PostCard({
-    Key? key,
+    super.key,
     required this.post,
     this.isIgnoring = false,
-  }) : super(key: key);
+  });
 
   PostController postController = Get.find<PostController>();
   UserController userController = Get.find<UserController>();

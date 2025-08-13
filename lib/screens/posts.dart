@@ -19,7 +19,11 @@ import 'add_new_story.dart';
 class Posts extends StatefulWidget {
   final String category;
   final String? subCategory;
-  Posts({required this.category, this.subCategory});
+
+  const Posts({
+    required this.category,
+    this.subCategory,
+  });
 
   @override
   _PostsState createState() => _PostsState();
@@ -211,9 +215,10 @@ class _PostsState extends State<Posts> {
                                                         cursorColor: Theme.of(context).primaryColor,
                                                         decoration: InputDecoration(
                                                           enabledBorder: OutlineInputBorder(
-                                                              borderSide: BorderSide(
-                                                            color: Theme.of(context).primaryColor,
-                                                          )),
+                                                            borderSide: BorderSide(
+                                                              color: Theme.of(context).primaryColor,
+                                                            ),
+                                                          ),
                                                           focusedBorder: OutlineInputBorder(
                                                             borderSide: BorderSide(
                                                               color: Theme.of(context).primaryColor,
@@ -297,11 +302,17 @@ class _PostsState extends State<Posts> {
                   builder: (context, snapshot) {
                     if (snapshot.connectionState == ConnectionState.waiting) {
                       return Center(
-                        child: CircularProgressIndicator(valueColor: AlwaysStoppedAnimation(corPrimariaClara)),
+                        child: CircularProgressIndicator(
+                          valueColor: AlwaysStoppedAnimation(corPrimariaClara),
+                        ),
                       );
                     }
                     if (snapshot.hasError || snapshot.data == null) {
-                      return Center(child: Text("Erro ao carregar Posts"));
+                      return Center(
+                        child: Text(
+                          "Erro ao carregar Posts",
+                        ),
+                      );
                     }
                     postController.listAllPosts.clear();
                     for (var element in snapshot.data!.docs) {

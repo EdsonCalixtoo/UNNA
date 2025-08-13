@@ -176,7 +176,13 @@ class UserProfileScreen extends StatelessWidget {
                             }
                             if (snapshot.hasError || snapshot.data == null) {
                               return Scaffold(
-                                  backgroundColor: corFundoClara, body: Center(child: Text("Erro ao carregar Posts")));
+                                backgroundColor: corFundoClara,
+                                body: Center(
+                                  child: Text(
+                                    "Erro ao carregar Posts",
+                                  ),
+                                ),
+                              );
                             }
                             List<PostModel> posts =
                                 List.generate(snapshot.data!.docs.length, (index) => snapshot.data!.docs[index].data());

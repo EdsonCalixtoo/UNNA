@@ -10,13 +10,13 @@ class AppBarProfile extends StatelessWidget implements PreferredSizeWidget {
   final List<PostModel> posts;
   final String userName;
 
-  AppBarProfile({
-    Key? key,
+  const AppBarProfile({
+    super.key,
     this.height,
     required this.userImage,
     required this.posts,
     required this.userName,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

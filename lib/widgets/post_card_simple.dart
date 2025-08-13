@@ -13,9 +13,9 @@ class PostCardSimple extends StatelessWidget {
   final PostModel post;
 
   PostCardSimple({
-    Key? key,
+    super.key,
     required this.post,
-  }) : super(key: key);
+  });
 
   PostController postController = Get.find<PostController>();
 

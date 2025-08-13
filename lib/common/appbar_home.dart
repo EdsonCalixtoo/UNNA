@@ -4,13 +4,14 @@ import '../controllers/post_controller.dart';
 import '../utils/colors.dart';
 
 class AppBarHome extends StatelessWidget implements PreferredSizeWidget {
-  AppBarHome({
-    Key? key,
+  final bool isHome;
+  final bool isFilter;
+
+  const AppBarHome({
+    super.key,
     required this.isHome,
     required this.isFilter,
   });
-  final bool isHome;
-  final bool isFilter;
 
   @override
   Widget build(BuildContext context) {

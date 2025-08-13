@@ -7,11 +7,11 @@ class BotaoCortado extends StatelessWidget {
   final Icon? iconeBotao;
 
   const BotaoCortado({
-    Key? key,
+    super.key,
     required this.executarAcao,
     required this.textoBotao,
     this.iconeBotao,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

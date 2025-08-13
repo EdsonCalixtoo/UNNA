@@ -51,4 +51,4 @@ flutter:
   fonts:
     - family: GrandHotel
       fonts:
-        - asset: fonts/GrandHotel-Regular.ttf
+        - asset: assets/fonts/GrandHotel-Regular.ttf

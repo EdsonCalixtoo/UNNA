@@ -38,6 +38,7 @@ class PostAddEditScreen extends StatelessWidget {
   CategoryController _categoryController = Get.find<CategoryController>();
   UserController _userController = Get.find<UserController>();
   late PostModel model;
+
   @override
   Widget build(BuildContext context) {
     if (Get.arguments != null) {

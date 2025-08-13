@@ -11,12 +11,13 @@ class CommentCard extends StatelessWidget {
   final CommentModel comment;
   final String loggedUserHandle;
   final Function onDelete;
+
   const CommentCard({
-    Key? key,
+    super.key,
     required this.comment,
     required this.loggedUserHandle,
     required this.onDelete,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

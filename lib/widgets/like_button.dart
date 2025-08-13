@@ -7,10 +7,11 @@ class LikeButton extends StatefulWidget {
   final Function? onTap;
 
   LikeButton({
-    Key? key,
+    super.key,
     this.isLiked = false,
     required this.onTap,
-  }) : super(key: key);
+  });
+
   @override
   _LikeButtonState createState() => _LikeButtonState();
 }

@@ -9,6 +9,7 @@ import '../utils/colors.dart';
 class StoryPage extends StatefulWidget {
   final List<List<StoryModel>> storys;
   final int initialPage;
+
   const StoryPage({
     super.key,
     required this.storys,

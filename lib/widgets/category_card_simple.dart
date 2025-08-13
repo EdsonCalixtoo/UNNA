@@ -5,9 +5,9 @@ class CategoryCardSimple extends StatelessWidget {
   final CategoryModel category;
 
   const CategoryCardSimple({
-    Key? key,
+    super.key,
     required this.category,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

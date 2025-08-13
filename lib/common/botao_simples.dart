@@ -6,13 +6,14 @@ class BotaoSimples extends StatelessWidget {
   final String textoBotao;
   final Icon? iconeBotao;
   final double? width;
+
   const BotaoSimples({
-    Key? key,
+    super.key,
     required this.executarAcao,
     required this.textoBotao,
     this.iconeBotao,
     this.width,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

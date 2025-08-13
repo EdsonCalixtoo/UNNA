@@ -8,11 +8,12 @@ import 'package:unna/screens/posts.dart';
 import 'package:unna/utils/colors.dart';
 
 class SubCategory extends StatefulWidget {
-  SubCategory({
-    Key? key,
+  final String category;
+
+  const SubCategory({
+    super.key,
     required this.category,
   });
-  final String category;
 
   @override
   _SubCategoryState createState() => _SubCategoryState();
