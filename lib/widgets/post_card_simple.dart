@@ -2,10 +2,10 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
-import '../controllers/post_controller.dart';
-import '../controllers/user_controller.dart';
-import '../models/post.dart';
-import '../screens/post_comment.dart';
+import 'package:unna/controllers/post_controller.dart';
+import 'package:unna/controllers/user_controller.dart';
+import 'package:unna/models/post.dart';
+import 'package:unna/screens/post_comment.dart';
 import 'like_button.dart';
 
 // ignore: must_be_immutable
@@ -29,7 +29,7 @@ class PostCardSimple extends StatelessWidget {
       child: Container(
         height: widtSize,
         margin: EdgeInsets.all(0),
-        decoration: new BoxDecoration(
+        decoration: BoxDecoration(
           image: DecorationImage(
             image: CachedNetworkImageProvider(
               urlImagem != null
@@ -41,12 +41,12 @@ class PostCardSimple extends StatelessWidget {
           boxShadow: <BoxShadow>[
             BoxShadow(
               color: Colors.black54,
-              blurRadius: 35.0,
+              blurRadius: 35,
               offset: Offset(1, 15.75),
             )
           ],
           color: Colors.blue,
-          borderRadius: new BorderRadius.all(Radius.circular(25.0)),
+          borderRadius: BorderRadius.circular(25),
         ),
       ),
     );
@@ -113,7 +113,10 @@ class PostCardSimple extends StatelessWidget {
                       width: 70,
                       child: GestureDetector(
                         onTap: () {
-                          Get.to(PostCommentScreen(), arguments: post);
+                          Get.to(
+                            PostCommentScreen(),
+                            arguments: post,
+                          );
                         },
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.end,
@@ -156,9 +159,9 @@ class PostCardSimple extends StatelessWidget {
     return Container(
       padding: EdgeInsets.all(10),
       margin: EdgeInsets.only(bottom: 15),
-      decoration: new BoxDecoration(
+      decoration: BoxDecoration(
         color: Colors.white,
-        borderRadius: new BorderRadius.all(Radius.circular(25.0)),
+        borderRadius: BorderRadius.circular(25),
       ),
       child: Column(
         children: [

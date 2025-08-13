@@ -23,7 +23,6 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         brightness: Brightness.light,
         primaryColor: corPrimaria,
-        indicatorColor: corPrimaria,
         primaryColorLight: corPrimariaClara,
         textSelectionTheme: TextSelectionThemeData(
           cursorColor: corPrimariaClara,

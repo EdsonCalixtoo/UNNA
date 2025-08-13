@@ -1,10 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
-import '../models/category.dart';
-import '../models/comment.dart';
-import '../models/post.dart';
-import '../models/story_model.dart';
-import '../models/user.dart';
+import 'package:unna/models/category.dart';
+import 'package:unna/models/comment.dart';
+import 'package:unna/models/post.dart';
+import 'package:unna/models/story_model.dart';
+import 'package:unna/models/user.dart';
 
 class Database {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;

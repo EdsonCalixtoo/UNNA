@@ -2,15 +2,27 @@
 
 App social facul
 
-
 <p align="center"> <img src="Capture.PNG" width="850" title="hover text"> </p>
 
+## Project statistics
+
+- **Lines of code**: 8,606
+- **Files**: 50
+- **Folders**: 9
+- **Screens**: 8
+- **Packages**: 19
+- **Average lines per file**: 172
+
+## Text editor settings
+
+- **Editor**: VSCode
+- **Dart line length**: 120 characters
+- **Tab Size**: 2
 
 ### :heavy_check_mark: Topicos abordados  
  - GetX / Firebase
  - Avatar Randomico - algo assim: https://eu.ui-avatars.com/api/?name=${WordPair.random().asPascalCase}&background=random
  - Lottier - animacao (botao coracao. Arquivo widgets/likeButton.dart)
-
 
 ### Cores versao Unna): 
 - azulOriginal: #00AFEF
@@ -19,14 +31,12 @@ App social facul
 - rosaEscuro: #9c0c5a
 - teste: https://cssgradient.io/
 
-
 ### Gerar APK de debug S
 ```console 
   flutter build apk --debug
   //Built build\app\outputs\flutter-apk\app-debug.apk.
 ```
  
-
 Avatar randomico:
  'userImage': 'https://eu.ui-avatars.com/api/?name=${WordPair.random().asPascalCase}&background=random',
 
@@ -37,9 +47,7 @@ Avatar randomico:
 - niver: 11/11/2001
 - Projeto: unna
 - colecoes: unna-*
-- ate agora: unna-posts
- 
-  
+- ate agora: unna-posts  
 
 ### 👪 Usuarios
 - joao@unna.com  s:123456 ok F600uUJqPzVCwFIUp03z1gjQ5Ag2
@@ -48,12 +56,7 @@ Avatar randomico:
 - angela@unna.com s:123456 ok hGnr6DclqKUm48r0q30lO9ES8503
 - paula@unna.com s:123456 ok RcWV3LwBRFaSPYyWq0ituxX1oe83
  
-
 ### :blue_book: Documentacao  
 - [Cliente](https://www.facebook.com/Edson123juninho/) 
 - [Video pagination](https://www.youtube.com/watch?v=IruuzPydPz4)
-- [Doc sovre Icones em texto](https://api.flutter.dev/flutter/material/Icons-class.html#constants)
-
- 
-
-
+- [Doc sobre Icones em texto](https://api.flutter.dev/flutter/material/Icons-class.html#constants)

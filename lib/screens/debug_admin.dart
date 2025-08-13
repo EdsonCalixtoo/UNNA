@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../controllers/user_controller.dart';
-import '../utils/firebase.dart';
+import 'package:unna/controllers/user_controller.dart';
+import 'package:unna/utils/firebase.dart';
 
 class DebugAdminScreen extends StatelessWidget {
   @override
@@ -12,7 +12,7 @@ class DebugAdminScreen extends StatelessWidget {
       ),
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.all(28.0),
+          padding: const EdgeInsets.all(28),
           child: Column(
             children: <Widget>[
               Container(

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:unna/screens/home.dart';
 import 'package:unna/screens/user_profile.dart';
-import '../common/custom_nav_bar.dart';
+import 'package:unna/widgets/custom_nav_bar.dart';
 import 'post_add_edit.dart';
 
 class StartPage extends StatelessWidget {

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:unna/common/appbar_home.dart';
+import 'package:unna/widgets/appbar_home.dart';
 import 'package:unna/controllers/post_controller.dart';
 import 'package:unna/controllers/sub_category_controller.dart';
 import 'package:unna/models/category.dart';

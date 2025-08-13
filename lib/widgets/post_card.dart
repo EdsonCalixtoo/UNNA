@@ -1,23 +1,23 @@
 import 'dart:ui';
-
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:unna/controllers/post_controller.dart';
+import 'package:unna/controllers/user_controller.dart';
+import 'package:unna/models/post.dart';
 import 'package:unna/screens/post_add_edit.dart';
+import 'package:unna/screens/post_comment.dart';
+import 'package:unna/screens/user_profile_external.dart';
 import 'package:unna/utils/colors.dart';
-import 'package:unna/utils/utils.dart';
-import '../controllers/post_controller.dart';
-import '../controllers/user_controller.dart';
-import '../models/post.dart';
-import '../screens/post_comment.dart';
-import '../screens/user_profile_external.dart';
+import 'package:unna/utils/functions.dart';
 import 'like_button.dart';
 
-// ignore: must_be_immutable
 class PostCard extends StatelessWidget {
   final PostModel post;
   final bool isIgnoring;
+  final PostController postController = Get.find<PostController>();
+  final UserController userController = Get.find<UserController>();
 
   PostCard({
     super.key,
@@ -25,91 +25,153 @@ class PostCard extends StatelessWidget {
     this.isIgnoring = false,
   });
 
-  PostController postController = Get.find<PostController>();
-  UserController userController = Get.find<UserController>();
-
   Widget imagePost(BuildContext context, String? urlImagem) {
-    var widtSize = MediaQuery.of(context).size.width * 0.7;
+    var widthSize = MediaQuery.of(context).size.width * 0.9;
 
-    return IgnorePointer(
-      ignoring: isIgnoring,
-      child: GestureDetector(
-        onTap: () {
-          Get.to(PostCommentScreen(), arguments: post);
-        },
-        child: Stack(
-          children: [
-            Container(
-              height: widtSize,
-              margin: EdgeInsets.all(0),
+    return GestureDetector(
+      onTap: () {
+        Get.to(
+          PostCommentScreen(),
+          arguments: post,
+        );
+      },
+      child: Stack(
+        children: [
+          Container(
+            width: double.infinity,
+            height: widthSize * 1.4,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(25),
+              image: DecorationImage(
+                image: CachedNetworkImageProvider(
+                  urlImagem ??
+                      'https://firebasestorage.googleapis.com/v0/b/experimentosdiversos.appspot.com/o/zSocialImagens%2FtesteImage.png?alt=media&token=53a7bdf7-a9e2-4752-a11f-d0ccd074936c',
+                ),
+                fit: BoxFit.cover,
+              ),
+            ),
+          ),
+          Positioned(
+            right: 0,
+            top: 20,
+            bottom: 20,
+            child: ClipRRect(
+              borderRadius: const BorderRadius.horizontal(
+                left: Radius.circular(30),
+                right: Radius.circular(0),
+              ),
+              child: BackdropFilter(
+                filter: ImageFilter.blur(
+                  sigmaX: 15,
+                  sigmaY: 15,
+                ),
+                child: Container(
+                  width: 90,
+                  padding: const EdgeInsets.symmetric(vertical: 25),
+                  decoration: BoxDecoration(
+                    color: Colors.white.withAlpha(31),
+                    borderRadius: const BorderRadius.horizontal(
+                      left: Radius.circular(30),
+                      right: Radius.circular(0),
+                    ),
+                  ),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: const [
+                      Icon(
+                        Icons.favorite_border,
+                        color: Colors.white,
+                        size: 30,
+                      ),
+                      Icon(
+                        Icons.chat_bubble_outline,
+                        color: Colors.white,
+                        size: 28,
+                      ),
+                      Icon(
+                        Icons.bookmark_border,
+                        color: Colors.white,
+                        size: 28,
+                      ),
+                      Icon(
+                        Icons.send,
+                        color: Colors.white,
+                        size: 28,
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ),
+          Positioned(
+            left: 0,
+            right: 0,
+            bottom: 0,
+            child: Container(
+              padding: EdgeInsets.all(12),
               decoration: BoxDecoration(
-                image: DecorationImage(
-                  onError: (exception, stackTrace) => const Icon(Icons.error),
-                  image: CachedNetworkImageProvider(
-                    urlImagem ??
-                        'https://firebasestorage.googleapis.com/v0/b/experimentosdiversos.appspot.com/o/zSocialImagens%2FtesteImage.png?alt=media&token=53a7bdf7-a9e2-4752-a11f-d0ccd074936c',
-                  ),
-                  fit: BoxFit.cover,
+                borderRadius: BorderRadius.vertical(bottom: Radius.circular(25)),
+                gradient: LinearGradient(
+                  colors: [
+                    Colors.black.withAlpha(153),
+                    Colors.transparent,
+                  ],
+                  begin: Alignment.bottomCenter,
+                  end: Alignment.topCenter,
                 ),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black54,
-                    blurRadius: 15.0,
-                    offset: Offset(1, 15.75),
-                  )
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Row(
+                    children: [
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(50),
+                        child: CachedNetworkImage(
+                          imageUrl: post.userImage!,
+                          height: 40,
+                          width: 40,
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                      SizedBox(width: 10),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            post.userHandle!.split('@')[0],
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 14,
+                            ),
+                          ),
+                          Text(
+                            Functions.dateTimeParseString(date: post.createdAt!.toDate(), setHours: true),
+                            style: TextStyle(color: Colors.white70, fontSize: 12),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 8),
+                  if (post.body != null && post.body!.isNotEmpty)
+                    Text(
+                      post.body!,
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 13,
+                      ),
+                    ),
                 ],
-                color: corPrimaria,
-                borderRadius: BorderRadius.circular(25.0),
               ),
             ),
-
-            // Aba lateral fixa no canto direito
-            Positioned(
-              right: 12,
-              top: 16,
-              bottom: 16,
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(30),
-                child: BackdropFilter(
-                  filter: ImageFilter.blur(sigmaX: 15, sigmaY: 15),
-                  child: Container(
-                    width: 60,
-                    padding: const EdgeInsets.symmetric(vertical: 24),
-                    decoration: BoxDecoration(
-                      color: Colors.white.withOpacity(0.01),
-                      borderRadius: BorderRadius.circular(30),
-                    ),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: const [
-                        Icon(
-                          Icons.favorite_border,
-                          color: Colors.white,
-                          size: 28,
-                        ),
-                        Icon(
-                          Icons.chat_bubble_outline,
-                          color: Colors.white,
-                          size: 26,
-                        ),
-                        Icon(
-                          Icons.bookmark_border,
-                          color: Colors.white,
-                          size: 26,
-                        ),
-                        Icon(
-                          Icons.send,
-                          color: Colors.white,
-                          size: 26,
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-            ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
@@ -126,18 +188,21 @@ class PostCard extends StatelessWidget {
               children: [
                 GestureDetector(
                   onTap: () {
-                    Get.to(ProfileExternalScreen(), arguments: {
-                      'userImage': post.userImage,
-                      'userHandle': post.userHandle,
-                      'userName': post.userName,
-                    });
+                    Get.to(
+                      ProfileExternalScreen(),
+                      arguments: {
+                        'userImage': post.userImage,
+                        'userHandle': post.userHandle,
+                        'userName': post.userName,
+                      },
+                    );
                   },
                   child: Container(
                     decoration: BoxDecoration(
                       boxShadow: <BoxShadow>[
                         BoxShadow(
                           color: corBlack.withAlpha(50),
-                          blurRadius: 17.0,
+                          blurRadius: 17,
                           offset: Offset(0, 12),
                           spreadRadius: 1,
                         ),
@@ -147,8 +212,8 @@ class PostCard extends StatelessWidget {
                       borderRadius: BorderRadius.circular(50),
                       child: CachedNetworkImage(
                         imageUrl: post.userImage!,
-                        height: 51.0,
-                        width: 51.0,
+                        height: 51,
+                        width: 51,
                         fit: BoxFit.cover,
                       ),
                     ),
@@ -167,7 +232,7 @@ class PostCard extends StatelessWidget {
                     ),
                     SizedBox(height: 5),
                     Text(
-                      Utils.dateTimeParseString(date: post.createdAt!.toDate(), setHours: true),
+                      Functions.dateTimeParseString(date: post.createdAt!.toDate(), setHours: true),
                       style: TextStyle(
                         color: Colors.grey,
                         fontSize: 12,
@@ -256,7 +321,10 @@ class PostCard extends StatelessWidget {
                       width: 80,
                       child: GestureDetector(
                         onTap: () {
-                          Get.to(PostCommentScreen(), arguments: post);
+                          Get.to(
+                            PostCommentScreen(),
+                            arguments: post,
+                          );
                         },
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.end,
@@ -299,17 +367,13 @@ class PostCard extends StatelessWidget {
     return Container(
       padding: EdgeInsets.all(15),
       margin: EdgeInsets.only(bottom: 15),
-      decoration: new BoxDecoration(
+      decoration: BoxDecoration(
         color: Colors.white,
-        borderRadius: new BorderRadius.all(Radius.circular(25.0)),
+        borderRadius: BorderRadius.circular(25),
       ),
       child: Column(
         children: [
-          userLine(),
-          SizedBox(height: 15),
           imagePost(context, post.postImage!),
-          textBody(),
-          baseLine(),
         ],
       ),
     );

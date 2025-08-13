@@ -1,8 +1,8 @@
 import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../controllers/add_new_story_controller.dart';
-import '../utils/colors.dart';
+import 'package:unna/controllers/add_new_story_controller.dart';
+import 'package:unna/utils/colors.dart';
 
 class AddNewStory extends StatefulWidget {
   const AddNewStory({super.key});
@@ -48,7 +48,7 @@ class _AddNewStoryState extends State<AddNewStory> {
                       child: Obx(
                         () => controller.isLoading.value
                             ? Padding(
-                                padding: const EdgeInsets.all(5.0),
+                                padding: const EdgeInsets.all(5),
                                 child: CircularProgressIndicator(
                                   valueColor: AlwaysStoppedAnimation(Colors.white),
                                 ),

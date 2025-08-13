@@ -2,10 +2,10 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
+import 'package:unna/controllers/post_controller.dart';
+import 'package:unna/models/comment.dart';
+import 'package:unna/screens/user_profile_external.dart';
 import 'package:unna/utils/colors.dart';
-import '../controllers/post_controller.dart';
-import '../screens/user_profile_external.dart';
-import '../models/comment.dart';
 
 class CommentCard extends StatelessWidget {
   final CommentModel comment;
@@ -40,7 +40,7 @@ class CommentCard extends StatelessWidget {
                 boxShadow: <BoxShadow>[
                   BoxShadow(
                     color: corBlack.withAlpha(50),
-                    blurRadius: 17.0,
+                    blurRadius: 17,
                     offset: Offset(0, 12),
                     spreadRadius: 1,
                   ),
@@ -50,8 +50,8 @@ class CommentCard extends StatelessWidget {
                 borderRadius: BorderRadius.circular(50),
                 child: CachedNetworkImage(
                   imageUrl: comment.userImage,
-                  height: 41.0,
-                  width: 41.0,
+                  height: 41,
+                  width: 41,
                   fit: BoxFit.cover,
                 ),
               ),
@@ -63,9 +63,9 @@ class CommentCard extends StatelessWidget {
           Expanded(
             child: Container(
               padding: EdgeInsets.all(10),
-              decoration: new BoxDecoration(
+              decoration: BoxDecoration(
                 color: Colors.grey[200],
-                borderRadius: new BorderRadius.all(Radius.circular(15.0)),
+                borderRadius: BorderRadius.circular(15),
               ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,

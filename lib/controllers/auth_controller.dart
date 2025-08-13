@@ -1,11 +1,11 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
+import 'package:unna/models/user.dart';
+import 'package:unna/screens/home.dart';
+import 'package:unna/screens/login.dart';
 import 'package:unna/screens/start.dart';
+import 'package:unna/services/database.dart';
 import 'user_controller.dart';
-import '../models/user.dart';
-import '../screens/home.dart';
-import '../screens/login.dart';
-import '../services/database.dart';
 
 class AuthController extends GetxController {
   FirebaseAuth _auth = FirebaseAuth.instance;
@@ -56,7 +56,7 @@ class AuthController extends GetxController {
   void login(String email, String password) async {
     try {
       // UserCredential user = await _auth.signInWithEmailAndPassword(
-      //     email: email.trim(), password: password);
+      //     email: email.trim(), password: password,);
       // Get.find<UserController>().user =
       //     await Database().getUser(user.user!.uid);
 

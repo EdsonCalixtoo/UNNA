@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../models/category.dart';
+import 'package:unna/models/category.dart';
 
 class CategoryCardSimple extends StatelessWidget {
   final CategoryModel category;
@@ -17,13 +17,14 @@ class CategoryCardSimple extends StatelessWidget {
           Row(
             children: [
               Expanded(
-                  flex: 10,
-                  child: Text(
-                    category.order.toString(),
-                    style: TextStyle(
-                      fontSize: 12,
-                    ),
-                  )),
+                flex: 10,
+                child: Text(
+                  category.order.toString(),
+                  style: TextStyle(
+                    fontSize: 12,
+                  ),
+                ),
+              ),
               Expanded(
                 flex: 20,
                 child: Icon(

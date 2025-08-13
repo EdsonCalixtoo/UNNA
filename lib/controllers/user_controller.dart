@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:unna/models/user.dart';
+import 'package:unna/screens/login.dart';
 import 'package:unna/screens/start.dart';
+import 'package:unna/services/database.dart';
 import 'auth_controller.dart';
-import '../models/user.dart';
-import '../screens/login.dart';
-import '../services/database.dart';
 
 class UserController extends GetxController {
   AuthController _authController = Get.find<AuthController>();

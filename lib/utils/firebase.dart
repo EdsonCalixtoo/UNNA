@@ -2,8 +2,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:english_words/english_words.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../services/database.dart';
-import '../utils/generical.dart';
+import 'package:unna/services/database.dart';
+import 'package:unna/utils/functions.dart';
 
 void criarPostsRandomicos({bool exibirSnack = true}) {
   print('\n\n criarPostsRandomicos INICIO -----');
@@ -42,8 +42,8 @@ void criarPostsRandomicos({bool exibirSnack = true}) {
     'https://firebasestorage.googleapis.com/v0/b/experimentosdiversos.appspot.com/o/unnaImagens%2FtesteImage.png?alt=media&token=53a7bdf7-a9e2-4752-a11f-d0ccd074936c',
     'https://firebasestorage.googleapis.com/v0/b/unna-449e5.appspot.com/o/unnaImagens%2Fpost1.jpg?alt=media&token=cfe9accd-4525-4624-b022-3690a3be0bd5',
   ];
-  int autorRandomico = numeroRandomicoDentrUmRange(0, possiveisAutores.length);
-  int categoriaRandomico = numeroRandomicoDentrUmRange(0, possiveisCategorias.length);
+  int autorRandomico = Functions.numeroRandomicoDentrUmRange(0, possiveisAutores.length);
+  int categoriaRandomico = Functions.numeroRandomicoDentrUmRange(0, possiveisCategorias.length);
 
   var elemento = {
     'body': WordPair.random().asPascalCase,

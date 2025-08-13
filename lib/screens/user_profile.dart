@@ -5,15 +5,15 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:unna/controllers/auth_controller.dart';
+import 'package:unna/controllers/user_controller.dart';
 import 'package:unna/models/post.dart';
 import 'package:unna/screens/category_add_edit.dart';
+import 'package:unna/screens/debug_admin.dart';
+import 'package:unna/services/database.dart';
+import 'package:unna/utils/colors.dart';
+import 'package:unna/widgets/botao_simples.dart';
 import 'package:unna/widgets/post_card.dart';
-import '../common/botao_simples.dart';
-import '../controllers/auth_controller.dart';
-import '../controllers/user_controller.dart';
-import '../screens/debug_admin.dart';
-import '../services/database.dart';
-import '../utils/colors.dart';
 
 // ignore: must_be_immutable
 class UserProfileScreen extends StatelessWidget {
@@ -78,16 +78,16 @@ class UserProfileScreen extends StatelessWidget {
       backgroundColor: corFundoClara,
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.all(15.0),
+          padding: const EdgeInsets.all(15),
           child: LayoutBuilder(builder: (context, constraints) {
             return SingleChildScrollView(
               child: Column(
                 children: [
                   Container(
                     padding: EdgeInsets.all(10),
-                    decoration: new BoxDecoration(
+                    decoration: BoxDecoration(
                       color: Colors.white,
-                      borderRadius: new BorderRadius.all(Radius.circular(25.0)),
+                      borderRadius: BorderRadius.circular(25),
                     ),
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
@@ -169,8 +169,11 @@ class UserProfileScreen extends StatelessWidget {
                               return Scaffold(
                                 backgroundColor: corFundoClara,
                                 body: Center(
-                                  child:
-                                      CircularProgressIndicator(valueColor: AlwaysStoppedAnimation(corPrimariaClara)),
+                                  child: CircularProgressIndicator(
+                                    valueColor: AlwaysStoppedAnimation(
+                                      corPrimariaClara,
+                                    ),
+                                  ),
                                 ),
                               );
                             }
@@ -238,14 +241,24 @@ class UserProfileScreen extends StatelessWidget {
                                       ),
                                     ),
                                     Expanded(
-                                        child: Row(
-                                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                      children: [
-                                        userInfoDetail("Likes", getLikesCounts(posts).toString()),
-                                        userInfoDetail("Posts", posts.length.toString()),
-                                        userInfoDetail("Comments", getCommentsCounts(posts).toString())
-                                      ],
-                                    ))
+                                      child: Row(
+                                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                        children: [
+                                          userInfoDetail(
+                                            "Likes",
+                                            getLikesCounts(posts).toString(),
+                                          ),
+                                          userInfoDetail(
+                                            "Posts",
+                                            posts.length.toString(),
+                                          ),
+                                          userInfoDetail(
+                                            "Comments",
+                                            getCommentsCounts(posts).toString(),
+                                          )
+                                        ],
+                                      ),
+                                    ),
                                   ],
                                 ),
                                 SizedBox(
@@ -256,21 +269,33 @@ class UserProfileScreen extends StatelessWidget {
                                   child: TextFormField(
                                     decoration: InputDecoration(
                                       enabledBorder: OutlineInputBorder(
-                                        borderRadius: BorderRadius.all(Radius.circular(15.0)),
-                                        borderSide: BorderSide(width: 2, color: corPrimaria),
+                                        borderRadius: BorderRadius.circular(15),
+                                        borderSide: BorderSide(
+                                          width: 2,
+                                          color: corPrimaria,
+                                        ),
                                       ),
                                       focusedBorder: OutlineInputBorder(
-                                        borderRadius: BorderRadius.all(Radius.circular(15.0)),
-                                        borderSide: BorderSide(width: 2, color: corPrimaria),
+                                        borderRadius: BorderRadius.circular(15),
+                                        borderSide: BorderSide(
+                                          width: 2,
+                                          color: corPrimaria,
+                                        ),
                                       ),
                                       filled: true,
                                       fillColor: Colors.transparent,
-                                      label: Text('Nome'),
-                                      labelStyle: TextStyle(color: corPrimariaEscura),
+                                      label: Text(
+                                        'Nome',
+                                      ),
+                                      labelStyle: TextStyle(
+                                        color: corPrimariaEscura,
+                                      ),
                                     ),
                                     controller: nameTextController,
                                     autocorrect: false,
-                                    style: TextStyle(color: corBlack),
+                                    style: TextStyle(
+                                      color: corBlack,
+                                    ),
                                   ),
                                 ),
                                 SizedBox(height: 10),
@@ -283,7 +308,7 @@ class UserProfileScreen extends StatelessWidget {
                                             primary: false,
                                             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3),
                                             itemBuilder: (context, index) => Padding(
-                                              padding: const EdgeInsets.all(5.0),
+                                              padding: const EdgeInsets.all(5),
                                               child: GestureDetector(
                                                 onTap: () {
                                                   isGrid.value = false;
@@ -349,9 +374,9 @@ class UserProfileScreen extends StatelessWidget {
                   if (_userController.user.role == 'admin')
                     Container(
                       padding: EdgeInsets.all(20),
-                      decoration: new BoxDecoration(
+                      decoration: BoxDecoration(
                         color: Colors.white,
-                        borderRadius: new BorderRadius.all(Radius.circular(25.0)),
+                        borderRadius: BorderRadius.circular(25),
                       ),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,

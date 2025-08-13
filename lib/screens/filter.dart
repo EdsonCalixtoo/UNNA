@@ -1,10 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:unna/controllers/category_controller.dart';
 import 'package:unna/controllers/post_controller.dart';
-import '../controllers/category_controller.dart';
-import '../utils/colors.dart';
-import '../utils/utils.dart';
+import 'package:unna/utils/colors.dart';
+import 'package:unna/utils/functions.dart';
 
 class FilterScreen extends StatefulWidget {
   @override
@@ -95,9 +95,9 @@ class _FilterScreenState extends State<FilterScreen> with SingleTickerProviderSt
               Container(
                 padding: EdgeInsets.all(5),
                 margin: EdgeInsets.all(10),
-                decoration: new BoxDecoration(
+                decoration: BoxDecoration(
                   color: Colors.white,
-                  borderRadius: new BorderRadius.all(Radius.circular(25.0)),
+                  borderRadius: BorderRadius.circular(25),
                 ),
                 height: MediaQuery.of(context).size.height * 0.80,
                 width: double.infinity,
@@ -179,7 +179,10 @@ class _FilterScreenState extends State<FilterScreen> with SingleTickerProviderSt
               () => Text(
                 _postController.filterDate.value == DateTime(1500)
                     ? "Selecione a data"
-                    : Utils.dateTimeParseString(date: _postController.filterDate.value, setHours: false),
+                    : Functions.dateTimeParseString(
+                        date: _postController.filterDate.value,
+                        setHours: false,
+                      ),
               ),
             ),
           ),

@@ -1,13 +1,13 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:unna/controllers/post_controller.dart';
+import 'package:unna/controllers/user_controller.dart';
 import 'package:unna/models/post.dart';
 import 'package:unna/services/database.dart';
-import '../common/appbar_profile.dart';
-import '../controllers/post_controller.dart';
-import '../controllers/user_controller.dart';
-import '../utils/colors.dart';
-import '../widgets/post_card_simple.dart';
+import 'package:unna/utils/colors.dart';
+import 'package:unna/widgets/appbar_profile.dart';
+import 'package:unna/widgets/post_card_simple.dart';
 
 class ProfileExternalScreen extends StatefulWidget {
   @override
@@ -23,7 +23,10 @@ class _ProfileExternalScreenState extends State<ProfileExternalScreen> {
       if (scrollController.position.maxScrollExtent == scrollController.offset) {
         final UserController userController = Get.put(UserController());
 
-        Get.find<PostController>().getMore(quantity: 10, userId: userController.user.id!);
+        Get.find<PostController>().getMore(
+          quantity: 10,
+          userId: userController.user.id!,
+        );
       }
     });
 
@@ -95,12 +98,18 @@ class _ProfileExternalScreenState extends State<ProfileExternalScreen> {
                 builder: (context) {
                   if (snapshot.data!.docs.length != 0) {
                     return ListView.builder(
-                      padding: const EdgeInsets.only(left: 30, right: 30, top: 10),
+                      padding: const EdgeInsets.only(
+                        left: 30,
+                        right: 30,
+                        top: 10,
+                      ),
                       shrinkWrap: true,
                       controller: scrollController,
                       itemCount: snapshot.data!.docs.length,
                       itemBuilder: (BuildContext ctxt, int index) {
-                        return new PostCardSimple(post: snapshot.data!.docs[index].data());
+                        return new PostCardSimple(
+                          post: snapshot.data!.docs[index].data(),
+                        );
                       },
                     );
                   } else {

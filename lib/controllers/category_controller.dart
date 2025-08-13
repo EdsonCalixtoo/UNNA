@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
-import '../models/category.dart';
-import '../services/database.dart';
+import 'package:unna/models/category.dart';
+import 'package:unna/services/database.dart';
 
 class CategoryController extends GetxController {
   RxList<CategoryModel> categories = <CategoryModel>[].obs;

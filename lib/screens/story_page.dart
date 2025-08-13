@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:story/story.dart';
-import '../controllers/user_controller.dart';
-import '../models/story_model.dart';
-import '../services/database.dart';
-import '../utils/colors.dart';
+import 'package:unna/controllers/user_controller.dart';
+import 'package:unna/models/story_model.dart';
+import 'package:unna/services/database.dart';
+import 'package:unna/utils/colors.dart';
 
 class StoryPage extends StatefulWidget {
   final List<List<StoryModel>> storys;

@@ -1,9 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 import 'package:unna/controllers/user_controller.dart';
-import '../models/comment.dart';
-import '../models/post.dart';
-import '../services/database.dart';
+import 'package:unna/models/comment.dart';
+import 'package:unna/models/post.dart';
+import 'package:unna/services/database.dart';
 
 class PostController extends GetxController {
   UserController _userController = Get.find<UserController>();

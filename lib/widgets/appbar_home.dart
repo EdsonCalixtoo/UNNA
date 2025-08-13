@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../controllers/post_controller.dart';
-import '../utils/colors.dart';
+import 'package:unna/controllers/post_controller.dart';
+import 'package:unna/utils/colors.dart';
 
 class AppBarHome extends StatelessWidget implements PreferredSizeWidget {
   final bool isHome;

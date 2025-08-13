@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
 import 'package:unna/models/sub_category.dart';
-import '../services/database.dart';
+import 'package:unna/services/database.dart';
 
 class SubCategoryController extends GetxController {
   RxList<SubCategoryModel> categories = <SubCategoryModel>[].obs;

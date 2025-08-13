@@ -3,17 +3,18 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:unna/controllers/add_new_story_controller.dart';
+import 'package:unna/controllers/post_controller.dart';
+import 'package:unna/controllers/user_controller.dart';
+import 'package:unna/services/database.dart';
+import 'package:unna/utils/colors.dart';
+import 'package:unna/widgets/appbar_home.dart';
+import 'package:unna/widgets/custom_nav_bar.dart';
 import 'package:unna/models/post.dart';
 import 'package:unna/models/story_model.dart';
 import 'package:unna/screens/story_page.dart';
-import 'package:unna/utils/utils.dart';
-import '../common/appbar_home.dart';
-import '../controllers/add_new_story_controller.dart';
-import '../controllers/post_controller.dart';
-import '../controllers/user_controller.dart';
-import '../services/database.dart';
-import '../utils/colors.dart';
-import '../widgets/post_card.dart';
+import 'package:unna/utils/functions.dart';
+import 'package:unna/widgets/post_card.dart';
 import 'add_new_story.dart';
 
 class Posts extends StatefulWidget {
@@ -61,8 +62,11 @@ class _PostsState extends State<Posts> {
             isHome: false,
             isFilter: true,
           ),
-          extendBody: false,
-          extendBodyBehindAppBar: false,
+          extendBody: true,
+          extendBodyBehindAppBar: true,
+          bottomNavigationBar: CustomNavBar(
+            pageController: null,
+          ),
           body: SingleChildScrollView(
             child: Column(
               children: [
@@ -240,7 +244,7 @@ class _PostsState extends State<Posts> {
                                                           child: Obx(
                                                             () => controller.isLoading.value
                                                                 ? Padding(
-                                                                    padding: const EdgeInsets.all(5.0),
+                                                                    padding: const EdgeInsets.all(5),
                                                                     child: CircularProgressIndicator(
                                                                       valueColor: AlwaysStoppedAnimation(Colors.white),
                                                                     ),
@@ -456,7 +460,7 @@ class _PostsState extends State<Posts> {
                                         () => Text(
                                           postController.filterDate.value == DateTime(1500)
                                               ? "Selecionar"
-                                              : Utils.dateTimeParseString(
+                                              : Functions.dateTimeParseString(
                                                   date: postController.filterDate.value, setHours: false),
                                         ),
                                       ),

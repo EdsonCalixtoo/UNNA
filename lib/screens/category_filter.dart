@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../controllers/category_controller.dart';
-import '../utils/colors.dart';
-import '../widgets/category_card.dart';
+import 'package:unna/controllers/category_controller.dart';
+import 'package:unna/utils/colors.dart';
+import 'package:unna/widgets/category_card.dart';
 
 class CategoryFilterScreen extends StatelessWidget {
   @override
@@ -37,9 +37,9 @@ class CategoryFilterScreen extends StatelessWidget {
               Container(
                 padding: EdgeInsets.only(top: 15),
                 margin: EdgeInsets.all(10),
-                decoration: new BoxDecoration(
+                decoration: BoxDecoration(
                   color: Colors.white,
-                  borderRadius: new BorderRadius.all(Radius.circular(25.0)),
+                  borderRadius: BorderRadius.circular(25),
                 ),
                 height: MediaQuery.of(context).size.height * 0.80,
                 width: double.infinity,
@@ -74,7 +74,9 @@ class CategoryFilterScreen extends StatelessWidget {
               mainAxisSpacing: 10,
               crossAxisSpacing: 15,
               children: categoryController.categoryList.map((category) {
-                return CategoryCard(category: category);
+                return CategoryCard(
+                  category: category,
+                );
               }).toList(),
             );
           } else {

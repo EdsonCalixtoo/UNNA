@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../controllers/nav_controller.dart';
-import '../controllers/post_controller.dart';
-import '../screens/home.dart';
-import '../utils/colors.dart';
-import '../models/category.dart';
+import 'package:unna/controllers/nav_controller.dart';
+import 'package:unna/controllers/post_controller.dart';
+import 'package:unna/models/category.dart';
+import 'package:unna/screens/home.dart';
+import 'package:unna/utils/colors.dart';
 
 class CategoryCard extends StatelessWidget {
   final CategoryModel category;
@@ -30,13 +30,13 @@ class CategoryCard extends StatelessWidget {
         },
         child: Container(
           padding: EdgeInsets.all(20),
-          decoration: new BoxDecoration(
+          decoration: BoxDecoration(
             color: Colors.transparent,
             border: Border.all(
               color: corPrimaria,
-              width: 2.0,
+              width: 2,
             ),
-            borderRadius: new BorderRadius.all(Radius.circular(35.0)),
+            borderRadius: BorderRadius.circular(35),
           ),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,

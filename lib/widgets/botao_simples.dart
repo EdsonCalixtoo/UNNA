@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../utils/colors.dart';
+import 'package:unna/utils/colors.dart';
 
 class BotaoSimples extends StatelessWidget {
   final Function executarAcao;
@@ -21,26 +21,28 @@ class BotaoSimples extends StatelessWidget {
       borderRadius: BorderRadius.circular(5),
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(80.0)),
-          padding: const EdgeInsets.all(0.0),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(80),
+          ),
+          padding: const EdgeInsets.all(0),
         ),
         onPressed: () {
           executarAcao();
         },
         child: Ink(
-          decoration: const BoxDecoration(
+          decoration: BoxDecoration(
             gradient: LinearGradient(
               colors: <Color>[
                 corPrimariaClara,
                 corPrimaria,
               ],
             ),
-            borderRadius: BorderRadius.all(Radius.circular(80.0)),
+            borderRadius: BorderRadius.circular(80),
           ),
           child: Container(
             constraints: const BoxConstraints(
-              minWidth: 88.0,
-              minHeight: 36.0,
+              minWidth: 88,
+              minHeight: 36,
             ),
             alignment: Alignment.center,
             padding: EdgeInsets.symmetric(horizontal: 20),

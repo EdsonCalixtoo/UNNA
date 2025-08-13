@@ -2,7 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:unna/models/post.dart';
-import '../utils/colors.dart';
+import 'package:unna/utils/colors.dart';
 
 class AppBarProfile extends StatelessWidget implements PreferredSizeWidget {
   final double? height;
@@ -66,7 +66,7 @@ class AppBarProfile extends StatelessWidget implements PreferredSizeWidget {
           boxShadow: <BoxShadow>[
             BoxShadow(
               color: corBlack.withAlpha(50),
-              blurRadius: 17.0,
+              blurRadius: 17,
               offset: Offset(0, 12),
               spreadRadius: 1,
             )
@@ -76,8 +76,8 @@ class AppBarProfile extends StatelessWidget implements PreferredSizeWidget {
           borderRadius: BorderRadius.circular(50),
           child: CachedNetworkImage(
             imageUrl: this.userImage,
-            height: 81.0,
-            width: 81.0,
+            height: 81,
+            width: 81,
             fit: BoxFit.cover,
           ),
         ),
@@ -142,9 +142,18 @@ class AppBarProfile extends StatelessWidget implements PreferredSizeWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              userInfoDetail('POSTS', posts.length.toString()),
-              userInfoDetail('LIKES', getLikesCounts().toString()),
-              userInfoDetail('COMMENTS', getCommentsCounts().toString()),
+              userInfoDetail(
+                'POSTS',
+                posts.length.toString(),
+              ),
+              userInfoDetail(
+                'LIKES',
+                getLikesCounts().toString(),
+              ),
+              userInfoDetail(
+                'COMMENTS',
+                getCommentsCounts().toString(),
+              ),
             ],
           ),
         ),

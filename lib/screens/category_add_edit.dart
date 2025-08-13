@@ -3,12 +3,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:get/get.dart';
+import 'package:unna/controllers/category_controller.dart';
 import 'package:unna/models/category.dart';
 import 'package:unna/services/database.dart';
+import 'package:unna/utils/colors.dart';
+import 'package:unna/widgets/botao_simples.dart';
 import 'package:url_launcher/url_launcher.dart';
-import '../common/botao_simples.dart';
-import '../controllers/category_controller.dart';
-import '../utils/colors.dart';
 
 // ignore: must_be_immutable
 class CategoryAddEditScreen extends StatefulWidget {
@@ -21,9 +21,7 @@ class CategoryAddEditScreen extends StatefulWidget {
 
 class _CategoryAddEditScreenState extends State<CategoryAddEditScreen> {
   final TextEditingController nameController = TextEditingController();
-
   final TextEditingController iconTextController = TextEditingController();
-
   final TextEditingController orderController = TextEditingController();
 
   var categoryList = <CategoryModel>[].obs;
@@ -69,12 +67,12 @@ class _CategoryAddEditScreenState extends State<CategoryAddEditScreen> {
                       ),
                       content: SingleChildScrollView(
                         child: Padding(
-                          padding: const EdgeInsets.all(15.0),
+                          padding: const EdgeInsets.all(15),
                           child: Container(
                             padding: EdgeInsets.all(10),
-                            decoration: new BoxDecoration(
+                            decoration: BoxDecoration(
                               color: Colors.white,
-                              borderRadius: new BorderRadius.all(Radius.circular(25.0)),
+                              borderRadius: BorderRadius.circular(25),
                             ),
                             child: Form(
                               key: formKey,
@@ -95,14 +93,14 @@ class _CategoryAddEditScreenState extends State<CategoryAddEditScreen> {
                                         color: corPrimaria,
                                       ),
                                       enabledBorder: OutlineInputBorder(
-                                        borderRadius: BorderRadius.all(Radius.circular(90.0)),
+                                        borderRadius: BorderRadius.circular(90),
                                         borderSide: BorderSide(
                                           width: 2,
                                           color: Theme.of(context).colorScheme.primary,
                                         ),
                                       ),
                                       focusedBorder: OutlineInputBorder(
-                                        borderRadius: BorderRadius.all(Radius.circular(90.0)),
+                                        borderRadius: BorderRadius.circular(90),
                                         borderSide: BorderSide(
                                           width: 2,
                                           color: Theme.of(context).colorScheme.primary,
@@ -144,14 +142,14 @@ class _CategoryAddEditScreenState extends State<CategoryAddEditScreen> {
                                               color: corPrimaria,
                                             ),
                                             enabledBorder: OutlineInputBorder(
-                                              borderRadius: BorderRadius.all(Radius.circular(90.0)),
+                                              borderRadius: BorderRadius.circular(90),
                                               borderSide: BorderSide(
                                                 width: 2,
                                                 color: Theme.of(context).colorScheme.primary,
                                               ),
                                             ),
                                             focusedBorder: OutlineInputBorder(
-                                              borderRadius: BorderRadius.all(Radius.circular(90.0)),
+                                              borderRadius: BorderRadius.circular(90),
                                               borderSide: BorderSide(
                                                 width: 2,
                                                 color: Theme.of(context).colorScheme.primary,
@@ -228,43 +226,44 @@ class _CategoryAddEditScreenState extends State<CategoryAddEditScreen> {
             ],
           ),
           bottomNavigationBar: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 15.0),
-              child: Obx(
-                () => ElevatedButton(
-                  style: ElevatedButton.styleFrom(backgroundColor: corPrimaria),
-                  onPressed: () async {
-                    try {
-                      isLoading.value = true;
-                      for (var element in categoryList) {
-                        if (element.id == "") {
-                          String id = await Database().getReference("unna-categories");
-                          await Database().addCategory(element.copyWith(id: id).toMap());
-                        } else {
-                          await Database().editCategory(element.toMap());
-                        }
+            padding: const EdgeInsets.symmetric(horizontal: 15),
+            child: Obx(
+              () => ElevatedButton(
+                style: ElevatedButton.styleFrom(backgroundColor: corPrimaria),
+                onPressed: () async {
+                  try {
+                    isLoading.value = true;
+                    for (var element in categoryList) {
+                      if (element.id == "") {
+                        String id = await Database().getReference("unna-categories");
+                        await Database().addCategory(element.copyWith(id: id).toMap());
+                      } else {
+                        await Database().editCategory(element.toMap());
                       }
-                      _categoryController.categoryList = categoryList;
-                    } catch (e) {
-                      Get.snackbar(
-                        'Erro',
-                        'Preenche os campos direito que vai!',
-                        snackPosition: SnackPosition.TOP,
-                        backgroundColor: corPrimaria,
-                        duration: Duration(seconds: 5),
-                        colorText: Colors.white,
-                      ).show();
                     }
-                    isLoading.value = false;
-                  },
-                  child: isLoading.value
-                      ? CircularProgressIndicator(
-                          valueColor: AlwaysStoppedAnimation(corPrimaria),
-                        )
-                      : Text(
-                          "Salvar Alterações",
-                        ),
-                ),
-              )),
+                    _categoryController.categoryList = categoryList;
+                  } catch (e) {
+                    Get.snackbar(
+                      'Erro',
+                      'Preenche os campos direito que vai!',
+                      snackPosition: SnackPosition.TOP,
+                      backgroundColor: corPrimaria,
+                      duration: Duration(seconds: 5),
+                      colorText: Colors.white,
+                    ).show();
+                  }
+                  isLoading.value = false;
+                },
+                child: isLoading.value
+                    ? CircularProgressIndicator(
+                        valueColor: AlwaysStoppedAnimation(corPrimaria),
+                      )
+                    : Text(
+                        "Salvar Alterações",
+                      ),
+              ),
+            ),
+          ),
           body: KeyboardVisibilityBuilder(
             builder: (context, isKeyboardVisible) {
               return Container(
@@ -315,14 +314,14 @@ class _CategoryAddEditScreenState extends State<CategoryAddEditScreen> {
                                     color: corPrimaria,
                                   ),
                                   enabledBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.all(Radius.circular(90.0)),
+                                    borderRadius: BorderRadius.circular(90),
                                     borderSide: BorderSide(
                                       width: 2,
                                       color: Theme.of(context).colorScheme.primary,
                                     ),
                                   ),
                                   focusedBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.all(Radius.circular(90.0)),
+                                    borderRadius: BorderRadius.circular(90),
                                     borderSide: BorderSide(width: 2, color: Theme.of(context).colorScheme.primary),
                                   ),
                                   filled: true,
@@ -364,12 +363,12 @@ class _CategoryAddEditScreenState extends State<CategoryAddEditScreen> {
                                   ),
                                   content: SingleChildScrollView(
                                     child: Padding(
-                                      padding: const EdgeInsets.all(15.0),
+                                      padding: const EdgeInsets.all(15),
                                       child: Container(
                                         padding: EdgeInsets.all(10),
-                                        decoration: new BoxDecoration(
+                                        decoration: BoxDecoration(
                                           color: Colors.white,
-                                          borderRadius: new BorderRadius.all(Radius.circular(25.0)),
+                                          borderRadius: BorderRadius.circular(25),
                                         ),
                                         child: Form(
                                           key: formKey,
@@ -392,7 +391,7 @@ class _CategoryAddEditScreenState extends State<CategoryAddEditScreen> {
                                                   ),
                                                   enabledBorder: OutlineInputBorder(
                                                     borderRadius: BorderRadius.all(
-                                                      Radius.circular(90.0),
+                                                      Radius.circular(90),
                                                     ),
                                                     borderSide: BorderSide(
                                                       width: 2,
@@ -401,7 +400,7 @@ class _CategoryAddEditScreenState extends State<CategoryAddEditScreen> {
                                                   ),
                                                   focusedBorder: OutlineInputBorder(
                                                     borderRadius: BorderRadius.all(
-                                                      Radius.circular(90.0),
+                                                      Radius.circular(90),
                                                     ),
                                                     borderSide: BorderSide(
                                                       width: 2,
@@ -445,14 +444,14 @@ class _CategoryAddEditScreenState extends State<CategoryAddEditScreen> {
                                                           color: corPrimaria,
                                                         ),
                                                         enabledBorder: OutlineInputBorder(
-                                                          borderRadius: BorderRadius.all(Radius.circular(90.0)),
+                                                          borderRadius: BorderRadius.circular(90),
                                                           borderSide: BorderSide(
                                                             width: 2,
                                                             color: Theme.of(context).colorScheme.primary,
                                                           ),
                                                         ),
                                                         focusedBorder: OutlineInputBorder(
-                                                          borderRadius: BorderRadius.all(Radius.circular(90.0)),
+                                                          borderRadius: BorderRadius.circular(90),
                                                           borderSide: BorderSide(
                                                             width: 2,
                                                             color: Theme.of(context).colorScheme.primary,
@@ -550,60 +549,62 @@ class _CategoryAddEditScreenState extends State<CategoryAddEditScreen> {
                           trailing: IconButton(
                             onPressed: () {
                               String subCategoryName = categoryList[index].subCategories[i];
-                              Get.dialog(AlertDialog(
-                                actions: [
-                                  ElevatedButton(
-                                    style: ElevatedButton.styleFrom(backgroundColor: corPrimaria),
-                                    onPressed: () {
-                                      if (subCategoryName.isEmpty) {
-                                        return;
-                                      }
-                                      List<CategoryModel> categorys = categoryList.value;
-                                      categorys[index].subCategories[i] = subCategoryName;
-                                      categoryList.value = categorys;
-                                      Get.close(0);
+                              Get.dialog(
+                                AlertDialog(
+                                  actions: [
+                                    ElevatedButton(
+                                      style: ElevatedButton.styleFrom(backgroundColor: corPrimaria),
+                                      onPressed: () {
+                                        if (subCategoryName.isEmpty) {
+                                          return;
+                                        }
+                                        List<CategoryModel> categorys = categoryList.value;
+                                        categorys[index].subCategories[i] = subCategoryName;
+                                        categoryList.value = categorys;
+                                        Get.close(0);
+                                      },
+                                      child: Text(
+                                        "Alterar",
+                                      ),
+                                    )
+                                  ],
+                                  content: TextFormField(
+                                    initialValue: subCategoryName,
+                                    decoration: InputDecoration(
+                                      prefixIcon: Icon(
+                                        Icons.loyalty,
+                                        color: corPrimaria,
+                                      ),
+                                      enabledBorder: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(90),
+                                        borderSide: BorderSide(
+                                          width: 2,
+                                          color: Theme.of(context).colorScheme.primary,
+                                        ),
+                                      ),
+                                      focusedBorder: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(90),
+                                        borderSide: BorderSide(
+                                          width: 2,
+                                          color: Theme.of(context).colorScheme.primary,
+                                        ),
+                                      ),
+                                      filled: true,
+                                      fillColor: Colors.transparent,
+                                      hintText: 'Nome',
+                                      hintStyle: TextStyle(
+                                        color: corPrimariaEscura,
+                                      ),
+                                    ),
+                                    onChanged: (value) {
+                                      subCategoryName = value;
                                     },
-                                    child: Text(
-                                      "Alterar",
-                                    ),
-                                  )
-                                ],
-                                content: TextFormField(
-                                  initialValue: subCategoryName,
-                                  decoration: InputDecoration(
-                                    prefixIcon: Icon(
-                                      Icons.loyalty,
-                                      color: corPrimaria,
-                                    ),
-                                    enabledBorder: OutlineInputBorder(
-                                      borderRadius: BorderRadius.all(Radius.circular(90.0)),
-                                      borderSide: BorderSide(
-                                        width: 2,
-                                        color: Theme.of(context).colorScheme.primary,
-                                      ),
-                                    ),
-                                    focusedBorder: OutlineInputBorder(
-                                      borderRadius: BorderRadius.all(Radius.circular(90.0)),
-                                      borderSide: BorderSide(
-                                        width: 2,
-                                        color: Theme.of(context).colorScheme.primary,
-                                      ),
-                                    ),
-                                    filled: true,
-                                    fillColor: Colors.transparent,
-                                    hintText: 'Nome',
-                                    hintStyle: TextStyle(
-                                      color: corPrimariaEscura,
-                                    ),
+                                    autocorrect: false,
+                                    keyboardType: TextInputType.emailAddress,
+                                    style: TextStyle(color: corBlack),
                                   ),
-                                  onChanged: (value) {
-                                    subCategoryName = value;
-                                  },
-                                  autocorrect: false,
-                                  keyboardType: TextInputType.emailAddress,
-                                  style: TextStyle(color: corBlack),
                                 ),
-                              ));
+                              );
                             },
                             icon: Icon(
                               Icons.edit,
@@ -629,7 +630,7 @@ class _CategoryAddEditScreenState extends State<CategoryAddEditScreen> {
     return Container(
       color: Colors.transparent,
       child: Padding(
-        padding: EdgeInsets.all(8.0),
+        padding: EdgeInsets.all(8),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[

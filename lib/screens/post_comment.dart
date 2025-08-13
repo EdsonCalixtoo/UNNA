@@ -4,15 +4,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
+import 'package:unna/controllers/category_controller.dart';
+import 'package:unna/controllers/post_controller.dart';
+import 'package:unna/controllers/user_controller.dart';
 import 'package:unna/models/comment.dart';
-import '../common/botao_cortado.dart';
-import '../common/botao_simples.dart';
-import '../controllers/category_controller.dart';
-import '../controllers/post_controller.dart';
-import '../controllers/user_controller.dart';
-import '../models/post.dart';
-import '../utils/colors.dart';
-import '../widgets/comment_card.dart';
+import 'package:unna/models/post.dart';
+import 'package:unna/utils/colors.dart';
+import 'package:unna/widgets/botao_cortado.dart';
+import 'package:unna/widgets/botao_simples.dart';
+import 'package:unna/widgets/comment_card.dart';
 
 // ignore: must_be_immutable
 class PostCommentScreen extends StatelessWidget {
@@ -49,15 +49,15 @@ class PostCommentScreen extends StatelessWidget {
             systemOverlayStyle: SystemUiOverlayStyle.dark,
             pinned: true,
             backgroundColor: corFundoClara,
-            expandedHeight: 250.0,
+            expandedHeight: 250,
             flexibleSpace: FlexibleSpaceBar(
               background: Stack(
                 children: [
                   Container(
                     height: 270,
                     width: double.infinity,
-                    decoration: new BoxDecoration(
-                      gradient: new LinearGradient(
+                    decoration: BoxDecoration(
+                      gradient: LinearGradient(
                         begin: Alignment.topLeft,
                         end: Alignment.bottomRight,
                         colors: [
@@ -66,13 +66,13 @@ class PostCommentScreen extends StatelessWidget {
                           Color.fromRGBO(0, 0, 0, 1),
                         ],
                       ),
-                      image: new DecorationImage(
+                      image: DecorationImage(
                         image: CachedNetworkImageProvider(post != null
                             ? post!.postImage!
                             : 'https://firebasestorage.googleapis.com/v0/b/experimentosdiversos.appspot.com/o/zSocialImagens%2FtesteImage.png?alt=media&token=53a7bdf7-a9e2-4752-a11f-d0ccd074936c'),
                         fit: BoxFit.cover,
-                        colorFilter: new ColorFilter.mode(
-                          Colors.grey.withOpacity(0.3),
+                        colorFilter: ColorFilter.mode(
+                          Colors.grey.withAlpha(77),
                           BlendMode.dstATop,
                         ),
                       ),
@@ -138,8 +138,8 @@ class PostCommentScreen extends StatelessWidget {
                 ),
                 enabledBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.only(
-                    bottomLeft: Radius.circular(90.0),
-                    topLeft: Radius.circular(90.0),
+                    bottomLeft: Radius.circular(90),
+                    topLeft: Radius.circular(90),
                   ),
                   borderSide: BorderSide(
                     width: 2,
@@ -148,8 +148,8 @@ class PostCommentScreen extends StatelessWidget {
                 ),
                 focusedBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.only(
-                    bottomLeft: Radius.circular(90.0),
-                    topLeft: Radius.circular(90.0),
+                    bottomLeft: Radius.circular(90),
+                    topLeft: Radius.circular(90),
                   ),
                   borderSide: BorderSide(
                     width: 2,
@@ -221,11 +221,11 @@ class PostCommentScreen extends StatelessWidget {
   Widget loadingElement() {
     return Container(
       height: 53,
-      decoration: new BoxDecoration(
+      decoration: BoxDecoration(
         color: corPrimaria,
-        borderRadius: new BorderRadius.only(
-          bottomRight: Radius.circular(90.0),
-          topRight: Radius.circular(90.0),
+        borderRadius: BorderRadius.only(
+          bottomRight: Radius.circular(90),
+          topRight: Radius.circular(90),
         ),
       ),
       child: Center(
@@ -271,7 +271,11 @@ class PostCommentScreen extends StatelessWidget {
             );
           }
           if (snapshot.hasError || snapshot.data == null) {
-            return Center(child: Text("Erro ao carregar comentarios"));
+            return Center(
+              child: Text(
+                "Erro ao carregar comentarios",
+              ),
+            );
           }
           return Container(
             child: snapshot.data!.docs.length <= 0
@@ -311,12 +315,12 @@ class PostCommentScreen extends StatelessWidget {
       ),
       child: Center(
         child: Padding(
-          padding: const EdgeInsets.all(15.0),
+          padding: const EdgeInsets.all(15),
           child: Container(
             padding: EdgeInsets.all(10),
-            decoration: new BoxDecoration(
+            decoration: BoxDecoration(
               color: Colors.white,
-              borderRadius: new BorderRadius.all(Radius.circular(25.0)),
+              borderRadius: BorderRadius.circular(25),
             ),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -335,14 +339,14 @@ class PostCommentScreen extends StatelessWidget {
                       color: corPrimaria,
                     ),
                     enabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(90.0)),
+                      borderRadius: BorderRadius.circular(90),
                       borderSide: BorderSide(
                         width: 2,
                         color: Theme.of(context).colorScheme.primary,
                       ),
                     ),
                     focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(90.0)),
+                      borderRadius: BorderRadius.circular(90),
                       borderSide: BorderSide(
                         width: 2,
                         color: Theme.of(context).colorScheme.primary,
@@ -382,9 +386,9 @@ class PostCommentScreen extends StatelessWidget {
           padding: EdgeInsets.only(top: 35, right: 15),
           child: Container(
             padding: EdgeInsets.fromLTRB(15, 5, 10, 5),
-            decoration: new BoxDecoration(
+            decoration: BoxDecoration(
               color: Colors.black26,
-              borderRadius: new BorderRadius.all(Radius.circular(25.0)),
+              borderRadius: BorderRadius.circular(25),
             ),
             child: Row(
               children: [
@@ -416,7 +420,7 @@ class PostCommentScreen extends StatelessWidget {
                     boxShadow: <BoxShadow>[
                       BoxShadow(
                         color: corBlack.withAlpha(50),
-                        blurRadius: 17.0,
+                        blurRadius: 17,
                         offset: Offset(0, 12),
                         spreadRadius: 1,
                       )
@@ -426,8 +430,8 @@ class PostCommentScreen extends StatelessWidget {
                     borderRadius: BorderRadius.circular(50),
                     child: CachedNetworkImage(
                       imageUrl: post!.userImage!,
-                      height: 51.0,
-                      width: 51.0,
+                      height: 51,
+                      width: 51,
                       fit: BoxFit.cover,
                     ),
                   ),
@@ -444,7 +448,7 @@ class PostCommentScreen extends StatelessWidget {
     return Container(
       color: Colors.transparent,
       child: Padding(
-        padding: EdgeInsets.all(8.0),
+        padding: EdgeInsets.all(8),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[

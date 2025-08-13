@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:get/get.dart';
-import '../utils/colors.dart';
-import '../controllers/auth_controller.dart';
-import '../screens/signup.dart';
+import 'package:unna/controllers/auth_controller.dart';
+import 'package:unna/screens/signup.dart';
+import 'package:unna/utils/colors.dart';
 
 class Login extends GetWidget<AuthController> {
   final TextEditingController emailController = TextEditingController();
@@ -30,7 +30,7 @@ class Login extends GetWidget<AuthController> {
             child: Center(
               child: SingleChildScrollView(
                 child: Padding(
-                  padding: const EdgeInsets.all(50.0),
+                  padding: const EdgeInsets.all(50),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     mainAxisSize: MainAxisSize.max,
@@ -53,14 +53,14 @@ class Login extends GetWidget<AuthController> {
                             color: corPrimariaEscura,
                           ),
                           enabledBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.all(Radius.circular(90.0)),
+                            borderRadius: BorderRadius.circular(90),
                             borderSide: BorderSide(
                               width: 2,
                               color: corPrimariaEscura,
                             ),
                           ),
                           focusedBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.all(Radius.circular(90.0)),
+                            borderRadius: BorderRadius.circular(90),
                             borderSide: BorderSide(
                               width: 2,
                               color: corPrimariaEscura,
@@ -88,14 +88,14 @@ class Login extends GetWidget<AuthController> {
                             color: corPrimariaEscura,
                           ),
                           enabledBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.all(Radius.circular(90.0)),
+                            borderRadius: BorderRadius.circular(90),
                             borderSide: BorderSide(
                               width: 2,
                               color: corPrimariaEscura,
                             ),
                           ),
                           focusedBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.all(Radius.circular(90.0)),
+                            borderRadius: BorderRadius.circular(90),
                             borderSide: BorderSide(
                               width: 2,
                               color: corPrimariaEscura,
@@ -133,21 +133,21 @@ class Login extends GetWidget<AuthController> {
                           }
                         },
                         style: ElevatedButton.styleFrom(
-                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(80.0)),
-                          padding: const EdgeInsets.all(0.0),
+                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(80)),
+                          padding: const EdgeInsets.all(0),
                         ),
                         child: Ink(
-                          decoration: const BoxDecoration(
+                          decoration: BoxDecoration(
                             gradient: LinearGradient(
                               colors: <Color>[
                                 corPrimariaClara,
                                 corPrimaria,
                               ],
                             ),
-                            borderRadius: BorderRadius.all(Radius.circular(80.0)),
+                            borderRadius: BorderRadius.circular(80),
                           ),
                           child: Container(
-                            constraints: const BoxConstraints(minWidth: 88.0, minHeight: 36.0),
+                            constraints: const BoxConstraints(minWidth: 88, minHeight: 36),
                             alignment: Alignment.center,
                             height: 55,
                             child: const Text(

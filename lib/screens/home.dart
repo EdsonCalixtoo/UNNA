@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:unna/controllers/post_controller.dart';
 import 'package:unna/screens/posts.dart';
 import 'package:unna/screens/sub_category.dart';
-import '../common/appbar_home.dart';
-import '../controllers/post_controller.dart';
-import '../utils/colors.dart';
+import 'package:unna/utils/colors.dart';
+import 'package:unna/widgets/appbar_home.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -68,7 +68,9 @@ class _HomeState extends State<Home> {
                       ),
                       child: TextButton(
                         onPressed: () {
-                          Get.to(Posts(category: 'geral'));
+                          Get.to(Posts(
+                            category: 'geral',
+                          ));
                         },
                         style: TextButton.styleFrom(
                           padding: EdgeInsets.zero,

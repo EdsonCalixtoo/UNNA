@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../utils/colors.dart';
+import 'package:unna/utils/colors.dart';
 
 class BotaoCortado extends StatelessWidget {
   final Function executarAcao;
@@ -17,19 +17,19 @@ class BotaoCortado extends StatelessWidget {
   Widget build(BuildContext context) {
     return ClipRRect(
       borderRadius: BorderRadius.only(
-        bottomRight: Radius.circular(90.0),
-        topRight: Radius.circular(90.0),
+        bottomRight: Radius.circular(90),
+        topRight: Radius.circular(90),
       ),
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
           elevation: 0,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.only(
-              bottomRight: Radius.circular(90.0),
-              topRight: Radius.circular(90.0),
+              bottomRight: Radius.circular(90),
+              topRight: Radius.circular(90),
             ),
           ),
-          padding: const EdgeInsets.all(0.0),
+          padding: const EdgeInsets.all(0),
         ),
         onPressed: () {
           executarAcao();
@@ -44,14 +44,14 @@ class BotaoCortado extends StatelessWidget {
               ],
             ),
             borderRadius: BorderRadius.only(
-              bottomRight: Radius.circular(90.0),
-              topRight: Radius.circular(90.0),
+              bottomRight: Radius.circular(90),
+              topRight: Radius.circular(90),
             ),
           ),
           child: Container(
             constraints: const BoxConstraints(
-              minWidth: 88.0,
-              minHeight: 36.0,
+              minWidth: 88,
+              minHeight: 36,
             ),
             alignment: Alignment.center,
             padding: EdgeInsets.symmetric(horizontal: 2),

@@ -6,13 +6,13 @@ import 'package:get/get.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:scroll_date_picker/scroll_date_picker.dart';
-import '../common/botao_simples.dart';
-import '../controllers/category_controller.dart';
-import '../controllers/post_controller.dart';
-import '../controllers/user_controller.dart';
-import '../models/post.dart';
-import '../services/database.dart';
-import '../utils/colors.dart';
+import 'package:unna/controllers/category_controller.dart';
+import 'package:unna/controllers/post_controller.dart';
+import 'package:unna/controllers/user_controller.dart';
+import 'package:unna/models/post.dart';
+import 'package:unna/services/database.dart';
+import 'package:unna/utils/colors.dart';
+import 'package:unna/widgets/botao_simples.dart';
 
 // ignore: must_be_immutable
 class PostAddEditScreen extends StatelessWidget {
@@ -96,9 +96,9 @@ class PostAddEditScreen extends StatelessWidget {
                           minHeight: constraints.maxHeight * 0.9,
                         ),
                         padding: EdgeInsets.all(10),
-                        decoration: new BoxDecoration(
+                        decoration: BoxDecoration(
                           color: Colors.white,
-                          borderRadius: new BorderRadius.all(Radius.circular(25.0)),
+                          borderRadius: BorderRadius.circular(25),
                         ),
                         child: Column(
                           mainAxisSize: MainAxisSize.max,
@@ -200,14 +200,14 @@ class PostAddEditScreen extends StatelessWidget {
                                       child: Container(
                                         height: constraints.maxHeight / 2.3,
                                         width: constraints.maxWidth * 0.85,
-                                        decoration: new BoxDecoration(
+                                        decoration: BoxDecoration(
                                           color: Colors.white,
-                                          borderRadius: new BorderRadius.all(
-                                            Radius.circular(10.0),
+                                          borderRadius: BorderRadius.all(
+                                            Radius.circular(10),
                                           ),
                                         ),
                                         child: ClipRRect(
-                                          borderRadius: new BorderRadius.all(Radius.circular(10.0)),
+                                          borderRadius: BorderRadius.circular(10),
                                           child: Image.file(
                                             imageTempUrl.value,
                                             fit: BoxFit.cover,
@@ -238,13 +238,13 @@ class PostAddEditScreen extends StatelessWidget {
                                             width: constraints.maxWidth * 0.85,
                                             decoration: BoxDecoration(
                                               color: Colors.grey,
-                                              borderRadius: new BorderRadius.all(
-                                                Radius.circular(15.0),
+                                              borderRadius: BorderRadius.all(
+                                                Radius.circular(15),
                                               ),
                                             ),
                                             child: ClipRRect(
-                                              borderRadius: new BorderRadius.all(
-                                                Radius.circular(15.0),
+                                              borderRadius: BorderRadius.all(
+                                                Radius.circular(15),
                                               ),
                                               child: CachedNetworkImage(
                                                 imageUrl: model.postImage!,
@@ -275,8 +275,8 @@ class PostAddEditScreen extends StatelessWidget {
                                             width: constraints.maxWidth * 0.85,
                                             decoration: BoxDecoration(
                                               color: Colors.grey,
-                                              borderRadius: new BorderRadius.all(
-                                                Radius.circular(15.0),
+                                              borderRadius: BorderRadius.all(
+                                                Radius.circular(15),
                                               ),
                                             ),
                                             child: Column(
@@ -310,21 +310,21 @@ class PostAddEditScreen extends StatelessWidget {
                                 cursorColor: corPrimaria,
                                 decoration: InputDecoration(
                                   enabledBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.all(Radius.circular(15.0)),
+                                    borderRadius: BorderRadius.circular(15),
                                     borderSide: BorderSide(
                                       width: 2,
                                       color: corPrimaria,
                                     ),
                                   ),
                                   focusedBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.all(Radius.circular(15.0)),
+                                    borderRadius: BorderRadius.circular(15),
                                     borderSide: BorderSide(
                                       width: 2,
                                       color: corPrimaria,
                                     ),
                                   ),
                                   focusedErrorBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.all(Radius.circular(90.0)),
+                                    borderRadius: BorderRadius.circular(90),
                                     borderSide: BorderSide(
                                       width: 2,
                                       color: corPrimaria,
@@ -411,7 +411,10 @@ class PostAddEditScreen extends StatelessWidget {
                                 Obx(
                                   () => (selectedDate.value
                                               .difference(DateTime(
-                                                  DateTime.now().year, DateTime.now().month, DateTime.now().day))
+                                                DateTime.now().year,
+                                                DateTime.now().month,
+                                                DateTime.now().day,
+                                              ))
                                               .inDays !=
                                           0)
                                       ? Positioned(
@@ -457,21 +460,21 @@ class PostAddEditScreen extends StatelessWidget {
                                     ),
                                     iconColor: corPrimaria,
                                     enabledBorder: OutlineInputBorder(
-                                      borderRadius: BorderRadius.all(Radius.circular(15.0)),
+                                      borderRadius: BorderRadius.circular(15),
                                       borderSide: BorderSide(
                                         width: 2,
                                         color: corPrimaria,
                                       ),
                                     ),
                                     focusedBorder: OutlineInputBorder(
-                                      borderRadius: BorderRadius.all(Radius.circular(15.0)),
+                                      borderRadius: BorderRadius.circular(15),
                                       borderSide: BorderSide(
                                         width: 2,
                                         color: corPrimaria,
                                       ),
                                     ),
                                     focusedErrorBorder: OutlineInputBorder(
-                                      borderRadius: BorderRadius.all(Radius.circular(15.0)),
+                                      borderRadius: BorderRadius.circular(15),
                                       borderSide: BorderSide(
                                         width: 2,
                                         color: corPrimaria,
@@ -532,21 +535,21 @@ class PostAddEditScreen extends StatelessWidget {
                                             ),
                                             iconColor: corPrimaria,
                                             enabledBorder: OutlineInputBorder(
-                                              borderRadius: BorderRadius.all(Radius.circular(15.0)),
+                                              borderRadius: BorderRadius.circular(15),
                                               borderSide: BorderSide(
                                                 width: 2,
                                                 color: corPrimaria,
                                               ),
                                             ),
                                             focusedBorder: OutlineInputBorder(
-                                              borderRadius: BorderRadius.all(Radius.circular(15.0)),
+                                              borderRadius: BorderRadius.circular(15),
                                               borderSide: BorderSide(
                                                 width: 2,
                                                 color: corPrimaria,
                                               ),
                                             ),
                                             focusedErrorBorder: OutlineInputBorder(
-                                              borderRadius: BorderRadius.all(Radius.circular(15.0)),
+                                              borderRadius: BorderRadius.circular(15),
                                               borderSide: BorderSide(
                                                 width: 2,
                                                 color: corPrimaria,
@@ -579,7 +582,7 @@ class PostAddEditScreen extends StatelessWidget {
                             Container(
                               color: Colors.transparent,
                               child: Padding(
-                                padding: EdgeInsets.all(8.0),
+                                padding: EdgeInsets.all(8),
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                   children: <Widget>[
